@@ -1,51 +1,35 @@
 # Recover - Abandoned Cart Recovery for WooCommerce
 
-Capture WooCommerce carts that are left behind and email customers a secure,
-one-click link to finish checkout. Self-hosted, privacy-minded, no third-party
-service.
+Recover captures WooCommerce carts that are left behind and emails customers a secure, one-click link to finish checkout. It is fully self-hosted and privacy-minded — no third-party service and no customer data leaving your site.
 
-## What it does
+## Features
 
-- Snapshots the cart whenever it changes and captures the customer email early
-  (logged-in users automatically; guests via a consent-gated checkout capture).
-- Marks carts **abandoned** if checkout is not completed within a configurable
-  window.
-- Emails a recovery message on a WordPress cron schedule containing a secure,
-  tokenised one-click restore link that repopulates the cart.
-- Tracks pending / abandoned / recovered carts and your recovery rate.
+- Snapshots the cart whenever it changes and captures the customer email early (logged-in users automatically; guests via a consent-gated checkout capture).
+- Marks carts abandoned if checkout is not completed within a configurable window.
+- Emails a recovery message on a WordPress cron schedule with a secure one-click restore link that repopulates the cart.
+- Tracks pending, abandoned and recovered carts and shows your recovery rate.
+- One-click per-email data wipe, with a clean uninstall that removes its data and scheduled task.
 
-## Architecture
+## Privacy and security
 
-- `recover.php` — bootstrap. PHP/WooCommerce guards, HPOS + Blocks compatibility,
-  boots on `init:0`, fires `recover/booted`, schedules/clears the cron event.
-- `src/Plugin.php` — DI container + boot orchestration.
-- `src/Service/CartTracker.php` — cart snapshots + early email capture (AJAX).
-- `src/Service/RestoreHandler.php` — tokenised one-click restore link handler.
-- `src/Service/RecoveryMailer.php` — composes/sends the recovery email via `wp_mail`.
-- `src/Service/CronWorker.php` — idempotent sweep + send worker.
-- `src/Repository/CartRepository.php` — custom `{prefix}_recover_carts` table.
-- `src/Admin/SettingsPage.php`, `src/Admin/CartsPage.php` — WooCommerce submenu UI.
-
-## Privacy & security
-
-- Restore links are 64-char cryptographically random tokens — no ids, no PII in
-  the URL (no IDOR / enumeration).
+- Restore links use 64-character cryptographically random tokens — no ids and no personal data in the URL, so there is no enumeration risk.
 - Guest email capture is gated behind an explicit consent checkbox.
-- One-click per-email data wipe; uninstall drops the table and clears the cron.
-- All output escaped, all input sanitised, nonces on every form/AJAX call,
-  `manage_woocommerce` capability on all admin pages.
+- All output is escaped, all input sanitised, nonces protect every form and AJAX call, and admin pages require the `manage_woocommerce` capability.
 
-## Development
+## Installation
 
-```bash
-composer install
-composer cs        # PHP_CodeSniffer (WPCS subset)
-composer analyse   # PHPStan level 6
-```
+1. Upload the plugin to `/wp-content/plugins/recover`, or install it via **Plugins → Add New**.
+2. Activate it. WooCommerce must be active.
+3. Configure the abandonment window and email under **WooCommerce → Recover**.
 
-A PRO companion lives in `wppoland/recover-pro` and boots via the
-`recover/booted` action.
+## Frequently Asked Questions
 
-## License
+**Is any cart data sent to a third party?**
+No. Everything is stored on your own site and emails are sent through WordPress, so no data leaves your store.
 
-GPL-2.0-or-later.
+**Is the restore link safe to share by email?**
+Yes. Each link carries only an unguessable 64-character token — no customer id or email — so a cart cannot be restored or enumerated without it.
+
+Built by WPPoland — https://plogins.com
+
+License: GPL-2.0-or-later

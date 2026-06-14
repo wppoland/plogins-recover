@@ -70,7 +70,7 @@ final class Plugin
         }
 
         /**
-         * Fires after the plugin has fully booted. PRO companions hook here.
+         * Fires after the plugin has fully booted. Add-ons can hook here to extend it.
          *
          * @param Plugin $plugin The booted plugin instance.
          */
