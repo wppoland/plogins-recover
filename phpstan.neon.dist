@@ -1,0 +1,21 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 6
+    paths:
+        - recover.php
+        - uninstall.php
+        - src
+        - config
+    excludePaths:
+        - vendor/
+    bootstrapFiles:
+        - tests/phpstan/constants.php
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # Table names use $wpdb->prefix; the SQL template is not a PHP literal-string.
+        -
+            message: '~Parameter #1 \$query of method wpdb::prepare\(\) expects literal-string~'

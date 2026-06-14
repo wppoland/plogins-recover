@@ -1,0 +1,107 @@
+/**
+ * Recover admin styles. Modern custom properties, dark-mode aware, accessible,
+ * no layout shift, motion guarded by prefers-reduced-motion.
+ */
+.recover-wrap {
+	--recover-accent: #2563eb;
+	--recover-surface: #ffffff;
+	--recover-border: #e3e6ea;
+	--recover-text: #1f2329;
+	--recover-muted: #6b7280;
+	--recover-pending: #d97706;
+	--recover-abandoned: #dc2626;
+	--recover-recovered: #059669;
+}
+
+@media (prefers-color-scheme: dark) {
+	.recover-wrap {
+		--recover-surface: #1e1f22;
+		--recover-border: #34373c;
+		--recover-text: #e6e7e9;
+		--recover-muted: #9ca3af;
+	}
+}
+
+.recover-cron-status {
+	color: var(--recover-muted);
+	font-size: 13px;
+}
+
+.recover-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	gap: 16px;
+	margin: 20px 0 24px;
+}
+
+.recover-card {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 18px 20px;
+	background: var(--recover-surface);
+	border: 1px solid var(--recover-border);
+	border-radius: 12px;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.recover-card:hover {
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+	transform: translateY(-1px);
+}
+
+.recover-card--accent {
+	border-color: var(--recover-accent);
+}
+
+.recover-card__num {
+	font-size: 28px;
+	font-weight: 700;
+	line-height: 1.1;
+	color: var(--recover-text);
+}
+
+.recover-card__label {
+	font-size: 13px;
+	color: var(--recover-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.recover-badge {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #fff;
+	background: var(--recover-muted);
+}
+
+.recover-badge--pending {
+	background: var(--recover-pending);
+}
+
+.recover-badge--abandoned {
+	background: var(--recover-abandoned);
+}
+
+.recover-badge--recovered {
+	background: var(--recover-recovered);
+}
+
+.recover-wrap .button-link.delete:focus-visible,
+.recover-wrap a:focus-visible {
+	outline: 2px solid var(--recover-accent);
+	outline-offset: 2px;
+	border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.recover-card {
+		transition: none;
+	}
+	.recover-card:hover {
+		transform: none;
+	}
+}
