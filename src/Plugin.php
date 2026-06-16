@@ -68,5 +68,14 @@ final class Plugin
                 $service->registerHooks();
             }
         }
+
+        /**
+         * Fires after the plugin has fully booted and all services have
+         * registered their hooks. Add-ons (e.g. Recover Pro) hook this to
+         * extend the shared DI container and register their own services.
+         *
+         * @param Plugin $plugin The booted plugin instance.
+         */
+        do_action('recover/booted', $this);
     }
 }
