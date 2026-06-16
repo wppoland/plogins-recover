@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-14T22:02:44+00:00\n"
+"POT-Creation-Date: 2026-06-16T20:24:51+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: recover\n"
@@ -172,73 +172,93 @@ msgstr ""
 msgid "Only store a guest email after they tick a consent checkbox at checkout (recommended for GDPR)."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:80
+#: src/Admin/SettingsPage.php:82
 msgid "Consent checkbox label"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:85
+#: src/Admin/SettingsPage.php:83
+msgid "Wording the shopper sees next to the consent checkbox at checkout. Applies only when \"Require consent\" is on."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:91
 msgid "Timing"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:87
+#: src/Admin/SettingsPage.php:93
 msgid "Control how long to wait before a cart is considered abandoned and emails go out. The recovery worker runs hourly via wp-cron."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:92
+#: src/Admin/SettingsPage.php:98
 msgid "Mark abandoned after (minutes)"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:92
+#: src/Admin/SettingsPage.php:98
 msgid "Minutes of inactivity before a pending cart is flagged as abandoned."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:93
+#: src/Admin/SettingsPage.php:99
 msgid "Email delay (minutes)"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:93
+#: src/Admin/SettingsPage.php:99
 msgid "Minutes to wait after abandonment before sending the recovery email."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:98
+#: src/Admin/SettingsPage.php:104
 msgid "Recovery email"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:100
-msgid "Customise the recovery email. Leave any field blank to use the built-in default. Emails are sent through your own site mailer; no data leaves your store."
+#: src/Admin/SettingsPage.php:106
+msgid "Customise the recovery email. Leave any field blank to use the built-in default shown as the placeholder. Emails are sent through your own site mailer; no data leaves your store."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:105
+#: src/Admin/SettingsPage.php:113
 msgid "Subject"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:106
+#: src/Admin/SettingsPage.php:114
+msgid "Inbox subject line. Keep it short and specific so it survives a crowded inbox."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:120
 msgid "Heading"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:107
+#: src/Admin/SettingsPage.php:121
+msgid "The large heading at the top of the email body, above your message."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:127
 msgid "Body text"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:108
+#: src/Admin/SettingsPage.php:128
+msgid "The message shown above the recovery button. Plain text only; write what nudges the shopper back."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:134
 msgid "Button label"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:124
+#: src/Admin/SettingsPage.php:135
+msgid "Text on the button that returns the shopper to their saved cart."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:154
 msgid "Cart recovery is currently disabled. Enable it below to start tracking abandoned carts."
 msgstr ""
 
 #. translators: %s: human-readable time difference
-#: src/Admin/SettingsPage.php:133
+#: src/Admin/SettingsPage.php:163
 #, php-format
 msgid "Next recovery run: in %s."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:137
+#: src/Admin/SettingsPage.php:167
 msgid "The recovery worker is not scheduled. Re-activate the plugin to restore it."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:140
+#: src/Admin/SettingsPage.php:170
 msgid "View abandoned carts →"
 msgstr ""
 
@@ -266,8 +286,16 @@ msgstr ""
 msgid "Complete my order"
 msgstr ""
 
+#: templates/emails/recovery.php:76
+msgid "We left the light on — your cart is still here."
+msgstr ""
+
+#: templates/emails/recovery.php:90
+msgid "The link picks up right where you left off."
+msgstr ""
+
 #. translators: %s: site name
-#: templates/emails/recovery.php:54
+#: templates/emails/recovery.php:100
 #, php-format
 msgid "This message was sent by %s because a cart was left behind. If this was not you, you can safely ignore this email."
 msgstr ""
