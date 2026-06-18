@@ -54,6 +54,15 @@ On the implementation side, all output is escaped and all input sanitised, every
 
 == Frequently Asked Questions ==
 
+= Documentation and links =
+
+* **Documentation** - https://plogins.com/recover/docs/
+* **Plugin page** - https://plogins.com/recover/
+* **Source code** - https://github.com/wppoland/recover
+* **Bug reports and feature requests** - https://github.com/wppoland/recover/issues
+* **Discussions and questions** - https://github.com/wppoland/recover/discussions
+
+
 = Is Recover free? =
 Yes. Recover is free and licensed under the GPL.
 
