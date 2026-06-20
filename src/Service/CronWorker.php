@@ -75,6 +75,14 @@ final class CronWorker implements HasHooks
 
             if ($this->mailer->send($cart, $step)) {
                 $this->repository->recordEmailSent($cart->id);
+
+                /**
+                 * Fires after a recovery email is accepted by wp_mail.
+                 *
+                 * @param AbandonedCart $cart The cart that received the email.
+                 * @param int           $step Zero-based sequence index that was sent.
+                 */
+                do_action('recover/email_sent', $cart, $step);
             }
         }
     }

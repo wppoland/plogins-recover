@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,11 @@ Recover does not connect to any external services. Recovery emails are sent thro
 2. The recovery email with its one-click "Complete my order" button.
 
 == Changelog ==
+
+= 0.1.2 =
+* `recover/email_sent` action after a recovery email is accepted by wp_mail.
+* `recover/cart_recovered` action when a cart is marked recovered.
+* `CartRepository::findById()` for cart lookup by primary key.
 
 = 0.1.1 =
 * Multi-email recovery sequences: `recover/max_emails`, `recover/email_step_delay`,

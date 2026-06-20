@@ -213,6 +213,8 @@ final class CartRepository
 
     public function markRecovered(int $id): void
     {
+        $cart = $this->findById($id);
+
         $now = current_time('mysql', true);
         $this->wpdb->update(
             $this->tableName(),
@@ -221,6 +223,34 @@ final class CartRepository
             ['%s', '%s', '%s'],
             ['%d'],
         );
+
+        if ($cart instanceof AbandonedCart) {
+            /**
+             * Fires after a cart is marked recovered.
+             *
+             * @param AbandonedCart $cart Cart snapshot before the status change.
+             */
+            do_action('recover/cart_recovered', $cart);
+        }
+    }
+
+    public function findById(int $id): ?AbandonedCart
+    {
+        if ($id <= 0) {
+            return null;
+        }
+
+        // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Own custom plugin table.
+        $row = $this->wpdb->get_row(
+            $this->wpdb->prepare(
+                'SELECT * FROM %i WHERE id = %d LIMIT 1',
+                $this->tableName(),
+                $id,
+            ),
+        );
+        // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter
+
+        return $row instanceof \stdClass ? AbandonedCart::fromRow($row) : null;
     }
 
     public function recordEmailSent(int $id): void
