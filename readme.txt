@@ -19,7 +19,7 @@ Because everything happens on your own server, you can read exactly what it does
 **How it works**
 
 1. As soon as a shopper has items in the cart, Recover saves a private snapshot of that cart.
-2. The customer email is captured early — automatically for logged-in customers, and (with consent) from the checkout email field for guests.
+2. The customer email is captured early, automatically for logged-in customers, and (with consent) from the checkout email field for guests.
 3. If checkout is not completed within a window you choose, the cart is marked **abandoned**.
 4. On the next scheduled run, Recover emails a recovery message containing a secure, tokenised restore link.
 5. One click on that link repopulates the cart and sends the shopper back to checkout. Recovered carts are tracked separately so you can see your recovery rate.
@@ -70,10 +70,10 @@ Yes. Recover is free and licensed under the GPL.
 Yes. Recover is a WooCommerce extension and requires WooCommerce 8.0 or later. It shows an admin notice and stays inactive if WooCommerce is missing or out of date.
 
 = How is the recovery email sent? =
-On a WordPress cron schedule (hourly by default). Each run marks carts that have been inactive past your window as abandoned, then emails a recovery link to any abandoned cart that is due, using your own site mailer (`wp_mail`). The worker is idempotent, so it never double-sends — each cart receives a single recovery email.
+On a WordPress cron schedule (hourly by default). Each run marks carts that have been inactive past your window as abandoned, then emails a recovery link to any abandoned cart that is due, using your own site mailer (`wp_mail`). The worker is idempotent, so it never double-sends, so each cart receives a single recovery email.
 
 = Is the restore link safe? =
-Yes. Each cart has a 64-character cryptographically random token. The restore link contains only that token — no customer id, no email, nothing personal. Without the exact token a cart cannot be restored, so there is no enumeration or IDOR risk.
+Yes. Each cart has a 64-character cryptographically random token. The restore link contains only that token: no customer id, no email, nothing personal. Without the exact token a cart cannot be restored, so there is no enumeration or IDOR risk.
 
 = Does this comply with GDPR / consent requirements? =
 Guest email capture only happens after the shopper ticks a consent checkbox (you can edit the wording, and consent can be required or not). Cart data is stored only in your own database and never sent to any third party. From **WooCommerce → Recover Carts** you can erase all stored cart data for any email address in one click. You remain responsible for your store's privacy policy.
