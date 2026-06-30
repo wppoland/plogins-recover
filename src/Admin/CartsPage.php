@@ -33,8 +33,8 @@ final class CartsPage implements HasHooks
     {
         add_submenu_page(
             'woocommerce',
-            __('Recover - Carts', 'recover'),
-            __('Recover Carts', 'recover'),
+            __('Recover - Carts', 'plogins-recover'),
+            __('Recover Carts', 'plogins-recover'),
             'manage_woocommerce',
             self::PAGE,
             [$this, 'renderPage'],
@@ -51,7 +51,7 @@ final class CartsPage implements HasHooks
         }
 
         if (! wp_verify_nonce(sanitize_key(wp_unslash((string) $_POST['_wpnonce'])), self::NONCE_WIPE)) {
-            wp_die(esc_html__('Security check failed.', 'recover'));
+            wp_die(esc_html__('Security check failed.', 'plogins-recover'));
         }
 
         $email = sanitize_email(wp_unslash((string) $_POST['recover_wipe_email']));
@@ -78,26 +78,26 @@ final class CartsPage implements HasHooks
         $rate   = $total > 0 ? round(($counts['recovered'] / $total) * 100, 1) : 0.0;
         ?>
         <div class="wrap recover-wrap">
-            <h1><?php esc_html_e('Recover - Abandoned Carts', 'recover'); ?></h1>
+            <h1><?php esc_html_e('Recover - Abandoned Carts', 'plogins-recover'); ?></h1>
 
             <?php if (isset($_GET['recover_wiped'])) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
-                <div class="notice notice-success is-dismissible"><p><?php esc_html_e('Cart data for that email address has been erased.', 'recover'); ?></p></div>
+                <div class="notice notice-success is-dismissible"><p><?php esc_html_e('Cart data for that email address has been erased.', 'plogins-recover'); ?></p></div>
             <?php endif; ?>
 
             <div class="recover-cards">
-                <div class="recover-card"><span class="recover-card__num"><?php echo esc_html((string) $counts['pending']); ?></span><span class="recover-card__label"><?php esc_html_e('Pending', 'recover'); ?></span></div>
-                <div class="recover-card"><span class="recover-card__num"><?php echo esc_html((string) $counts['abandoned']); ?></span><span class="recover-card__label"><?php esc_html_e('Abandoned', 'recover'); ?></span></div>
-                <div class="recover-card"><span class="recover-card__num"><?php echo esc_html((string) $counts['recovered']); ?></span><span class="recover-card__label"><?php esc_html_e('Recovered', 'recover'); ?></span></div>
-                <div class="recover-card recover-card--accent"><span class="recover-card__num"><?php echo esc_html((string) $rate); ?>%</span><span class="recover-card__label"><?php esc_html_e('Recovery rate', 'recover'); ?></span></div>
+                <div class="recover-card"><span class="recover-card__num"><?php echo esc_html((string) $counts['pending']); ?></span><span class="recover-card__label"><?php esc_html_e('Pending', 'plogins-recover'); ?></span></div>
+                <div class="recover-card"><span class="recover-card__num"><?php echo esc_html((string) $counts['abandoned']); ?></span><span class="recover-card__label"><?php esc_html_e('Abandoned', 'plogins-recover'); ?></span></div>
+                <div class="recover-card"><span class="recover-card__num"><?php echo esc_html((string) $counts['recovered']); ?></span><span class="recover-card__label"><?php esc_html_e('Recovered', 'plogins-recover'); ?></span></div>
+                <div class="recover-card recover-card--accent"><span class="recover-card__num"><?php echo esc_html((string) $rate); ?>%</span><span class="recover-card__label"><?php esc_html_e('Recovery rate', 'plogins-recover'); ?></span></div>
             </div>
 
             <form method="get" class="recover-carts__search" style="margin:12px 0;">
                 <input type="hidden" name="page" value="<?php echo esc_attr(self::PAGE); ?>" />
-                <label class="screen-reader-text" for="recover-cart-search"><?php esc_html_e('Search carts by email', 'recover'); ?></label>
-                <input type="search" id="recover-cart-search" name="s" value="<?php echo esc_attr($search); ?>" placeholder="<?php esc_attr_e('Search by email', 'recover'); ?>" />
-                <button type="submit" class="button"><?php esc_html_e('Search', 'recover'); ?></button>
+                <label class="screen-reader-text" for="recover-cart-search"><?php esc_html_e('Search carts by email', 'plogins-recover'); ?></label>
+                <input type="search" id="recover-cart-search" name="s" value="<?php echo esc_attr($search); ?>" placeholder="<?php esc_attr_e('Search by email', 'plogins-recover'); ?>" />
+                <button type="submit" class="button"><?php esc_html_e('Search', 'plogins-recover'); ?></button>
                 <?php if ('' !== $search) : ?>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=' . self::PAGE)); ?>" class="button-link"><?php esc_html_e('Clear', 'recover'); ?></a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=' . self::PAGE)); ?>" class="button-link"><?php esc_html_e('Clear', 'plogins-recover'); ?></a>
                 <?php endif; ?>
             </form>
 
@@ -106,30 +106,30 @@ final class CartsPage implements HasHooks
                     <?php
                     printf(
                         /* translators: %s: search term. */
-                        esc_html__('No carts match "%s".', 'recover'),
+                        esc_html__('No carts match "%s".', 'plogins-recover'),
                         esc_html($search),
                     );
                     ?>
                 </p>
             <?php elseif ($rows === []) : ?>
-                <p><?php esc_html_e('No carts recorded yet. Once shoppers add items and leave without checking out, they will appear here.', 'recover'); ?></p>
+                <p><?php esc_html_e('No carts recorded yet. Once shoppers add items and leave without checking out, they will appear here.', 'plogins-recover'); ?></p>
             <?php else : ?>
                 <table class="wp-list-table widefat fixed striped">
                     <thead>
                         <tr>
-                            <th scope="col"><?php esc_html_e('Email', 'recover'); ?></th>
-                            <th scope="col"><?php esc_html_e('Items', 'recover'); ?></th>
-                            <th scope="col"><?php esc_html_e('Value', 'recover'); ?></th>
-                            <th scope="col"><?php esc_html_e('Status', 'recover'); ?></th>
-                            <th scope="col"><?php esc_html_e('Emails', 'recover'); ?></th>
-                            <th scope="col"><?php esc_html_e('Last activity', 'recover'); ?></th>
-                            <th scope="col"><?php esc_html_e('Privacy', 'recover'); ?></th>
+                            <th scope="col"><?php esc_html_e('Email', 'plogins-recover'); ?></th>
+                            <th scope="col"><?php esc_html_e('Items', 'plogins-recover'); ?></th>
+                            <th scope="col"><?php esc_html_e('Value', 'plogins-recover'); ?></th>
+                            <th scope="col"><?php esc_html_e('Status', 'plogins-recover'); ?></th>
+                            <th scope="col"><?php esc_html_e('Emails', 'plogins-recover'); ?></th>
+                            <th scope="col"><?php esc_html_e('Last activity', 'plogins-recover'); ?></th>
+                            <th scope="col"><?php esc_html_e('Privacy', 'plogins-recover'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($rows as $cart) : ?>
                             <tr>
-                                <td><?php echo esc_html($cart->email ?? __('(no email yet)', 'recover')); ?></td>
+                                <td><?php echo esc_html($cart->email ?? __('(no email yet)', 'plogins-recover')); ?></td>
                                 <td><?php echo esc_html((string) $cart->itemCount); ?></td>
                                 <td><?php echo wp_kses_post(wc_price($cart->cartTotal, ['currency' => $cart->currency ?? ''])); ?></td>
                                 <td><span class="recover-badge recover-badge--<?php echo esc_attr($cart->status); ?>"><?php echo esc_html($this->statusLabel($cart->status)); ?></span></td>
@@ -137,10 +137,10 @@ final class CartsPage implements HasHooks
                                 <td><?php echo esc_html($cart->updatedAt->format('Y-m-d H:i')); ?></td>
                                 <td>
                                     <?php if ($cart->email !== null) : ?>
-                                        <form method="post" onsubmit="return confirm('<?php echo esc_js(__('Erase all stored cart data for this email address?', 'recover')); ?>');" style="display:inline;">
+                                        <form method="post" onsubmit="return confirm('<?php echo esc_js(__('Erase all stored cart data for this email address?', 'plogins-recover')); ?>');" style="display:inline;">
                                             <?php wp_nonce_field(self::NONCE_WIPE); ?>
                                             <input type="hidden" name="recover_wipe_email" value="<?php echo esc_attr($cart->email); ?>" />
-                                            <button type="submit" class="button-link delete"><?php esc_html_e('Erase', 'recover'); ?></button>
+                                            <button type="submit" class="button-link delete"><?php esc_html_e('Erase', 'plogins-recover'); ?></button>
                                         </form>
                                     <?php else : ?>
                                         &mdash;
@@ -158,9 +158,9 @@ final class CartsPage implements HasHooks
     private function statusLabel(string $status): string
     {
         return match ($status) {
-            AbandonedCart::STATUS_PENDING   => __('Pending', 'recover'),
-            AbandonedCart::STATUS_ABANDONED => __('Abandoned', 'recover'),
-            AbandonedCart::STATUS_RECOVERED => __('Recovered', 'recover'),
+            AbandonedCart::STATUS_PENDING   => __('Pending', 'plogins-recover'),
+            AbandonedCart::STATUS_ABANDONED => __('Abandoned', 'plogins-recover'),
+            AbandonedCart::STATUS_RECOVERED => __('Recovered', 'plogins-recover'),
             default                         => $status,
         };
     }

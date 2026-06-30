@@ -1,10 +1,10 @@
-=== Recover - Abandoned Cart Recovery for WooCommerce ===
+=== Plogins Recover for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Recover abandoned WooCommerce carts: capture the email early, save the cart, ema
 
 Recover captures WooCommerce carts that shoppers leave behind and emails them a secure, one-click link that puts every item straight back into their cart so they can finish checking out. It runs entirely on your own site: no third-party service, no data leaves your store.
 
-Because everything happens on your own server, you can read exactly what it does. The full source lives at https://github.com/wppoland/recover, which is also where to file a bug or request a feature.
+Because everything happens on your own server, you can read exactly what it does. The full source lives at https://github.com/wppoland/plogins-recover, which is also where to file a bug or request a feature.
 
 **How it works**
 
@@ -56,11 +56,10 @@ On the implementation side, all output is escaped and all input sanitised, every
 
 = Documentation and links =
 
-* **Documentation** - https://plogins.com/recover/docs/
-* **Plugin page** - https://plogins.com/recover/
-* **Source code** - https://github.com/wppoland/recover
-* **Bug reports and feature requests** - https://github.com/wppoland/recover/issues
-* **Discussions and questions** - https://github.com/wppoland/recover/discussions
+* **Documentation** - https://plogins.com/plogins-recover/docs/
+* **Plugin page** - https://plogins.com/plogins-recover/
+* **Source code** - https://github.com/wppoland/plogins-recover
+* **Bug reports and feature requests** - https://github.com/wppoland/plogins-recover/issues
 
 
 = Is Recover free? =
@@ -94,6 +93,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 2. The recovery email with its one-click "Complete my order" button.
 
 == Changelog ==
+
+= 0.1.3 =
+* Renamed to Plogins Recover for WooCommerce for a more distinctive plugin name.
 
 = 0.1.2 =
 * `recover/email_sent` action after a recovery email is accepted by wp_mail.

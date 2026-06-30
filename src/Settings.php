@@ -81,21 +81,21 @@ final class Settings
 
         return $value !== ''
             ? $value
-            : __('Email me a link to recover my cart if I do not complete my order.', 'recover');
+            : __('Email me a link to recover my cart if I do not complete my order.', 'plogins-recover');
     }
 
     public function emailSubject(): string
     {
         $value = (string) $this->get('email_subject', '');
 
-        return $value !== '' ? $value : __('You left something in your cart', 'recover');
+        return $value !== '' ? $value : __('You left something in your cart', 'plogins-recover');
     }
 
     public function emailHeading(): string
     {
         $value = (string) $this->get('email_heading', '');
 
-        return $value !== '' ? $value : __('Still thinking it over?', 'recover');
+        return $value !== '' ? $value : __('Still thinking it over?', 'plogins-recover');
     }
 
     public function emailBody(): string
@@ -104,13 +104,13 @@ final class Settings
 
         return $value !== ''
             ? $value
-            : __('We saved your cart for you. Click the button below to pick up right where you left off.', 'recover');
+            : __('We saved your cart for you. Click the button below to pick up right where you left off.', 'plogins-recover');
     }
 
     public function emailButton(): string
     {
         $value = (string) $this->get('email_button', '');
 
-        return $value !== '' ? $value : __('Complete my order', 'recover');
+        return $value !== '' ? $value : __('Complete my order', 'plogins-recover');
     }
 }
