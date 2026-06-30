@@ -134,12 +134,12 @@ final class CartTracker implements HasHooks
     public function handleCapture(): void
     {
         if (! check_ajax_referer(self::NONCE_ACTION, 'nonce', false)) {
-            wp_send_json_error(['message' => __('Security check failed.', 'recover')], 400);
+            wp_send_json_error(['message' => __('Security check failed.', 'plogins-recover')], 400);
         }
 
         $email = isset($_POST['email']) ? sanitize_email(wp_unslash((string) $_POST['email'])) : '';
         if ($email === '' || ! is_email($email)) {
-            wp_send_json_error(['message' => __('Provide a valid email address.', 'recover')], 422);
+            wp_send_json_error(['message' => __('Provide a valid email address.', 'plogins-recover')], 422);
         }
 
         $consent = isset($_POST['consent']) && '1' === sanitize_text_field(wp_unslash((string) $_POST['consent']));

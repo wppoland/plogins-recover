@@ -73,7 +73,7 @@ defined('ABSPATH') || exit;
                                             </tr>
                                         </table>
                                         <p style="margin:0 0 16px;font-size:13px;line-height:1.5;color:#9a3412;font-weight:600;letter-spacing:0.01em;">
-                                            <?php echo esc_html__('We left the light on, your cart is still here.', 'recover'); ?>
+                                            <?php echo esc_html__('We left the light on, your cart is still here.', 'plogins-recover'); ?>
                                         </p>
                                         <a href="<?php echo esc_url($recover_restore_url); ?>"
                                            style="display:inline-block;background-color:#a3360b;background-image:linear-gradient(180deg, #c44510 0%, #a3360b 100%);color:#ffffff;text-decoration:none;font-size:16px;font-weight:700;padding:15px 32px;border-radius:10px;box-shadow:0 6px 16px rgba(163,54,11,0.32);">
@@ -87,7 +87,7 @@ defined('ABSPATH') || exit;
                     <tr>
                         <td align="center" style="padding:14px 36px 4px;">
                             <p style="margin:0;font-size:12px;line-height:1.6;color:#9ca3af;">
-                                <?php echo esc_html__('The link picks up right where you left off.', 'recover'); ?>
+                                <?php echo esc_html__('The link picks up right where you left off.', 'plogins-recover'); ?>
                             </p>
                         </td>
                     </tr>
@@ -97,7 +97,7 @@ defined('ABSPATH') || exit;
                                 <?php
                                 printf(
                                     /* translators: %s: site name */
-                                    esc_html__('This message was sent by %s because a cart was left behind. If this was not you, you can safely ignore this email.', 'recover'),
+                                    esc_html__('This message was sent by %s because a cart was left behind. If this was not you, you can safely ignore this email.', 'plogins-recover'),
                                     esc_html($recover_site_name),
                                 );
                                 ?>

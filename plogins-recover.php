@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Recover - Abandoned Cart Recovery for WooCommerce
- * Plugin URI:        https://plogins.com/recover/
+ * Plugin Name:       Plogins Recover for WooCommerce
+ * Plugin URI:        https://plogins.com/plogins-recover/
  * Description:        Capture carts that are left behind and email customers a one-click link to finish checkout.
- * Version:           0.1.2
+ * Version:           0.1.3
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Tested up to:      7.0
@@ -12,7 +12,7 @@
  * Author URI:        https://wppoland.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       recover
+ * Text Domain:       plogins-recover
  * Domain Path:       /languages
  *
  * WC requires at least: 8.0
@@ -27,7 +27,7 @@ namespace Recover;
 
 defined('ABSPATH') || exit;
 
-const VERSION         = '0.1.2';
+const VERSION         = '0.1.3';
 const PLUGIN_FILE     = __FILE__;
 const PLUGIN_DIR      = __DIR__;
 const MIN_PHP_VERSION = '8.1.0';
@@ -49,7 +49,7 @@ if (version_compare(PHP_VERSION, MIN_PHP_VERSION, '<')) {
             '<div class="notice notice-error"><p>%s</p></div>',
             esc_html(sprintf(
                 /* translators: 1: Required PHP version, 2: Current PHP version */
-                __('Recover requires PHP %1$s or higher. You are running PHP %2$s.', 'recover'),
+                __('Recover requires PHP %1$s or higher. You are running PHP %2$s.', 'plogins-recover'),
                 MIN_PHP_VERSION,
                 PHP_VERSION,
             )),
@@ -65,7 +65,7 @@ add_action('plugins_loaded', static function (): void {
         add_action('admin_notices', static function (): void {
             printf(
                 '<div class="notice notice-error"><p>%s</p></div>',
-                esc_html__('Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be installed and activated.', 'recover'),
+                esc_html__('Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be installed and activated.', 'plogins-recover'),
             );
         });
         return;
@@ -77,7 +77,7 @@ add_action('plugins_loaded', static function (): void {
                 '<div class="notice notice-error"><p>%s</p></div>',
                 esc_html(sprintf(
                     /* translators: 1: Required WC version, 2: Current WC version */
-                    __('Recover requires WooCommerce %1$s or higher. You are running WooCommerce %2$s.', 'recover'),
+                    __('Recover requires WooCommerce %1$s or higher. You are running WooCommerce %2$s.', 'plogins-recover'),
                     MIN_WC_VERSION,
                     WC_VERSION,
                 )),

@@ -38,8 +38,8 @@ final class SettingsPage implements HasHooks
     {
         add_submenu_page(
             'woocommerce',
-            __('Recover - Abandoned Carts', 'recover'),
-            __('Recover', 'recover'),
+            __('Recover - Abandoned Carts', 'plogins-recover'),
+            __('Recover', 'plogins-recover'),
             'manage_woocommerce',
             self::PAGE,
             [$this, 'renderPage'],
@@ -72,15 +72,15 @@ final class SettingsPage implements HasHooks
         );
 
         // ── General ──────────────────────────────────────────────────────────
-        add_settings_section(self::SECTION_GENERAL, __('General', 'recover'), '__return_false', self::PAGE);
+        add_settings_section(self::SECTION_GENERAL, __('General', 'plogins-recover'), '__return_false', self::PAGE);
 
-        $this->checkbox('enabled', __('Enable cart recovery', 'recover'), __('Track abandoned carts and send recovery emails.', 'recover'), self::SECTION_GENERAL);
-        $this->checkbox('capture_guests', __('Capture guest carts', 'recover'), __('Record carts and emails from visitors who are not logged in.', 'recover'), self::SECTION_GENERAL);
-        $this->checkbox('require_consent', __('Require consent', 'recover'), __('Only store a guest email after they tick a consent checkbox at checkout (recommended for GDPR).', 'recover'), self::SECTION_GENERAL);
+        $this->checkbox('enabled', __('Enable cart recovery', 'plogins-recover'), __('Track abandoned carts and send recovery emails.', 'plogins-recover'), self::SECTION_GENERAL);
+        $this->checkbox('capture_guests', __('Capture guest carts', 'plogins-recover'), __('Record carts and emails from visitors who are not logged in.', 'plogins-recover'), self::SECTION_GENERAL);
+        $this->checkbox('require_consent', __('Require consent', 'plogins-recover'), __('Only store a guest email after they tick a consent checkbox at checkout (recommended for GDPR).', 'plogins-recover'), self::SECTION_GENERAL);
         $this->text(
             'consent_label',
-            __('Consent checkbox label', 'recover'),
-            __('Wording the shopper sees next to the consent checkbox at checkout. Applies only when "Require consent" is on.', 'recover'),
+            __('Consent checkbox label', 'plogins-recover'),
+            __('Wording the shopper sees next to the consent checkbox at checkout. Applies only when "Require consent" is on.', 'plogins-recover'),
             self::SECTION_GENERAL,
             $this->settings->consentLabel(),
         );
@@ -88,51 +88,51 @@ final class SettingsPage implements HasHooks
         // ── Timing ──────────────────────────────────────────────────────────
         add_settings_section(
             self::SECTION_TIMING,
-            __('Timing', 'recover'),
+            __('Timing', 'plogins-recover'),
             static function (): void {
-                echo '<p>' . esc_html__('Control how long to wait before a cart is considered abandoned and emails go out. The recovery worker runs hourly via wp-cron.', 'recover') . '</p>';
+                echo '<p>' . esc_html__('Control how long to wait before a cart is considered abandoned and emails go out. The recovery worker runs hourly via wp-cron.', 'plogins-recover') . '</p>';
             },
             self::PAGE,
         );
 
-        $this->number('abandon_after', __('Mark abandoned after (minutes)', 'recover'), (string) $this->settings->abandonAfterMinutes(), __('Minutes of inactivity before a pending cart is flagged as abandoned.', 'recover'), self::SECTION_TIMING, 5);
-        $this->number('email_delay', __('Email delay (minutes)', 'recover'), (string) $this->settings->emailDelayMinutes(), __('Minutes to wait after abandonment before sending the recovery email.', 'recover'), self::SECTION_TIMING, 0);
+        $this->number('abandon_after', __('Mark abandoned after (minutes)', 'plogins-recover'), (string) $this->settings->abandonAfterMinutes(), __('Minutes of inactivity before a pending cart is flagged as abandoned.', 'plogins-recover'), self::SECTION_TIMING, 5);
+        $this->number('email_delay', __('Email delay (minutes)', 'plogins-recover'), (string) $this->settings->emailDelayMinutes(), __('Minutes to wait after abandonment before sending the recovery email.', 'plogins-recover'), self::SECTION_TIMING, 0);
 
         // ── Email ────────────────────────────────────────────────────────────
         add_settings_section(
             self::SECTION_EMAIL,
-            __('Recovery email', 'recover'),
+            __('Recovery email', 'plogins-recover'),
             static function (): void {
-                echo '<p>' . esc_html__('Customise the recovery email. Leave any field blank to use the built-in default shown as the placeholder. Emails are sent through your own site mailer; no data leaves your store.', 'recover') . '</p>';
+                echo '<p>' . esc_html__('Customise the recovery email. Leave any field blank to use the built-in default shown as the placeholder. Emails are sent through your own site mailer; no data leaves your store.', 'plogins-recover') . '</p>';
             },
             self::PAGE,
         );
 
         $this->text(
             'email_subject',
-            __('Subject', 'recover'),
-            __('Inbox subject line. Keep it short and specific so it survives a crowded inbox.', 'recover'),
+            __('Subject', 'plogins-recover'),
+            __('Inbox subject line. Keep it short and specific so it survives a crowded inbox.', 'plogins-recover'),
             self::SECTION_EMAIL,
             $this->settings->emailSubject(),
         );
         $this->text(
             'email_heading',
-            __('Heading', 'recover'),
-            __('The large heading at the top of the email body, above your message.', 'recover'),
+            __('Heading', 'plogins-recover'),
+            __('The large heading at the top of the email body, above your message.', 'plogins-recover'),
             self::SECTION_EMAIL,
             $this->settings->emailHeading(),
         );
         $this->textarea(
             'email_body',
-            __('Body text', 'recover'),
-            __('The message shown above the recovery button. Plain text only; write what nudges the shopper back.', 'recover'),
+            __('Body text', 'plogins-recover'),
+            __('The message shown above the recovery button. Plain text only; write what nudges the shopper back.', 'plogins-recover'),
             self::SECTION_EMAIL,
             $this->settings->emailBody(),
         );
         $this->text(
             'email_button',
-            __('Button label', 'recover'),
-            __('Text on the button that returns the shopper to their saved cart.', 'recover'),
+            __('Button label', 'plogins-recover'),
+            __('Text on the button that returns the shopper to their saved cart.', 'plogins-recover'),
             self::SECTION_EMAIL,
             $this->settings->emailButton(),
         );
@@ -151,7 +151,7 @@ final class SettingsPage implements HasHooks
 
             <?php if (! $this->settings->enabled()) : ?>
                 <div class="notice notice-warning inline">
-                    <p><?php esc_html_e('Cart recovery is currently disabled. Enable it below to start tracking abandoned carts.', 'recover'); ?></p>
+                    <p><?php esc_html_e('Cart recovery is currently disabled. Enable it below to start tracking abandoned carts.', 'plogins-recover'); ?></p>
                 </div>
             <?php endif; ?>
 
@@ -160,14 +160,14 @@ final class SettingsPage implements HasHooks
                 if ($cronNext !== false) {
                     printf(
                         /* translators: %s: human-readable time difference */
-                        esc_html__('Next recovery run: in %s.', 'recover'),
+                        esc_html__('Next recovery run: in %s.', 'plogins-recover'),
                         esc_html(human_time_diff(time(), $cronNext)),
                     );
                 } else {
-                    esc_html_e('The recovery worker is not scheduled. Re-activate the plugin to restore it.', 'recover');
+                    esc_html_e('The recovery worker is not scheduled. Re-activate the plugin to restore it.', 'plogins-recover');
                 }
                 ?>
-                &nbsp;<a href="<?php echo esc_url(admin_url('admin.php?page=recover-carts')); ?>"><?php esc_html_e('View abandoned carts →', 'recover'); ?></a>
+                &nbsp;<a href="<?php echo esc_url(admin_url('admin.php?page=recover-carts')); ?>"><?php esc_html_e('View abandoned carts →', 'plogins-recover'); ?></a>
             </p>
 
             <form method="post" action="options.php">
