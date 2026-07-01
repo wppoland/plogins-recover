@@ -83,6 +83,11 @@ In a custom `{prefix}_recover_carts` table in your WordPress database. Nothing i
 = How do I remove all plugin data? =
 Deleting the plugin from the **Plugins** screen runs the uninstall routine, which drops the `{prefix}_recover_carts` table, removes the `recover_settings` and `recover_db_version` options, and clears the scheduled recovery task.
 
+
+= Does this plugin work on WordPress Multisite? =
+
+Yes. This plugin is compatible with WordPress Multisite. Network activate it or activate it on individual sites; each site keeps its own settings and data.
+
 == External Services ==
 
 Recover does not connect to any external services. Recovery emails are sent through your own site's WordPress mailer (`wp_mail`), and all cart data stays in your WordPress database.
