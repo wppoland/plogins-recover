@@ -22,9 +22,16 @@ final class SettingsPage implements HasHooks
     private const SECTION_TIMING  = 'recover_timing';
     private const SECTION_EMAIL   = 'recover_email';
 
+    private ?ProUpsell $proUpsell = null;
+
     public function __construct(
         private readonly Settings $settings,
     ) {
+    }
+
+    private function proUpsell(): ProUpsell
+    {
+        return $this->proUpsell ??= new ProUpsell();
     }
 
     public function registerHooks(): void
@@ -32,6 +39,7 @@ final class SettingsPage implements HasHooks
         add_action('admin_menu', [$this, 'addMenuPage']);
         add_action('admin_init', [$this, 'registerSettings']);
         add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
+        $this->proUpsell()->registerHooks();
     }
 
     public function addMenuPage(): void
@@ -149,6 +157,8 @@ final class SettingsPage implements HasHooks
         <div class="wrap recover-wrap">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 
+            <?php $this->proUpsell()->banner(); ?>
+
             <?php if (! $this->settings->enabled()) : ?>
                 <div class="notice notice-warning inline">
                     <p><?php esc_html_e('Cart recovery is currently disabled. Enable it below to start tracking abandoned carts.', 'plogins-recover'); ?></p>
@@ -170,13 +180,19 @@ final class SettingsPage implements HasHooks
                 &nbsp;<a href="<?php echo esc_url(admin_url('admin.php?page=recover-carts')); ?>"><?php esc_html_e('View abandoned carts →', 'plogins-recover'); ?></a>
             </p>
 
-            <form method="post" action="options.php">
-                <?php
-                settings_fields(self::PAGE);
-                do_settings_sections(self::PAGE);
-                submit_button();
-                ?>
-            </form>
+            <div class="recover-cols">
+                <form method="post" action="options.php">
+                    <?php
+                    settings_fields(self::PAGE);
+                    do_settings_sections(self::PAGE);
+                    submit_button();
+                    ?>
+                </form>
+
+                <?php $this->proUpsell()->aside(); ?>
+            </div>
+
+            <?php $this->proUpsell()->cards(); ?>
         </div>
         <?php
     }
