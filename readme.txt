@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.1.3
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 2. The recovery email with its one-click "Complete my order" button.
 
 == Changelog ==
+
+= 1.0.1 =
+* First stable release.
 
 = 0.1.3 =
 * Renamed to Plogins Recover for WooCommerce for a more distinctive plugin name.
