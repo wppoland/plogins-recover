@@ -1,0 +1,37 @@
+# wp.org Stable Readme translation (es_ES)
+msgid ""
+msgstr ""
+"Project-Id-Version: recover Stable Readme\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: plogins-i18n\n"
+
+msgid "* <strong>Documentation</strong> - https://plogins.com/plogins-recover/docs/\n* <strong>Plugin page</strong> - https://plogins.com/plogins-recover/\n* <strong>Source code</strong> - https://github.com/wppoland/plogins-recover\n* <strong>Bug reports and feature requests</strong> - https://github.com/wppoland/plogins-recover/issues"
+msgstr "* <strong>Documentation</strong> - https://plogins.com/es/plogins-recover/docs/\n* <strong>Plugin page</strong> - https://plogins.com/es/plogins-recover/\n* <strong>Source code</strong> - https://github.com/wppoland/plogins-recover\n* <strong>Bug reports and feature requests</strong> - https://github.com/wppoland/plogins-recover/issues"
+
+msgid "Yes. This plugin is compatible with WordPress Multisite. Network activate it or activate it on individual sites; each site keeps its own settings and data."
+msgstr "Sí. Este complemento es compatible con WordPress Multisite. Activarlo en red o activarlo en sitios individuales; Cada sitio mantiene su propia configuración y datos."
+
+msgid "Recover does not connect to any external services. Recovery emails are sent through your own site's WordPress mailer (`wp_mail`), and all cart data stays in your WordPress database."
+msgstr "Recover no se conecta a ningún servicio externo. Los correos electrónicos de recuperación se envían a través del correo de WordPress de tu propio sitio (`wp_mail`) y todos los datos del carrito permanecen en tu base de datos de WordPress."
+
+msgid "1. Abandoned cart list with pending / abandoned / recovered counts and recovery rate.\n2. The recovery email with its one-click \"Complete my order\" button."
+msgstr "1. Lista de carritos abandonados con recuentos pendientes/abandonados/recuperados y tasa de recuperación.\n2. El correo electrónico de recuperación con su botón \"Completar mi pedido\" de un solo clic."
+
+msgid "* First stable release."
+msgstr "* Primera versión estable."
+
+msgid "* Renamed to Plogins Recover for WooCommerce for a more distinctive plugin name."
+msgstr "* Renombrado a Plogins Recover para WooCommerce para obtener un nombre de complemento más distintivo."
+
+msgid "* `recover/email_sent` action after a recovery email is accepted by wp_mail.\n* `recover/cart_recovered` action when a cart is marked recovered.\n* `CartRepository::findById()` for cart lookup by primary key."
+msgstr "* Acción `recover/email_sent` después de que wp_mail acepte un correo electrónico de recuperación.\n* Acción `recover/cart_recovered` cuando un carrito está marcado como recuperado.\n* `CartRepository::findById()` para búsqueda de carrito por clave principal."
+
+msgid "* Multi-email recovery sequences: `recover/max_emails`, `recover/email_step_delay`,\n  `recover/email/template_args`, and a third `$step` argument on `recover/email/args`.\n* Cron worker increments `emails_sent` and schedules follow-ups from `last_email_at`."
+msgstr "* Secuencias de recuperación de múltiples correos electrónicos: `recover/max_emails`, `recover/email_step_delay`,\n  `recover/email/template_args` y un tercer argumento `$step` en `recover/email/args`.\n* El trabajador cron incrementa `emails_sent` y programa seguimientos desde `last_email_at`."
+
+msgid "* Initial release."
+msgstr "* Lanzamiento inicial."
+

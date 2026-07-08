@@ -5,26 +5,26 @@ msgstr ""
 "Project-Id-Version: Recover - Abandoned Cart Recovery for WooCommerce 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recover\n"
 "POT-Creation-Date: 2026-06-16T20:24:51+00:00\n"
-"PO-Revision-Date: 2026-06-15 00:00+0000\n"
-"Last-Translator: WPPoland <hello@plogins.com>\n"
-"Language-Team: WPPoland <hello@plogins.com>\n"
-"Language: pl_PL\n"
+"PO-Revision-Date: 2026-06-16T20:24:51+00:00\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: plogins-recover\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
 #. Plugin Name of the plugin
 #: recover.php
 msgid "Recover - Abandoned Cart Recovery for WooCommerce"
-msgstr "Recover - Odzyskiwanie porzuconych koszyków dla WooCommerce"
+msgstr "Recuperar - Recuperación de carritos abandonados para WooCommerce"
 
 #. Plugin URI of the plugin
 #: recover.php
 msgid "https://plogins.com/recover/"
-msgstr "https://plogins.com/recover/"
+msgstr "https://plogins.com/es/recover/"
 
 #. Description of the plugin
 #: recover.php
@@ -32,8 +32,8 @@ msgid ""
 "Capture carts that are left behind and email customers a one-click link to "
 "finish checkout."
 msgstr ""
-"Przechwytuj porzucone koszyki i wysyłaj klientom e-mailem link umożliwiający"
-" dokończenie zakupów jednym kliknięciem."
+"Capture los carritos que se quedan atrás y envíe por correo electrónico a "
+"los clientes un enlace de un solo clic para finalizar el pago."
 
 #. Author of the plugin
 #: recover.php
@@ -49,15 +49,16 @@ msgstr "https://plogins.com/"
 #: recover.php:52
 #, php-format
 msgid "Recover requires PHP %1$s or higher. You are running PHP %2$s."
-msgstr "Wtyczka Recover wymaga PHP %1$s lub nowszego. Używasz PHP %2$s."
+msgstr ""
+"La recuperación requiere PHP %1$s o superior. Estás ejecutando PHP %2$s."
 
 #: recover.php:68
 msgid ""
 "Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be"
 " installed and activated."
 msgstr ""
-"Wtyczka Recover - Odzyskiwanie porzuconych koszyków dla WooCommerce wymaga "
-"zainstalowanej i aktywnej wtyczki WooCommerce."
+"Recuperar: la recuperación de carritos abandonados para WooCommerce requiere"
+" que WooCommerce esté instalado y activado."
 
 #. translators: 1: Required WC version, 2: Current WC version
 #: recover.php:80
@@ -66,176 +67,183 @@ msgid ""
 "Recover requires WooCommerce %1$s or higher. You are running WooCommerce "
 "%2$s."
 msgstr ""
-"Wtyczka Recover wymaga WooCommerce %1$s lub nowszego. Używasz WooCommerce "
-"%2$s."
+"La recuperación requiere WooCommerce %1$s o superior. Estás ejecutando "
+"WooCommerce %2$s."
 
 #: src/Admin/CartsPage.php:36
 msgid "Recover - Carts"
-msgstr "Recover - Koszyki"
+msgstr "Recuperar - Carros"
 
 #: src/Admin/CartsPage.php:37
 msgid "Recover Carts"
-msgstr "Koszyki Recover"
+msgstr "Recuperar carros"
 
 #: src/Admin/CartsPage.php:54 src/Service/CartTracker.php:137
 msgid "Security check failed."
-msgstr "Weryfikacja zabezpieczeń nie powiodła się."
+msgstr "El control de seguridad falló."
 
 #: src/Admin/CartsPage.php:78 src/Admin/SettingsPage.php:41
 msgid "Recover - Abandoned Carts"
-msgstr "Recover - Porzucone koszyki"
+msgstr "Recuperar - Carros abandonados"
 
 #: src/Admin/CartsPage.php:81
 msgid "Cart data for that email address has been erased."
-msgstr "Dane koszyka dla tego adresu e-mail zostały usunięte."
+msgstr ""
+"Se borraron los datos del carrito para esa dirección de correo electrónico."
 
 #: src/Admin/CartsPage.php:85 src/Admin/CartsPage.php:138
 msgid "Pending"
-msgstr "Oczekujący"
+msgstr "Pendiente"
 
 #: src/Admin/CartsPage.php:86 src/Admin/CartsPage.php:139
 msgid "Abandoned"
-msgstr "Porzucony"
+msgstr "abandonado"
 
 #: src/Admin/CartsPage.php:87 src/Admin/CartsPage.php:140
 msgid "Recovered"
-msgstr "Odzyskany"
+msgstr "Recuperado"
 
 #: src/Admin/CartsPage.php:88
 msgid "Recovery rate"
-msgstr "Wskaźnik odzyskiwania"
+msgstr "Tasa de recuperación"
 
 #: src/Admin/CartsPage.php:92
 msgid ""
 "No carts recorded yet. Once shoppers add items and leave without checking "
 "out, they will appear here."
 msgstr ""
-"Nie zarejestrowano jeszcze żadnych koszyków. Gdy kupujący dodadzą produkty i"
-" opuszczą sklep bez finalizacji zamówienia, pojawią się tutaj."
+"Aún no se han registrado carros. Una vez que los compradores agreguen "
+"artículos y se vayan sin pagar, aparecerán aquí."
 
 #: src/Admin/CartsPage.php:97
 msgid "Email"
-msgstr "E-mail"
+msgstr "Correo electrónico"
 
 #: src/Admin/CartsPage.php:98
 msgid "Items"
-msgstr "Produkty"
+msgstr "Artículos"
 
 #: src/Admin/CartsPage.php:99
 msgid "Value"
-msgstr "Wartość"
+msgstr "Valor"
 
 #: src/Admin/CartsPage.php:100
 msgid "Status"
-msgstr "Status"
+msgstr "Estado"
 
 #: src/Admin/CartsPage.php:101
 msgid "Emails"
-msgstr "E-maile"
+msgstr "Correos electrónicos"
 
 #: src/Admin/CartsPage.php:102
 msgid "Last activity"
-msgstr "Ostatnia aktywność"
+msgstr "Última actividad"
 
 #: src/Admin/CartsPage.php:103
 msgid "Privacy"
-msgstr "Prywatność"
+msgstr "Privacidad"
 
 #: src/Admin/CartsPage.php:109
 msgid "(no email yet)"
-msgstr "(brak adresu e-mail)"
+msgstr "(aún no hay correo electrónico)"
 
 #: src/Admin/CartsPage.php:117
 msgid "Erase all stored cart data for this email address?"
-msgstr "Usunąć wszystkie zapisane dane koszyka dla tego adresu e-mail?"
+msgstr ""
+"¿Borrar todos los datos del carrito almacenados para esta dirección de "
+"correo electrónico?"
 
 #: src/Admin/CartsPage.php:120
 msgid "Erase"
-msgstr "Usuń"
+msgstr "borrar"
 
 #: src/Admin/SettingsPage.php:42
 msgid "Recover"
-msgstr "Recover"
+msgstr "recuperar"
 
 #: src/Admin/SettingsPage.php:75
 msgid "General"
-msgstr "Ogólne"
+msgstr "General"
 
 #: src/Admin/SettingsPage.php:77
 msgid "Enable cart recovery"
-msgstr "Włącz odzyskiwanie koszyków"
+msgstr "Habilitar la recuperación del carrito"
 
 #: src/Admin/SettingsPage.php:77
 msgid "Track abandoned carts and send recovery emails."
-msgstr "Śledź porzucone koszyki i wysyłaj e-maile odzyskujące."
+msgstr ""
+"Realice un seguimiento de los carritos abandonados y envíe correos "
+"electrónicos de recuperación."
 
 #: src/Admin/SettingsPage.php:78
 msgid "Capture guest carts"
-msgstr "Przechwytuj koszyki gości"
+msgstr "Capturar carritos de invitados"
 
 #: src/Admin/SettingsPage.php:78
 msgid "Record carts and emails from visitors who are not logged in."
 msgstr ""
-"Zapisuj koszyki i adresy e-mail odwiedzających, którzy nie są zalogowani."
+"Registre carritos y correos electrónicos de visitantes que no hayan iniciado"
+" sesión."
 
 #: src/Admin/SettingsPage.php:79
 msgid "Require consent"
-msgstr "Wymagaj zgody"
+msgstr "Requerir consentimiento"
 
 #: src/Admin/SettingsPage.php:79
 msgid ""
 "Only store a guest email after they tick a consent checkbox at checkout "
 "(recommended for GDPR)."
 msgstr ""
-"Zapisuj adres e-mail gościa dopiero po zaznaczeniu przez niego pola zgody "
-"podczas finalizacji zamówienia (zalecane ze względu na RODO)."
+"Almacene el correo electrónico de un huésped solo después de que marque la "
+"casilla de consentimiento al finalizar la compra (recomendado para GDPR)."
 
 #: src/Admin/SettingsPage.php:82
 msgid "Consent checkbox label"
-msgstr "Etykieta pola zgody"
+msgstr "Etiqueta de casilla de verificación de consentimiento"
 
 #: src/Admin/SettingsPage.php:83
 msgid ""
 "Wording the shopper sees next to the consent checkbox at checkout. Applies "
 "only when \"Require consent\" is on."
 msgstr ""
-"Sformułowanie, które kupujący widzi obok pola wyboru zgody przy kasie. Ma "
-"zastosowanie tylko wtedy, gdy włączona jest opcja „Wymagaj zgody”."
+"Texto que el comprador ve junto a la casilla de consentimiento al finalizar "
+"la compra. Se aplica solo cuando \"Requerir consentimiento\" está activado."
 
 #: src/Admin/SettingsPage.php:91
 msgid "Timing"
-msgstr "Harmonogram"
+msgstr "Sincronización"
 
 #: src/Admin/SettingsPage.php:93
 msgid ""
 "Control how long to wait before a cart is considered abandoned and emails go"
 " out. The recovery worker runs hourly via wp-cron."
 msgstr ""
-"Określ, jak długo czekać, zanim koszyk zostanie uznany za porzucony i "
-"zostaną wysłane e-maile. Proces odzyskiwania uruchamia się co godzinę za "
-"pośrednictwem wp-cron."
+"Controle cuánto tiempo esperar antes de que un carrito se considere "
+"abandonado y se envíen correos electrónicos. El trabajador de recuperación "
+"se ejecuta cada hora a través de wp-cron."
 
 #: src/Admin/SettingsPage.php:98
 msgid "Mark abandoned after (minutes)"
-msgstr "Oznacz jako porzucony po (minuty)"
+msgstr "Marcar como abandonado tras (minutos)"
 
 #: src/Admin/SettingsPage.php:98
 msgid "Minutes of inactivity before a pending cart is flagged as abandoned."
 msgstr ""
-"Liczba minut bezczynności, zanim oczekujący koszyk zostanie oznaczony jako "
-"porzucony."
+"Minutos de inactividad antes de que un carrito pendiente se marque como "
+"abandonado."
 
 #: src/Admin/SettingsPage.php:99
 msgid "Email delay (minutes)"
-msgstr "Opóźnienie e-maila (minuty)"
+msgstr "Retraso del correo electrónico (minutos)"
 
 #: src/Admin/SettingsPage.php:99
 msgid "Minutes to wait after abandonment before sending the recovery email."
-msgstr "Liczba minut od porzucenia koszyka do wysłania e-maila odzyskującego."
+msgstr ""
+"Minutos de espera tras el abandono antes de enviar el email de recuperación."
 
 #: src/Admin/SettingsPage.php:104
 msgid "Recovery email"
-msgstr "E-mail odzyskujący"
+msgstr "Correo electrónico de recuperación"
 
 #: src/Admin/SettingsPage.php:106
 msgid ""
@@ -243,114 +251,115 @@ msgid ""
 "default shown as the placeholder. Emails are sent through your own site "
 "mailer; no data leaves your store."
 msgstr ""
-"Dostosuj e-mail pomocniczy. Pozostaw dowolne pole puste, aby użyć wbudowanej"
-" wartości domyślnej pokazanej jako symbol zastępczy. E-maile są wysyłane za "
-"pośrednictwem Twojego własnego programu pocztowego; żadne dane nie "
-"opuszczają Twojego sklepu."
+"Personaliza el correo electrónico de recuperación. Deje cualquier campo en "
+"blanco para utilizar el valor predeterminado integrado que se muestra como "
+"marcador de posición. Los correos electrónicos se envían a través del correo"
+" de tu propio sitio; ningún dato sale de tu tienda."
 
 #: src/Admin/SettingsPage.php:113
 msgid "Subject"
-msgstr "Temat"
+msgstr "Asunto"
 
 #: src/Admin/SettingsPage.php:114
 msgid ""
 "Inbox subject line. Keep it short and specific so it survives a crowded "
 "inbox."
 msgstr ""
-"Temat skrzynki odbiorczej. Niech będzie krótki i konkretny, aby przetrwał w "
-"zatłoczonej skrzynce odbiorczej."
+"Línea de asunto de la bandeja de entrada. Sea breve y específico para que "
+"sobreviva a una bandeja de entrada abarrotada."
 
 #: src/Admin/SettingsPage.php:120
 msgid "Heading"
-msgstr "Nagłówek"
+msgstr "Título"
 
 #: src/Admin/SettingsPage.php:121
 msgid "The large heading at the top of the email body, above your message."
-msgstr "Duży nagłówek u góry treści wiadomości e-mail, nad wiadomością."
+msgstr ""
+"El encabezado grande en la parte superior del cuerpo del correo electrónico,"
+" encima de su mensaje."
 
 #: src/Admin/SettingsPage.php:127
 msgid "Body text"
-msgstr "Treść wiadomości"
+msgstr "Texto del cuerpo"
 
 #: src/Admin/SettingsPage.php:128
 msgid ""
 "The message shown above the recovery button. Plain text only; write what "
 "nudges the shopper back."
 msgstr ""
-"Komunikat wyświetlany nad przyciskiem odzyskiwania. Tylko zwykły tekst; "
-"napisz, co zachęci kupującego do powrotu."
+"El mensaje que se muestra encima del botón de recuperación. Sólo texto sin "
+"formato; escriba lo que haga retroceder al comprador."
 
 #: src/Admin/SettingsPage.php:134
 msgid "Button label"
-msgstr "Etykieta przycisku"
+msgstr "Etiqueta del botón"
 
 #: src/Admin/SettingsPage.php:135
 msgid "Text on the button that returns the shopper to their saved cart."
-msgstr ""
-"Tekst na przycisku, który powoduje powrót kupującego do zapisanego koszyka."
+msgstr "Texto en el botón que devuelve al comprador a su carrito guardado."
 
 #: src/Admin/SettingsPage.php:154
 msgid ""
 "Cart recovery is currently disabled. Enable it below to start tracking "
 "abandoned carts."
 msgstr ""
-"Odzyskiwanie koszyków jest obecnie wyłączone. Włącz je poniżej, aby "
-"rozpocząć śledzenie porzuconych koszyków."
+"La recuperación del carrito está actualmente deshabilitada. Habilítelo a "
+"continuación para comenzar a rastrear carritos abandonados."
 
 #. translators: %s: human-readable time difference
 #: src/Admin/SettingsPage.php:163
 #, php-format
 msgid "Next recovery run: in %s."
-msgstr "Następne uruchomienie odzyskiwania: za %s."
+msgstr "Próxima ejecución de recuperación: en %s."
 
 #: src/Admin/SettingsPage.php:167
 msgid ""
 "The recovery worker is not scheduled. Re-activate the plugin to restore it."
 msgstr ""
-"Proces odzyskiwania nie jest zaplanowany. Ponownie włącz wtyczkę, aby go "
-"przywrócić."
+"El trabajador de recuperación no está programado. Vuelva a activar el "
+"complemento para restaurarlo."
 
 #: src/Admin/SettingsPage.php:170
 msgid "View abandoned carts →"
-msgstr "Zobacz porzucone koszyki →"
+msgstr "Ver carritos abandonados →"
 
 #: src/Service/CartTracker.php:142
 msgid "Provide a valid email address."
-msgstr "Podaj prawidłowy adres e-mail."
+msgstr "Proporcione una dirección de correo electrónico válida."
 
 #: src/Settings.php:84
 msgid "Email me a link to recover my cart if I do not complete my order."
 msgstr ""
-"Wyślij mi e-mailem link do odzyskania koszyka, jeśli nie dokończę "
-"zamówienia."
+"Envíeme por correo electrónico un enlace para recuperar mi carrito si no "
+"completo mi pedido."
 
 #: src/Settings.php:91
 msgid "You left something in your cart"
-msgstr "Zostawiłeś coś w swoim koszyku"
+msgstr "Dejaste algo en tu carrito"
 
 #: src/Settings.php:98
 msgid "Still thinking it over?"
-msgstr "Wciąż się zastanawiasz?"
+msgstr "¿Aún lo estás pensando?"
 
 #: src/Settings.php:107
 msgid ""
 "We saved your cart for you. Click the button below to pick up right where "
 "you left off."
 msgstr ""
-"Zachowaliśmy Twój koszyk. Kliknij przycisk poniżej, aby wrócić dokładnie "
-"tam, gdzie skończyłeś."
+"Guardamos su carrito para ti. Haga clic en el botón de abajo para continuar "
+"justo donde lo dejó."
 
 #: src/Settings.php:114
 msgid "Complete my order"
-msgstr "Dokończ zamówienie"
+msgstr "Completar mi pedido"
 
 #: templates/emails/recovery.php:76
 msgid "We left the light on, your cart is still here."
-msgstr "Zostawiliśmy włączone światło, Twój koszyk nadal tu jest."
+msgstr "Dejamos la luz encendida, tu carrito sigue aquí."
 
 #: templates/emails/recovery.php:90
 msgid "The link picks up right where you left off."
-msgstr "Link rozpoczyna się w miejscu, w którym przerwałeś."
+msgstr "El enlace continúa justo donde lo dejaste."
 
 #. translators: %s: site name
 #: templates/emails/recovery.php:100
@@ -359,14 +368,5 @@ msgid ""
 "This message was sent by %s because a cart was left behind. If this was not "
 "you, you can safely ignore this email."
 msgstr ""
-"Ta wiadomość została wysłana przez %s, ponieważ koszyk został porzucony. "
-"Jeśli to nie Ty, możesz bezpiecznie zignorować tę wiadomość."
-
-#~ msgid ""
-#~ "Customise the recovery email. Leave any field blank to use the built-in "
-#~ "default. Emails are sent through your own site mailer; no data leaves your "
-#~ "store."
-#~ msgstr ""
-#~ "Dostosuj e-mail odzyskujący. Pozostaw dowolne pole puste, aby użyć "
-#~ "wbudowanej wartości domyślnej. E-maile są wysyłane przez system pocztowy "
-#~ "Twojej witryny; żadne dane nie opuszczają Twojego sklepu."
+"Este mensaje fue enviado por %s porque se dejó un carrito. Si no eres tú, "
+"puedes ignorar este correo electrónico con seguridad."
