@@ -4,87 +4,89 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Recover abandoned WooCommerce carts: capture the email early, save the cart, email a secure one-click link to finish checkout.
+Recupera carritos abandonados de WooCommerce: captura el correo electrónico pronto, guarda el carrito y envía un enlace seguro de un solo clic para terminar la compra.
 
 == Description ==
 
-Recover captures WooCommerce carts that shoppers leave behind and emails them a secure, one-click link that puts every item straight back into their cart so they can finish checking out. It runs entirely on your own site: no third-party service, no data leaves your store.
+Recover captura los carritos de WooCommerce que los clientes dejan atrás y les envía un enlace seguro de un solo clic que devuelve cada artículo directamente a su carrito para que puedan terminar la compra. Funciona por completo en tu propio sitio: sin servicios de terceros, ningún dato sale de tu tienda.
 
-Because everything happens on your own server, you can read exactly what it does. The full source lives at https://github.com/wppoland/plogins-recover, which is also where to file a bug or request a feature.
+Como todo ocurre en tu propio servidor, puedes leer exactamente qué hace. El código fuente completo está en https://github.com/wppoland/plogins-recover, que también es el lugar para informar de un error o solicitar una función.
 
-<strong>How it works</strong>
+<strong>Cómo funciona</strong>
 
-1. As soon as a shopper has items in the cart, Recover saves a private snapshot of that cart.
-2. The customer email is captured early, automatically for logged-in customers, and (with consent) from the checkout email field for guests.
-3. If checkout is not completed within a window you choose, the cart is marked <strong>abandoned</strong>.
-4. On the next scheduled run, Recover emails a recovery message containing a secure, tokenised restore link.
-5. One click on that link repopulates the cart and sends the shopper back to checkout. Recovered carts are tracked separately so you can see your recovery rate.
+1. En cuanto un cliente tiene artículos en el carrito, Recover guarda una instantánea privada de ese carrito.
+2. El correo electrónico del cliente se captura pronto, automáticamente para clientes registrados y (con consentimiento) desde el campo de correo electrónico de la compra para invitados.
+3. Si la compra no se completa dentro de una ventana que tú elijas, el carrito se marca como <strong>abandonado</strong>.
+4. En la siguiente ejecución programada, Recover envía un mensaje de recuperación con un enlace de restauración seguro y tokenizado.
+5. Un clic en ese enlace vuelve a llenar el carrito y devuelve al cliente a la compra. Los carritos recuperados se registran por separado para que puedas ver tu tasa de recuperación.
 
-<strong>A few things worth knowing</strong>
+<strong>Algunas cosas que conviene saber</strong>
 
-Emails go out through your own WordPress mailer (`wp_mail`), and cart data lives in a single custom table (`{prefix}_recover_carts`) in your database. Nothing is sent to an external service.
+Los correos electrónicos se envían a través del propio correo de WordPress (`wp_mail`), y los datos del carrito viven en una sola tabla personalizada (`{prefix}_recover_carts`) en tu base de datos. No se envía nada a ningún servicio externo.
 
-Guest email capture only happens after the shopper ticks a consent checkbox, and you can edit the wording or turn the requirement off. Restore links carry an unguessable 64-character random token and nothing else: no customer id, no email in the URL. From the carts screen you can wipe every stored cart for a single email address in one click.
+La captura del correo electrónico de invitados solo ocurre después de que el cliente marque una casilla de consentimiento, y puedes editar el texto o desactivar el requisito. Los enlaces de restauración llevan un token aleatorio de 64 caracteres imposible de adivinar y nada más: sin id de cliente, sin correo electrónico en la URL. Desde la pantalla de carritos puedes borrar con un clic todos los carritos guardados para una sola dirección de correo electrónico.
 
-On the implementation side, all output is escaped and all input sanitised, every admin form and AJAX request is nonce-checked, and the admin pages need the `manage_woocommerce` capability. Early email capture uses a small vanilla-JavaScript snippet (no jQuery) loaded in the footer; the recovery worker runs on WordPress cron and is idempotent, so a re-run never sends a second email for the same cart. Deleting the plugin drops its table, removes its two options, and clears the scheduled task.
+En la implementación, toda la salida se escapa y toda la entrada se sanea, cada formulario de administración y petición AJAX se verifica con nonce, y las páginas de administración requieren la capacidad `manage_woocommerce`. La captura temprana del correo electrónico usa un pequeño fragmento de JavaScript puro (sin jQuery) cargado en el pie de página; el proceso de recuperación se ejecuta en el cron de WordPress y es idempotente, así que una nueva ejecución nunca envía un segundo correo electrónico para el mismo carrito. Al borrar el plugin se elimina su tabla, se quitan sus dos opciones y se limpia la tarea programada.
 
-<strong>Features</strong>
+<strong>Funciones</strong>
 
-* Automatic cart snapshots whenever the cart changes
-* Early email capture for logged-in customers and (consent-gated) guests
-* Configurable abandonment window and email delay
-* Secure, tokenised one-click restore link that repopulates the cart
-* Recovery email sent on a WordPress cron schedule via `wp_mail`
-* Abandoned / recovered / pending cart list with a recovery-rate summary
-* Customisable email subject, heading, body and button text
-* GDPR-friendly consent checkbox and one-click per-email data wipe
-* Compatible with WooCommerce HPOS (Custom Order Tables) and Cart/Checkout Blocks
+* Instantáneas automáticas del carrito cada vez que cambia
+* Captura temprana del correo electrónico para clientes registrados e invitados (con consentimiento)
+* Ventana de abandono y retraso del correo electrónico configurables
+* Enlace de restauración seguro y tokenizado de un solo clic que vuelve a llenar el carrito
+* Correo electrónico de recuperación enviado según un horario de cron de WordPress mediante `wp_mail`
+* Lista de carritos abandonados / recuperados / pendientes con un resumen de la tasa de recuperación
+* Asunto, encabezado, cuerpo y texto del botón del correo electrónico personalizables
+* Casilla de consentimiento compatible con el RGPD y borrado de datos por correo electrónico con un clic
+* Compatible con HPOS de WooCommerce (Custom Order Tables) y bloques de carrito/pago
 
 == Installation ==
 
-1. Install and activate WooCommerce (8.0 or later).
-2. Install Recover from the WordPress plugin directory, or upload the `recover` folder to `/wp-content/plugins/`.
-3. Activate the plugin through the <strong>Plugins<strong> screen. 4. Visit </strong>WooCommerce → Recover<strong> to set your timing and customise the email; sensible defaults work out of the box. 5. Abandoned carts and your recovery rate appear under </strong>WooCommerce → Recover Carts</strong>.
+1. Instala y activa WooCommerce (8.0 o posterior).
+2. Instala Recover desde el directorio de plugins de WordPress o sube la carpeta `recover` a `/wp-content/plugins/`.
+3. Activa el plugin en la pantalla <strong>Plugins</strong>.
+4. Entra en <strong>WooCommerce → Recover</strong> para configurar los tiempos y personalizar el correo electrónico; los valores predeterminados sensatos funcionan de inmediato.
+5. Los carritos abandonados y tu tasa de recuperación aparecen en <strong>WooCommerce → Recover Carts</strong>.
 
 == Frequently Asked Questions ==
 
 = Documentation and links =
 
-* <strong>Documentation</strong> - https://plogins.com/es/plogins-recover/docs/
-* <strong>Plugin page</strong> - https://plogins.com/es/plogins-recover/
-* <strong>Source code</strong> - https://github.com/wppoland/plogins-recover
-* <strong>Bug reports and feature requests</strong> - https://github.com/wppoland/plogins-recover/issues
+* <strong>Documentación</strong> - https://plogins.com/es/plogins-recover/docs/
+* <strong>Página del plugin</strong> - https://plogins.com/es/plogins-recover/
+* <strong>Código fuente</strong> - https://github.com/wppoland/plogins-recover
+* <strong>Informes de errores y peticiones de funciones</strong> - https://github.com/wppoland/plogins-recover/issues
 
 
 = Is Recover free? =
-Yes. Recover is free and licensed under the GPL.
+Sí. Recover es gratuito y tiene licencia GPL.
 
 = Does Recover require WooCommerce? =
-Yes. Recover is a WooCommerce extension and requires WooCommerce 8.0 or later. It shows an admin notice and stays inactive if WooCommerce is missing or out of date.
+Sí. Recover es una extensión de WooCommerce y requiere WooCommerce 8.0 o posterior. Muestra un aviso de administración y permanece inactivo si falta WooCommerce o está desactualizado.
 
 = How is the recovery email sent? =
-On a WordPress cron schedule (hourly by default). Each run marks carts that have been inactive past your window as abandoned, then emails a recovery link to any abandoned cart that is due, using your own site mailer (`wp_mail`). The worker is idempotent, so it never double-sends, so each cart receives a single recovery email.
+Según un horario de cron de WordPress (por defecto, cada hora). Cada ejecución marca como abandonados los carritos inactivos más allá de tu ventana y luego envía un enlace de recuperación a cada carrito abandonado que corresponda, usando el correo de tu propio sitio (`wp_mail`). El proceso es idempotente, así que nunca envía duplicados: cada carrito recibe un solo correo electrónico de recuperación.
 
 = Is the restore link safe? =
-Yes. Each cart has a 64-character cryptographically random token. The restore link contains only that token: no customer id, no email, nothing personal. Without the exact token a cart cannot be restored, so there is no enumeration or IDOR risk.
+Sí. Cada carrito tiene un token aleatorio criptográfico de 64 caracteres. El enlace de restauración contiene solo ese token: sin id de cliente, sin correo electrónico, nada personal. Sin el token exacto no se puede restaurar un carrito, así que no hay riesgo de enumeración ni IDOR.
 
 = Does this comply with GDPR / consent requirements? =
-Guest email capture only happens after the shopper ticks a consent checkbox (you can edit the wording, and consent can be required or not). Cart data is stored only in your own database and never sent to any third party. From <strong>WooCommerce → Recover Carts</strong> you can erase all stored cart data for any email address in one click. You remain responsible for your store's privacy policy.
+La captura del correo electrónico de invitados solo ocurre después de que el cliente marque una casilla de consentimiento (puedes editar el texto, y el consentimiento puede ser obligatorio o no). Los datos del carrito se almacenan solo en tu propia base de datos y nunca se envían a terceros. Desde <strong>WooCommerce → Recover Carts</strong> puedes borrar con un clic todos los datos de carrito guardados para cualquier dirección de correo electrónico. Sigues siendo responsable de la política de privacidad de tu tienda.
 
 = Where is cart data stored? =
-In a custom `{prefix}_recover_carts` table in your WordPress database. Nothing is sent anywhere else.
+En una tabla personalizada `{prefix}_recover_carts` en tu base de datos de WordPress. No se envía nada a ningún otro sitio.
 
 = How do I remove all plugin data? =
-Deleting the plugin from the <strong>Plugins</strong> screen runs the uninstall routine, which drops the `{prefix}_recover_carts` table, removes the `recover_settings` and `recover_db_version` options, and clears the scheduled recovery task.
+Al borrar el plugin desde la pantalla <strong>Plugins</strong> se ejecuta la rutina de desinstalación, que elimina la tabla `{prefix}_recover_carts`, quita las opciones `recover_settings` y `recover_db_version` y limpia la tarea programada de recuperación.
 
 
 = Does this plugin work on WordPress Multisite? =
 
-Sí. Este complemento es compatible con WordPress Multisite. Activarlo en red o activarlo en sitios individuales; Cada sitio mantiene su propia configuración y datos.
+Sí. Este plugin es compatible con WordPress Multisite. Actívalo en toda la red o en sitios concretos; cada sitio conserva sus propios ajustes y datos.
 
 == External Services ==
 
@@ -93,25 +95,32 @@ Recover no se conecta a ningún servicio externo. Los correos electrónicos de r
 == Screenshots ==
 
 1. Lista de carritos abandonados con recuentos pendientes/abandonados/recuperados y tasa de recuperación.
-2. El correo electrónico de recuperación con su botón "Completar mi pedido" de un solo clic.
+2. El correo electrónico de recuperación con su botón de un solo clic «Completar mi pedido».
+
+== Translations ==
+
+Plogins Recover incluye traducciones al polaco, al alemán y al español para la interfaz del plugin. El dominio de texto es `plogins-recover`, por lo que los paquetes de idioma de WordPress.org también pueden sobrescribir o ampliar estas traducciones incluidas.
 
 == Changelog ==
+
+= 1.0.2 =
+* Se añadieron traducciones incluidas al polaco, al alemán y al español para la interfaz del plugin.
 
 = 1.0.1 =
 * Primera versión estable.
 
 = 0.1.3 =
-* Renombrado a Plogins Recover para WooCommerce para obtener un nombre de complemento más distintivo.
+* Renombrado a Plogins Recover para WooCommerce para conseguir un nombre de plugin más distintivo.
 
 = 0.1.2 =
 * Acción `recover/email_sent` después de que wp_mail acepte un correo electrónico de recuperación.
-* Acción `recover/cart_recovered` cuando un carrito está marcado como recuperado.
+* Acción `recover/cart_recovered` cuando un carrito se marca como recuperado.
 * `CartRepository::findById()` para búsqueda de carrito por clave principal.
 
 = 0.1.1 =
-* Secuencias de recuperación de múltiples correos electrónicos: `recover/max_emails`, `recover/email_step_delay`,
+* Secuencias de recuperación con varios correos electrónicos: `recover/max_emails`, `recover/email_step_delay`,
   `recover/email/template_args` y un tercer argumento `$step` en `recover/email/args`.
-* El trabajador cron incrementa `emails_sent` y programa seguimientos desde `last_email_at`.
+* El proceso cron incrementa `emails_sent` y programa seguimientos desde `last_email_at`.
 
 = 0.1.0 =
-* Lanzamiento inicial.
+* Versión inicial.

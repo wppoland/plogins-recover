@@ -290,7 +290,7 @@ final class SettingsPage implements HasHooks
     {
         $options = (array) get_option(Settings::OPTION, []);
         $current = isset($options[$id]) ? (string) $options[$id] : '';
-        add_settings_field($id, $title, [$this, 'renderText'], self::PAGE, $section, ['id' => $id, 'value' => $current, 'description' => $description, 'placeholder' => $default]);
+        add_settings_field($id, $title, [$this, 'renderText'], self::PAGE, $section, ['id' => $id, 'value' => $current, 'description' => $description, 'placeholder' => $default, 'label_for' => $id]);
     }
 
     /**
@@ -300,11 +300,11 @@ final class SettingsPage implements HasHooks
     {
         $options = (array) get_option(Settings::OPTION, []);
         $current = isset($options[$id]) ? (string) $options[$id] : '';
-        add_settings_field($id, $title, [$this, 'renderTextarea'], self::PAGE, $section, ['id' => $id, 'value' => $current, 'description' => $description, 'placeholder' => $default]);
+        add_settings_field($id, $title, [$this, 'renderTextarea'], self::PAGE, $section, ['id' => $id, 'value' => $current, 'description' => $description, 'placeholder' => $default, 'label_for' => $id]);
     }
 
     private function number(string $id, string $title, string $value, string $description, string $section, int $min): void
     {
-        add_settings_field($id, $title, [$this, 'renderNumber'], self::PAGE, $section, ['id' => $id, 'value' => $value, 'description' => $description, 'min' => $min]);
+        add_settings_field($id, $title, [$this, 'renderNumber'], self::PAGE, $section, ['id' => $id, 'value' => $value, 'description' => $description, 'min' => $min, 'label_for' => $id]);
     }
 }
