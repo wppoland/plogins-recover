@@ -15,19 +15,6 @@
 	--recover-abandoned: #dc2626;
 	--recover-recovered: #059669;
 }
-
-@media (prefers-color-scheme: dark) {
-	.recover-wrap {
-		/* Lighter ember so it stays legible on a dark surface: #fb923c on
-		   #1e1f22 = 7.28:1. */
-		--recover-accent: #fb923c;
-		--recover-surface: #1e1f22;
-		--recover-border: #34373c;
-		--recover-text: #e6e7e9;
-		--recover-muted: #9ca3af;
-	}
-}
-
 .recover-cron-status {
 	color: var(--recover-muted);
 	font-size: 13px;
