@@ -1,4 +1,4 @@
-=== Plogins Recover - Abandoned Cart for WooCommerce ===
+=== Recover - Abandoned Cart for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
