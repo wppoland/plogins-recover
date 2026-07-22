@@ -290,7 +290,7 @@ msgstr ""
 
 #: src/Admin/SettingsPage.php:134
 msgid "Button label"
-msgstr "Button-Beschriftung"
+msgstr "Knopfbeschriftung"
 
 #: src/Admin/SettingsPage.php:135
 msgid "Text on the button that returns the shopper to their saved cart."
