@@ -20,7 +20,7 @@ msgstr ""
 #: recover.php
 msgid "Recover - Abandoned Cart Recovery for WooCommerce"
 msgstr ""
-"Wiederherstellen – Wiederherstellung abgebrochener Warenkörbe für WooCommerce"
+"Wiederherstellen, Wiederherstellung abgebrochener Warenkörbe für WooCommerce"
 
 #. Plugin URI of the plugin
 #: recover.php
@@ -59,7 +59,7 @@ msgid ""
 "Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be "
 "installed and activated."
 msgstr ""
-"Wiederherstellen – Wiederherstellung verlassener Warenkörbe für WooCommerce "
+"Wiederherstellen, Wiederherstellung verlassener Warenkörbe für WooCommerce "
 "erfordert die Installation und Aktivierung von WooCommerce."
 
 #. translators: 1: Required WC version, 2: Current WC version
@@ -74,7 +74,7 @@ msgstr ""
 
 #: src/Admin/CartsPage.php:36
 msgid "Recover - Carts"
-msgstr "Wiederherstellen – Karren"
+msgstr "Wiederherstellen, Karren"
 
 #: src/Admin/CartsPage.php:37
 msgid "Recover Carts"
@@ -86,7 +86,7 @@ msgstr "Sicherheitsüberprüfung fehlgeschlagen."
 
 #: src/Admin/CartsPage.php:78 src/Admin/SettingsPage.php:41
 msgid "Recover - Abandoned Carts"
-msgstr "Wiederherstellen – verlassene Einkaufswagen"
+msgstr "Wiederherstellen, verlassene Einkaufswagen"
 
 #: src/Admin/CartsPage.php:81
 msgid "Cart data for that email address has been erased."
