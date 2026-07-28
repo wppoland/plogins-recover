@@ -20,8 +20,7 @@ msgstr ""
 #: recover.php
 msgid "Recover - Abandoned Cart Recovery for WooCommerce"
 msgstr ""
-"Wiederherstellen – Wiederherstellung abgebrochener Warenkörbe für "
-"WooCommerce"
+"Wiederherstellen – Wiederherstellung abgebrochener Warenkörbe für WooCommerce"
 
 #. Plugin URI of the plugin
 #: recover.php
@@ -34,8 +33,8 @@ msgid ""
 "Capture carts that are left behind and email customers a one-click link to "
 "finish checkout."
 msgstr ""
-"Erfasse zurückgebliebene Warenkörbe und sende deinen Kunden per E-Mail einen"
-" Ein-Klick-Link, um den Bestellvorgang abzuschließen."
+"Erfasse zurückgebliebene Warenkörbe und sende deinen Kunden per E-Mail einen "
+"Ein-Klick-Link, um den Bestellvorgang abzuschließen."
 
 #. Author of the plugin
 #: recover.php
@@ -57,8 +56,8 @@ msgstr ""
 
 #: recover.php:68
 msgid ""
-"Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be"
-" installed and activated."
+"Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be "
+"installed and activated."
 msgstr ""
 "Wiederherstellen – Wiederherstellung verlassener Warenkörbe für WooCommerce "
 "erfordert die Installation und Aktivierung von WooCommerce."
@@ -214,8 +213,8 @@ msgstr "Timing"
 
 #: src/Admin/SettingsPage.php:93
 msgid ""
-"Control how long to wait before a cart is considered abandoned and emails go"
-" out. The recovery worker runs hourly via wp-cron."
+"Control how long to wait before a cart is considered abandoned and emails go "
+"out. The recovery worker runs hourly via wp-cron."
 msgstr ""
 "Steuern Sie, wie lange gewartet werden soll, bevor ein Warenkorb als "
 "abgebrochen gilt und E-Mails versendet werden. Der Recovery Worker läuft "
@@ -252,9 +251,8 @@ msgid ""
 "mailer; no data leaves your store."
 msgstr ""
 "Passe die Wiederherstellungs-E-Mail an. Lass alle Felder leer, um die "
-"integrierte Standardeinstellung als Platzhalter zu verwenden. E-Mails werden"
-" über deinen eigenen Site-Mailer versendet; Keine Daten verlassen deinen "
-"Shop."
+"integrierte Standardeinstellung als Platzhalter zu verwenden. E-Mails werden "
+"über deinen eigenen Site-Mailer versendet; Keine Daten verlassen deinen Shop."
 
 #: src/Admin/SettingsPage.php:113
 msgid "Subject"
@@ -346,8 +344,8 @@ msgid ""
 "We saved your cart for you. Click the button below to pick up right where "
 "you left off."
 msgstr ""
-"Wir haben deinen Warenkorb für dich gespeichert. Klicke auf die Schaltfläche"
-" unten, um genau dort weiterzumachen, wo Sie aufgehört haben."
+"Wir haben deinen Warenkorb für dich gespeichert. Klicke auf die Schaltfläche "
+"unten, um genau dort weiterzumachen, wo Sie aufgehört haben."
 
 #: src/Settings.php:114
 msgid "Complete my order"
@@ -368,5 +366,65 @@ msgid ""
 "This message was sent by %s because a cart was left behind. If this was not "
 "you, you can safely ignore this email."
 msgstr ""
-"Diese Nachricht wurde von %s gesendet, weil ein Einkaufswagen zurückgelassen"
-" wurde. Wenn du das nicht warst, kannst du diese E-Mail getrost ignorieren."
+"Diese Nachricht wurde von %s gesendet, weil ein Einkaufswagen zurückgelassen "
+"wurde. Wenn du das nicht warst, kannst du diese E-Mail getrost ignorieren."
+
+#: src/Admin/ProUpsell.php:78
+msgid "Wkrótce"
+msgstr "Demnächst"
+
+#: src/Admin/ProUpsell.php:78
+msgid "Coming soon"
+msgstr "Demnächst"
+
+#. translators: %d: yearly price in PLN
+#: src/Admin/ProUpsell.php:83
+#, php-format
+msgid "od %d zł/rok"
+msgstr "ab %d zł/Jahr"
+
+#. translators: 1: currency symbol, 2: yearly price
+#: src/Admin/ProUpsell.php:88
+#, php-format
+msgid "from %1$s%2$d/yr"
+msgstr "ab %1$s%2$d/Jahr"
+
+#: src/Admin/ProUpsell.php:97
+msgid "Upgrade to PRO"
+msgstr "Auf PRO upgraden"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Powiadom mnie"
+msgstr "Benachrichtige mich"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Get notified"
+msgstr "Benachrichtige mich"
+
+#: src/Admin/ProUpsell.php:128
+msgid "Permission denied."
+msgstr "Zugriff verweigert."
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:158
+#, php-format
+msgid "Do more with %s"
+msgstr "Mehr erreichen mit %s"
+
+#: src/Admin/ProUpsell.php:165
+msgid "Dismiss this notice"
+msgstr "Diesen Hinweis ausblenden"
+
+#: src/Admin/ProUpsell.php:182
+msgid "Unlock every PRO feature"
+msgstr "Alle PRO-Funktionen freischalten"
+
+#: src/Admin/ProUpsell.php:195
+msgid "one licence, every PRO feature"
+msgstr "eine Lizenz, alle PRO-Funktionen"
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:214
+#, php-format
+msgid "What %s adds"
+msgstr "Was %s ergänzt"
