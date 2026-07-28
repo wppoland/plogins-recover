@@ -6,16 +6,16 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recover\n"
 "POT-Creation-Date: 2026-06-16T20:24:51+00:00\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
-"Last-Translator: WPPoland <hello@plogins.com>\n"
-"Language-Team: WPPoland <hello@plogins.com>\n"
+"Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
+"Language-Team: Polish <pl@li.org>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
-"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: plogins-recover\n"
+"X-Generator: WP-CLI 2.12.0\n"
 
 #. Plugin Name of the plugin
 #: recover.php
@@ -200,6 +200,8 @@ msgid ""
 "Wording the shopper sees next to the consent checkbox at checkout. Applies "
 "only when \"Require consent\" is on."
 msgstr ""
+"Sformułowanie, które kupujący widzi obok pola wyboru zgody przy kasie. Ma "
+"zastosowanie tylko wtedy, gdy włączona jest opcja „Wymagaj zgody”."
 
 #: src/Admin/SettingsPage.php:91
 msgid "Timing"
@@ -242,6 +244,10 @@ msgid ""
 "default shown as the placeholder. Emails are sent through your own site "
 "mailer; no data leaves your store."
 msgstr ""
+"Dostosuj e-mail pomocniczy. Pozostaw dowolne pole puste, aby użyć wbudowanej "
+"wartości domyślnej pokazanej jako symbol zastępczy. E-maile są wysyłane za "
+"pośrednictwem Twojego własnego programu pocztowego; żadne dane nie "
+"opuszczają Twojego sklepu."
 
 #: src/Admin/SettingsPage.php:113
 msgid "Subject"
@@ -252,6 +258,8 @@ msgid ""
 "Inbox subject line. Keep it short and specific so it survives a crowded "
 "inbox."
 msgstr ""
+"Temat skrzynki odbiorczej. Niech będzie krótki i konkretny, aby przetrwał w "
+"zatłoczonej skrzynce odbiorczej."
 
 #: src/Admin/SettingsPage.php:120
 msgid "Heading"
@@ -259,7 +267,7 @@ msgstr "Nagłówek"
 
 #: src/Admin/SettingsPage.php:121
 msgid "The large heading at the top of the email body, above your message."
-msgstr ""
+msgstr "Duży nagłówek u góry treści wiadomości e-mail, nad wiadomością."
 
 #: src/Admin/SettingsPage.php:127
 msgid "Body text"
@@ -270,6 +278,8 @@ msgid ""
 "The message shown above the recovery button. Plain text only; write what "
 "nudges the shopper back."
 msgstr ""
+"Komunikat wyświetlany nad przyciskiem odzyskiwania. Tylko zwykły tekst; "
+"napisz, co zachęci kupującego do powrotu."
 
 #: src/Admin/SettingsPage.php:134
 msgid "Button label"
@@ -278,6 +288,7 @@ msgstr "Etykieta przycisku"
 #: src/Admin/SettingsPage.php:135
 msgid "Text on the button that returns the shopper to their saved cart."
 msgstr ""
+"Tekst na przycisku, który powoduje powrót kupującego do zapisanego koszyka."
 
 #: src/Admin/SettingsPage.php:154
 msgid ""
@@ -297,7 +308,7 @@ msgstr "Następne uruchomienie odzyskiwania: za %s."
 msgid ""
 "The recovery worker is not scheduled. Re-activate the plugin to restore it."
 msgstr ""
-"Proces odzyskiwania nie jest zaplanowany. Ponownie aktywuj wtyczkę, aby go "
+"Proces odzyskiwania nie jest zaplanowany. Ponownie włącz wtyczkę, aby go "
 "przywrócić."
 
 #: src/Admin/SettingsPage.php:170
@@ -335,11 +346,11 @@ msgstr "Dokończ zamówienie"
 
 #: templates/emails/recovery.php:76
 msgid "We left the light on, your cart is still here."
-msgstr ""
+msgstr "Zostawiliśmy włączone światło, Twój koszyk nadal tu jest."
 
 #: templates/emails/recovery.php:90
 msgid "The link picks up right where you left off."
-msgstr ""
+msgstr "Link rozpoczyna się w miejscu, w którym przerwałeś."
 
 #. translators: %s: site name
 #: templates/emails/recovery.php:100
@@ -350,6 +361,66 @@ msgid ""
 msgstr ""
 "Ta wiadomość została wysłana przez %s, ponieważ koszyk został porzucony. "
 "Jeśli to nie Ty, możesz bezpiecznie zignorować tę wiadomość."
+
+#: src/Admin/ProUpsell.php:78
+msgid "Wkrótce"
+msgstr "Wkrótce"
+
+#: src/Admin/ProUpsell.php:78
+msgid "Coming soon"
+msgstr "Wkrótce"
+
+#. translators: %d: yearly price in PLN
+#: src/Admin/ProUpsell.php:83
+#, php-format
+msgid "od %d zł/rok"
+msgstr "od %d zł/rok"
+
+#. translators: 1: currency symbol, 2: yearly price
+#: src/Admin/ProUpsell.php:88
+#, php-format
+msgid "from %1$s%2$d/yr"
+msgstr "od %1$s%2$d/rok"
+
+#: src/Admin/ProUpsell.php:97
+msgid "Upgrade to PRO"
+msgstr "Przejdź na PRO"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Powiadom mnie"
+msgstr "Powiadom mnie"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Get notified"
+msgstr "Powiadom mnie"
+
+#: src/Admin/ProUpsell.php:128
+msgid "Permission denied."
+msgstr "Brak uprawnień."
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:158
+#, php-format
+msgid "Do more with %s"
+msgstr "Zrób więcej dzięki %s"
+
+#: src/Admin/ProUpsell.php:165
+msgid "Dismiss this notice"
+msgstr "Odrzuć to powiadomienie"
+
+#: src/Admin/ProUpsell.php:182
+msgid "Unlock every PRO feature"
+msgstr "Odblokuj wszystkie funkcje PRO"
+
+#: src/Admin/ProUpsell.php:195
+msgid "one licence, every PRO feature"
+msgstr "jedna licencja, wszystkie funkcje PRO"
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:214
+#, php-format
+msgid "What %s adds"
+msgstr "Co dodaje %s"
 
 #~ msgid ""
 #~ "Customise the recovery email. Leave any field blank to use the built-in "

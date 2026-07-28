@@ -143,7 +143,7 @@ final class CartsPage implements HasHooks
                                             <button type="submit" class="button-link delete"><?php esc_html_e('Erase', 'plogins-recover'); ?></button>
                                         </form>
                                     <?php else : ?>
-                                        &mdash;
+                                        -
                                     <?php endif; ?>
                                 </td>
                             </tr>

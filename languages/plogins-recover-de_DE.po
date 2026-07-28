@@ -1,0 +1,430 @@
+# Copyright (C) 2026 WPPoland
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Recover - Abandoned Cart Recovery for WooCommerce 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recover\n"
+"POT-Creation-Date: 2026-06-16T20:24:51+00:00\n"
+"PO-Revision-Date: 2026-06-16T20:24:51+00:00\n"
+"Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: plogins-recover\n"
+"X-Generator: WP-CLI 2.12.0\n"
+
+#. Plugin Name of the plugin
+#: recover.php
+msgid "Recover - Abandoned Cart Recovery for WooCommerce"
+msgstr ""
+"Wiederherstellen, Wiederherstellung abgebrochener Warenkörbe für WooCommerce"
+
+#. Plugin URI of the plugin
+#: recover.php
+msgid "https://plogins.com/recover/"
+msgstr "https://plogins.com/de/recover/"
+
+#. Description of the plugin
+#: recover.php
+msgid ""
+"Capture carts that are left behind and email customers a one-click link to "
+"finish checkout."
+msgstr ""
+"Erfasse zurückgebliebene Warenkörbe und sende deinen Kunden per E-Mail einen "
+"Ein-Klick-Link, um den Bestellvorgang abzuschließen."
+
+#. Author of the plugin
+#: recover.php
+msgid "WPPoland"
+msgstr "WPPoland"
+
+#. Author URI of the plugin
+#: recover.php
+msgid "https://plogins.com/"
+msgstr "https://plogins.com/"
+
+#. translators: 1: Required PHP version, 2: Current PHP version
+#: recover.php:52
+#, php-format
+msgid "Recover requires PHP %1$s or higher. You are running PHP %2$s."
+msgstr ""
+"Für die Wiederherstellung ist PHP %1$s oder höher erforderlich. Du "
+"verwendest PHP %2$s."
+
+#: recover.php:68
+msgid ""
+"Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be "
+"installed and activated."
+msgstr ""
+"Wiederherstellen, Wiederherstellung verlassener Warenkörbe für WooCommerce "
+"erfordert die Installation und Aktivierung von WooCommerce."
+
+#. translators: 1: Required WC version, 2: Current WC version
+#: recover.php:80
+#, php-format
+msgid ""
+"Recover requires WooCommerce %1$s or higher. You are running WooCommerce "
+"%2$s."
+msgstr ""
+"Für die Wiederherstellung ist WooCommerce %1$s oder höher erforderlich. Du "
+"betreibst WooCommerce %2$s."
+
+#: src/Admin/CartsPage.php:36
+msgid "Recover - Carts"
+msgstr "Wiederherstellen, Karren"
+
+#: src/Admin/CartsPage.php:37
+msgid "Recover Carts"
+msgstr "Einkaufswagen wiederherstellen"
+
+#: src/Admin/CartsPage.php:54 src/Service/CartTracker.php:137
+msgid "Security check failed."
+msgstr "Sicherheitsüberprüfung fehlgeschlagen."
+
+#: src/Admin/CartsPage.php:78 src/Admin/SettingsPage.php:41
+msgid "Recover - Abandoned Carts"
+msgstr "Wiederherstellen, verlassene Einkaufswagen"
+
+#: src/Admin/CartsPage.php:81
+msgid "Cart data for that email address has been erased."
+msgstr "Die Warenkorbdaten für diese E-Mail-Adresse wurden gelöscht."
+
+#: src/Admin/CartsPage.php:85 src/Admin/CartsPage.php:138
+msgid "Pending"
+msgstr "Ausstehend"
+
+#: src/Admin/CartsPage.php:86 src/Admin/CartsPage.php:139
+msgid "Abandoned"
+msgstr "Verlassen"
+
+#: src/Admin/CartsPage.php:87 src/Admin/CartsPage.php:140
+msgid "Recovered"
+msgstr "Wiederhergestellt"
+
+#: src/Admin/CartsPage.php:88
+msgid "Recovery rate"
+msgstr "Wiederherstellungsrate"
+
+#: src/Admin/CartsPage.php:92
+msgid ""
+"No carts recorded yet. Once shoppers add items and leave without checking "
+"out, they will appear here."
+msgstr ""
+"Es wurden noch keine Warenkörbe erfasst. Sobald Käufer Artikel hinzufügen "
+"und gehen, ohne zur Kasse zu gehen, werden sie hier angezeigt."
+
+#: src/Admin/CartsPage.php:97
+msgid "Email"
+msgstr "E-Mail"
+
+#: src/Admin/CartsPage.php:98
+msgid "Items"
+msgstr "Artikel"
+
+#: src/Admin/CartsPage.php:99
+msgid "Value"
+msgstr "Wert"
+
+#: src/Admin/CartsPage.php:100
+msgid "Status"
+msgstr "Status"
+
+#: src/Admin/CartsPage.php:101
+msgid "Emails"
+msgstr "E-Mails"
+
+#: src/Admin/CartsPage.php:102
+msgid "Last activity"
+msgstr "Letzte Aktivität"
+
+#: src/Admin/CartsPage.php:103
+msgid "Privacy"
+msgstr "Privatsphäre"
+
+#: src/Admin/CartsPage.php:109
+msgid "(no email yet)"
+msgstr "(Noch keine E-Mail)"
+
+#: src/Admin/CartsPage.php:117
+msgid "Erase all stored cart data for this email address?"
+msgstr "Alle gespeicherten Warenkorbdaten für diese E-Mail-Adresse löschen?"
+
+#: src/Admin/CartsPage.php:120
+msgid "Erase"
+msgstr "Löschen"
+
+#: src/Admin/SettingsPage.php:42
+msgid "Recover"
+msgstr "Recover"
+
+#: src/Admin/SettingsPage.php:75
+msgid "General"
+msgstr "Allgemein"
+
+#: src/Admin/SettingsPage.php:77
+msgid "Enable cart recovery"
+msgstr "Aktiviere die Warenkorbwiederherstellung"
+
+#: src/Admin/SettingsPage.php:77
+msgid "Track abandoned carts and send recovery emails."
+msgstr "Verfolge verlassene Warenkörbe und sende Wiederherstellungs-E-Mails."
+
+#: src/Admin/SettingsPage.php:78
+msgid "Capture guest carts"
+msgstr "Erfasse Gastwagen"
+
+#: src/Admin/SettingsPage.php:78
+msgid "Record carts and emails from visitors who are not logged in."
+msgstr ""
+"Erfasse Warenkörbe und E-Mails von Besuchern, die nicht angemeldet sind."
+
+#: src/Admin/SettingsPage.php:79
+msgid "Require consent"
+msgstr "Zustimmung erforderlich"
+
+#: src/Admin/SettingsPage.php:79
+msgid ""
+"Only store a guest email after they tick a consent checkbox at checkout "
+"(recommended for GDPR)."
+msgstr ""
+"Speichere die E-Mail-Adresse eines Gastes erst, nachdem er an der Kasse ein "
+"Kontrollkästchen für die Einwilligung aktiviert hat (empfohlen für die "
+"DSGVO)."
+
+#: src/Admin/SettingsPage.php:82
+msgid "Consent checkbox label"
+msgstr "Beschriftung des Kontrollkästchens „Einwilligung“."
+
+#: src/Admin/SettingsPage.php:83
+msgid ""
+"Wording the shopper sees next to the consent checkbox at checkout. Applies "
+"only when \"Require consent\" is on."
+msgstr ""
+"Der Wortlaut wird dem Käufer beim Bezahlvorgang neben dem Kontrollkästchen "
+"für die Einwilligung angezeigt. Gilt nur, wenn „Einwilligung erforderlich“ "
+"aktiviert ist."
+
+#: src/Admin/SettingsPage.php:91
+msgid "Timing"
+msgstr "Timing"
+
+#: src/Admin/SettingsPage.php:93
+msgid ""
+"Control how long to wait before a cart is considered abandoned and emails go "
+"out. The recovery worker runs hourly via wp-cron."
+msgstr ""
+"Steuern Sie, wie lange gewartet werden soll, bevor ein Warenkorb als "
+"abgebrochen gilt und E-Mails versendet werden. Der Recovery Worker läuft "
+"stündlich über wp-cron."
+
+#: src/Admin/SettingsPage.php:98
+msgid "Mark abandoned after (minutes)"
+msgstr "Als abgebrochen markieren nach (Minuten)"
+
+#: src/Admin/SettingsPage.php:98
+msgid "Minutes of inactivity before a pending cart is flagged as abandoned."
+msgstr ""
+"Minuten der Inaktivität, bevor ein ausstehender Warenkorb als abgebrochen "
+"gekennzeichnet wird."
+
+#: src/Admin/SettingsPage.php:99
+msgid "Email delay (minutes)"
+msgstr "E-Mail-Verzögerung (Minuten)"
+
+#: src/Admin/SettingsPage.php:99
+msgid "Minutes to wait after abandonment before sending the recovery email."
+msgstr ""
+"Minuten, die nach dem Abbruch gewartet werden müssen, bevor die "
+"Wiederherstellungs-E-Mail gesendet wird."
+
+#: src/Admin/SettingsPage.php:104
+msgid "Recovery email"
+msgstr "Wiederherstellungs-E-Mail"
+
+#: src/Admin/SettingsPage.php:106
+msgid ""
+"Customise the recovery email. Leave any field blank to use the built-in "
+"default shown as the placeholder. Emails are sent through your own site "
+"mailer; no data leaves your store."
+msgstr ""
+"Passe die Wiederherstellungs-E-Mail an. Lass alle Felder leer, um die "
+"integrierte Standardeinstellung als Platzhalter zu verwenden. E-Mails werden "
+"über deinen eigenen Site-Mailer versendet; Keine Daten verlassen deinen Shop."
+
+#: src/Admin/SettingsPage.php:113
+msgid "Subject"
+msgstr "Betreff"
+
+#: src/Admin/SettingsPage.php:114
+msgid ""
+"Inbox subject line. Keep it short and specific so it survives a crowded "
+"inbox."
+msgstr ""
+"Betreffzeile des Posteingangs. Halte es kurz und präzise, ​​damit es einem "
+"überfüllten Posteingang standhält."
+
+#: src/Admin/SettingsPage.php:120
+msgid "Heading"
+msgstr "Überschrift"
+
+#: src/Admin/SettingsPage.php:121
+msgid "The large heading at the top of the email body, above your message."
+msgstr "Die große Überschrift oben im E-Mail-Text, über deiner Nachricht."
+
+#: src/Admin/SettingsPage.php:127
+msgid "Body text"
+msgstr "Fließtext"
+
+#: src/Admin/SettingsPage.php:128
+msgid ""
+"The message shown above the recovery button. Plain text only; write what "
+"nudges the shopper back."
+msgstr ""
+"Die Meldung wird über der Wiederherstellungsschaltfläche angezeigt. Nur "
+"Klartext; Schreibe, was den Käufer zurückholt."
+
+#: src/Admin/SettingsPage.php:134
+msgid "Button label"
+msgstr "Knopfbeschriftung"
+
+#: src/Admin/SettingsPage.php:135
+msgid "Text on the button that returns the shopper to their saved cart."
+msgstr ""
+"Text auf der Schaltfläche, der den Käufer zu seinem gespeicherten Warenkorb "
+"zurückführt."
+
+#: src/Admin/SettingsPage.php:154
+msgid ""
+"Cart recovery is currently disabled. Enable it below to start tracking "
+"abandoned carts."
+msgstr ""
+"Die Warenkorbwiederherstellung ist derzeit deaktiviert. Aktiviere es unten, "
+"um mit der Verfolgung verlassener Warenkörbe zu beginnen."
+
+#. translators: %s: human-readable time difference
+#: src/Admin/SettingsPage.php:163
+#, php-format
+msgid "Next recovery run: in %s."
+msgstr "Nächster Wiederherstellungslauf: in %s."
+
+#: src/Admin/SettingsPage.php:167
+msgid ""
+"The recovery worker is not scheduled. Re-activate the plugin to restore it."
+msgstr ""
+"Der Wiederherstellungsarbeiter ist nicht eingeplant. Aktiviere das Plugin "
+"erneut, um es wiederherzustellen."
+
+#: src/Admin/SettingsPage.php:170
+msgid "View abandoned carts →"
+msgstr "Abgebrochene Warenkörbe anzeigen →"
+
+#: src/Service/CartTracker.php:142
+msgid "Provide a valid email address."
+msgstr "Gib eine gültige E-Mail-Adresse an."
+
+#: src/Settings.php:84
+msgid "Email me a link to recover my cart if I do not complete my order."
+msgstr ""
+"Sende mir per E-Mail einen Link, um meinen Warenkorb wiederherzustellen, "
+"wenn ich meine Bestellung nicht abschließe."
+
+#: src/Settings.php:91
+msgid "You left something in your cart"
+msgstr "Du hast etwas in deinem Warenkorb gelassen"
+
+#: src/Settings.php:98
+msgid "Still thinking it over?"
+msgstr "Denke immer noch darüber nach?"
+
+#: src/Settings.php:107
+msgid ""
+"We saved your cart for you. Click the button below to pick up right where "
+"you left off."
+msgstr ""
+"Wir haben deinen Warenkorb für dich gespeichert. Klicke auf die Schaltfläche "
+"unten, um genau dort weiterzumachen, wo Sie aufgehört haben."
+
+#: src/Settings.php:114
+msgid "Complete my order"
+msgstr "Schließe meine Bestellung ab"
+
+#: templates/emails/recovery.php:76
+msgid "We left the light on, your cart is still here."
+msgstr "Wir haben das Licht angelassen, dein Warenkorb ist immer noch hier."
+
+#: templates/emails/recovery.php:90
+msgid "The link picks up right where you left off."
+msgstr "Der Link setzt genau dort fort, wo Sie aufgehört haben."
+
+#. translators: %s: site name
+#: templates/emails/recovery.php:100
+#, php-format
+msgid ""
+"This message was sent by %s because a cart was left behind. If this was not "
+"you, you can safely ignore this email."
+msgstr ""
+"Diese Nachricht wurde von %s gesendet, weil ein Einkaufswagen zurückgelassen "
+"wurde. Wenn du das nicht warst, kannst du diese E-Mail getrost ignorieren."
+
+#: src/Admin/ProUpsell.php:78
+msgid "Wkrótce"
+msgstr "Demnächst"
+
+#: src/Admin/ProUpsell.php:78
+msgid "Coming soon"
+msgstr "Demnächst"
+
+#. translators: %d: yearly price in PLN
+#: src/Admin/ProUpsell.php:83
+#, php-format
+msgid "od %d zł/rok"
+msgstr "ab %d zł/Jahr"
+
+#. translators: 1: currency symbol, 2: yearly price
+#: src/Admin/ProUpsell.php:88
+#, php-format
+msgid "from %1$s%2$d/yr"
+msgstr "ab %1$s%2$d/Jahr"
+
+#: src/Admin/ProUpsell.php:97
+msgid "Upgrade to PRO"
+msgstr "Auf PRO upgraden"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Powiadom mnie"
+msgstr "Benachrichtige mich"
+
+#: src/Admin/ProUpsell.php:98
+msgid "Get notified"
+msgstr "Benachrichtige mich"
+
+#: src/Admin/ProUpsell.php:128
+msgid "Permission denied."
+msgstr "Zugriff verweigert."
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:158
+#, php-format
+msgid "Do more with %s"
+msgstr "Mehr erreichen mit %s"
+
+#: src/Admin/ProUpsell.php:165
+msgid "Dismiss this notice"
+msgstr "Diesen Hinweis ausblenden"
+
+#: src/Admin/ProUpsell.php:182
+msgid "Unlock every PRO feature"
+msgstr "Alle PRO-Funktionen freischalten"
+
+#: src/Admin/ProUpsell.php:195
+msgid "one licence, every PRO feature"
+msgstr "eine Lizenz, alle PRO-Funktionen"
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:214
+#, php-format
+msgid "What %s adds"
+msgstr "Was %s ergänzt"
