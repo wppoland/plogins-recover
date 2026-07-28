@@ -42,7 +42,7 @@ final class RestoreHandler implements HasHooks
     public function maybeRestore(): void
     {
         // Read-only, token-authorised public link from an email; no nonce is
-        // possible (the link is emailed) — the unguessable token is the auth.
+        // possible (the link is emailed), the unguessable token is the auth.
         if (! isset($_GET[self::QUERY_VAR])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             return;
         }

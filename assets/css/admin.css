@@ -3,9 +3,9 @@
  * no layout shift, motion guarded by prefers-reduced-motion.
  */
 .recover-wrap {
-	/* Ember accent — the family hue from Recover's recovery email (the lit-window
+	/* Ember accent, the family hue from Recover's recovery email (the lit-window
 	   world), not transactional blue. #a3360b on white = 6.80:1, on the wp-admin
-	   grey #f0f0f1 = 5.97:1 — both pass WCAG AA for text and UI. */
+	   grey #f0f0f1 = 5.97:1, both pass WCAG AA for text and UI. */
 	--recover-accent: #a3360b;
 	--recover-surface: #ffffff;
 	--recover-border: #e3e6ea;
@@ -109,7 +109,7 @@
 }
 
 /* ------------------------------------------------------------------ *
- * PRO upsell — dismissible banner, sidebar promo, "what PRO adds"
+ * PRO upsell, dismissible banner, sidebar promo, "what PRO adds"
  * locked cards. Pure advertising (no disabled inputs), scoped to
  * .recover-wrap so nothing leaks into the rest of wp-admin. Uses the
  * ember accent (#a3360b = 6.80:1 on white, clears WCAG AA for text and

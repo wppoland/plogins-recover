@@ -19,7 +19,7 @@ Ponieważ wszystko dzieje się na Twoim własnym serwerze, możesz dokładnie sp
 <strong>Jak to działa</strong>
 
 1. Gdy tylko klient ma produkty w koszyku, Recover zapisuje prywatną migawkę tego koszyka.
-2. Adres e-mail klienta jest przechwytywany wcześnie — automatycznie dla zalogowanych klientów oraz (za zgodą) z pola adresu e-mail w kasie w przypadku gości.
+2. Adres e-mail klienta jest przechwytywany wcześnie, automatycznie dla zalogowanych klientów oraz (za zgodą) z pola adresu e-mail w kasie w przypadku gości.
 3. Jeśli zamówienie nie zostanie sfinalizowane w wybranym przez Ciebie oknie czasowym, koszyk zostaje oznaczony jako <strong>porzucony</strong>.
 4. Przy następnym zaplanowanym uruchomieniu Recover wysyła wiadomość odzyskującą zawierającą bezpieczny link przywracający z tokenem.
 5. Jedno kliknięcie tego linku ponownie wypełnia koszyk i odsyła klienta do kasy. Odzyskane koszyki są śledzone osobno, dzięki czemu widzisz swój współczynnik odzysku.
@@ -69,7 +69,7 @@ Tak. Recover jest darmowy i objęty licencją GPL.
 Tak. Recover to rozszerzenie WooCommerce i wymaga WooCommerce 8.0 lub nowszego. Wyświetla powiadomienie w panelu i pozostaje nieaktywny, jeśli WooCommerce brakuje lub jest nieaktualne.
 
 = How is the recovery email sent? =
-Według harmonogramu crona WordPressa (domyślnie co godzinę). Każde uruchomienie oznacza koszyki nieaktywne dłużej niż Twoje okno jako porzucone, a następnie wysyła link odzyskujący do każdego porzuconego koszyka, dla którego nadszedł czas, używając mechanizmu poczty Twojej witryny (`wp_mail`). Proces jest idempotentny, więc nigdy nie wysyła podwójnie — każdy koszyk otrzymuje jeden e-mail odzyskujący.
+Według harmonogramu crona WordPressa (domyślnie co godzinę). Każde uruchomienie oznacza koszyki nieaktywne dłużej niż Twoje okno jako porzucone, a następnie wysyła link odzyskujący do każdego porzuconego koszyka, dla którego nadszedł czas, używając mechanizmu poczty Twojej witryny (`wp_mail`). Proces jest idempotentny, więc nigdy nie wysyła podwójnie, każdy koszyk otrzymuje jeden e-mail odzyskujący.
 
 = Is the restore link safe? =
 Tak. Każdy koszyk ma 64-znakowy, kryptograficznie losowy token. Link przywracający zawiera tylko ten token: brak identyfikatora klienta, brak adresu e-mail, nic osobistego. Bez dokładnego tokenu koszyka nie da się przywrócić, więc nie ma ryzyka enumeracji ani IDOR.

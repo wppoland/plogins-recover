@@ -19,7 +19,7 @@ Da alles auf deinem eigenen Server passiert, kannst du genau nachlesen, was es t
 <strong>So funktioniert es</strong>
 
 1. Sobald ein Kunde Artikel im Warenkorb hat, speichert Recover eine private Momentaufnahme dieses Warenkorbs.
-2. Die Kunden-E-Mail wird früh erfasst – automatisch bei eingeloggten Kunden und (mit Einwilligung) aus dem E-Mail-Feld an der Kasse bei Gästen.
+2. Die Kunden-E-Mail wird früh erfasst, automatisch bei eingeloggten Kunden und (mit Einwilligung) aus dem E-Mail-Feld an der Kasse bei Gästen.
 3. Wird der Checkout nicht innerhalb eines von dir gewählten Zeitfensters abgeschlossen, wird der Warenkorb als <strong>abgebrochen</strong> markiert.
 4. Beim nächsten geplanten Lauf sendet Recover eine Wiederherstellungs-E-Mail mit einem sicheren, tokenisierten Wiederherstellungslink.
 5. Ein Klick auf diesen Link füllt den Warenkorb wieder und schickt den Kunden zurück zur Kasse. Wiederhergestellte Warenkörbe werden separat erfasst, sodass du deine Wiederherstellungsrate siehst.
@@ -69,7 +69,7 @@ Ja. Recover ist kostenlos und unter der GPL lizenziert.
 Ja. Recover ist eine WooCommerce-Erweiterung und erfordert WooCommerce 8.0 oder höher. Es zeigt einen Admin-Hinweis und bleibt inaktiv, wenn WooCommerce fehlt oder veraltet ist.
 
 = How is the recovery email sent? =
-Über einen WordPress-Cron-Zeitplan (standardmäßig stündlich). Jeder Lauf markiert Warenkörbe, die länger als dein Zeitfenster inaktiv waren, als abgebrochen und sendet dann einen Wiederherstellungslink an jeden fälligen abgebrochenen Warenkorb – über den Mailer deiner eigenen Website (`wp_mail`). Der Worker ist idempotent, versendet also nie doppelt, sodass jeder Warenkorb genau eine Wiederherstellungs-E-Mail erhält.
+Über einen WordPress-Cron-Zeitplan (standardmäßig stündlich). Jeder Lauf markiert Warenkörbe, die länger als dein Zeitfenster inaktiv waren, als abgebrochen und sendet dann einen Wiederherstellungslink an jeden fälligen abgebrochenen Warenkorb, über den Mailer deiner eigenen Website (`wp_mail`). Der Worker ist idempotent, versendet also nie doppelt, sodass jeder Warenkorb genau eine Wiederherstellungs-E-Mail erhält.
 
 = Is the restore link safe? =
 Ja. Jeder Warenkorb hat einen 64-stelligen, kryptografisch zufälligen Token. Der Wiederherstellungslink enthält nur diesen Token: keine Kunden-ID, keine E-Mail-Adresse, nichts Persönliches. Ohne den genauen Token lässt sich ein Warenkorb nicht wiederherstellen, es gibt also kein Enumerations- oder IDOR-Risiko.

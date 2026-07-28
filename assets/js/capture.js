@@ -1,10 +1,10 @@
 /**
- * Recover — early checkout email capture.
+ * Recover, early checkout email capture.
  *
  * Listens to the WooCommerce checkout billing-email field and, once a valid
  * address is entered (and consent given, if required), posts it to the server so
  * an abandoned cart can be tied to a contactable address. No jQuery; vanilla
- * fetch, loaded `defer` in the footer. Fails silently — never blocks checkout.
+ * fetch, loaded `defer` in the footer. Fails silently, never blocks checkout.
  */
 (function () {
 	'use strict';
