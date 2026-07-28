@@ -26,7 +26,9 @@ msgstr ""
 
 #. Description of the plugin
 #: recover.php
-msgid "Capture carts that are left behind and email customers a one-click link to finish checkout."
+msgid ""
+"Capture carts that are left behind and email customers a one-click link to "
+"finish checkout."
 msgstr ""
 
 #. Author of the plugin
@@ -46,13 +48,17 @@ msgid "Recover requires PHP %1$s or higher. You are running PHP %2$s."
 msgstr ""
 
 #: recover.php:68
-msgid "Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be installed and activated."
+msgid ""
+"Recover - Abandoned Cart Recovery for WooCommerce requires WooCommerce to be "
+"installed and activated."
 msgstr ""
 
 #. translators: 1: Required WC version, 2: Current WC version
 #: recover.php:80
 #, php-format
-msgid "Recover requires WooCommerce %1$s or higher. You are running WooCommerce %2$s."
+msgid ""
+"Recover requires WooCommerce %1$s or higher. You are running WooCommerce "
+"%2$s."
 msgstr ""
 
 #: src/Admin/CartsPage.php:36
@@ -63,13 +69,11 @@ msgstr ""
 msgid "Recover Carts"
 msgstr ""
 
-#: src/Admin/CartsPage.php:54
-#: src/Service/CartTracker.php:137
+#: src/Admin/CartsPage.php:54 src/Service/CartTracker.php:137
 msgid "Security check failed."
 msgstr ""
 
-#: src/Admin/CartsPage.php:78
-#: src/Admin/SettingsPage.php:41
+#: src/Admin/CartsPage.php:78 src/Admin/SettingsPage.php:41
 msgid "Recover - Abandoned Carts"
 msgstr ""
 
@@ -77,18 +81,15 @@ msgstr ""
 msgid "Cart data for that email address has been erased."
 msgstr ""
 
-#: src/Admin/CartsPage.php:85
-#: src/Admin/CartsPage.php:138
+#: src/Admin/CartsPage.php:85 src/Admin/CartsPage.php:138
 msgid "Pending"
 msgstr ""
 
-#: src/Admin/CartsPage.php:86
-#: src/Admin/CartsPage.php:139
+#: src/Admin/CartsPage.php:86 src/Admin/CartsPage.php:139
 msgid "Abandoned"
 msgstr ""
 
-#: src/Admin/CartsPage.php:87
-#: src/Admin/CartsPage.php:140
+#: src/Admin/CartsPage.php:87 src/Admin/CartsPage.php:140
 msgid "Recovered"
 msgstr ""
 
@@ -97,7 +98,9 @@ msgid "Recovery rate"
 msgstr ""
 
 #: src/Admin/CartsPage.php:92
-msgid "No carts recorded yet. Once shoppers add items and leave without checking out, they will appear here."
+msgid ""
+"No carts recorded yet. Once shoppers add items and leave without checking "
+"out, they will appear here."
 msgstr ""
 
 #: src/Admin/CartsPage.php:97
@@ -169,7 +172,9 @@ msgid "Require consent"
 msgstr ""
 
 #: src/Admin/SettingsPage.php:79
-msgid "Only store a guest email after they tick a consent checkbox at checkout (recommended for GDPR)."
+msgid ""
+"Only store a guest email after they tick a consent checkbox at checkout "
+"(recommended for GDPR)."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:82
@@ -177,7 +182,9 @@ msgid "Consent checkbox label"
 msgstr ""
 
 #: src/Admin/SettingsPage.php:83
-msgid "Wording the shopper sees next to the consent checkbox at checkout. Applies only when \"Require consent\" is on."
+msgid ""
+"Wording the shopper sees next to the consent checkbox at checkout. Applies "
+"only when \"Require consent\" is on."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:91
@@ -185,7 +192,9 @@ msgid "Timing"
 msgstr ""
 
 #: src/Admin/SettingsPage.php:93
-msgid "Control how long to wait before a cart is considered abandoned and emails go out. The recovery worker runs hourly via wp-cron."
+msgid ""
+"Control how long to wait before a cart is considered abandoned and emails go "
+"out. The recovery worker runs hourly via wp-cron."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:98
@@ -209,7 +218,10 @@ msgid "Recovery email"
 msgstr ""
 
 #: src/Admin/SettingsPage.php:106
-msgid "Customise the recovery email. Leave any field blank to use the built-in default shown as the placeholder. Emails are sent through your own site mailer; no data leaves your store."
+msgid ""
+"Customise the recovery email. Leave any field blank to use the built-in "
+"default shown as the placeholder. Emails are sent through your own site "
+"mailer; no data leaves your store."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:113
@@ -217,7 +229,9 @@ msgid "Subject"
 msgstr ""
 
 #: src/Admin/SettingsPage.php:114
-msgid "Inbox subject line. Keep it short and specific so it survives a crowded inbox."
+msgid ""
+"Inbox subject line. Keep it short and specific so it survives a crowded "
+"inbox."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:120
@@ -233,7 +247,9 @@ msgid "Body text"
 msgstr ""
 
 #: src/Admin/SettingsPage.php:128
-msgid "The message shown above the recovery button. Plain text only; write what nudges the shopper back."
+msgid ""
+"The message shown above the recovery button. Plain text only; write what "
+"nudges the shopper back."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:134
@@ -245,7 +261,9 @@ msgid "Text on the button that returns the shopper to their saved cart."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:154
-msgid "Cart recovery is currently disabled. Enable it below to start tracking abandoned carts."
+msgid ""
+"Cart recovery is currently disabled. Enable it below to start tracking "
+"abandoned carts."
 msgstr ""
 
 #. translators: %s: human-readable time difference
@@ -255,7 +273,8 @@ msgid "Next recovery run: in %s."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:167
-msgid "The recovery worker is not scheduled. Re-activate the plugin to restore it."
+msgid ""
+"The recovery worker is not scheduled. Re-activate the plugin to restore it."
 msgstr ""
 
 #: src/Admin/SettingsPage.php:170
@@ -279,7 +298,9 @@ msgid "Still thinking it over?"
 msgstr ""
 
 #: src/Settings.php:107
-msgid "We saved your cart for you. Click the button below to pick up right where you left off."
+msgid ""
+"We saved your cart for you. Click the button below to pick up right where "
+"you left off."
 msgstr ""
 
 #: src/Settings.php:114
@@ -297,5 +318,67 @@ msgstr ""
 #. translators: %s: site name
 #: templates/emails/recovery.php:100
 #, php-format
-msgid "This message was sent by %s because a cart was left behind. If this was not you, you can safely ignore this email."
+msgid ""
+"This message was sent by %s because a cart was left behind. If this was not "
+"you, you can safely ignore this email."
+msgstr ""
+
+#: src/Admin/ProUpsell.php:78
+msgid "Wkrótce"
+msgstr ""
+
+#: src/Admin/ProUpsell.php:78
+msgid "Coming soon"
+msgstr ""
+
+#. translators: %d: yearly price in PLN
+#: src/Admin/ProUpsell.php:83
+#, php-format
+msgid "od %d zł/rok"
+msgstr ""
+
+#. translators: 1: currency symbol, 2: yearly price
+#: src/Admin/ProUpsell.php:88
+#, php-format
+msgid "from %1$s%2$d/yr"
+msgstr ""
+
+#: src/Admin/ProUpsell.php:97
+msgid "Upgrade to PRO"
+msgstr ""
+
+#: src/Admin/ProUpsell.php:98
+msgid "Powiadom mnie"
+msgstr ""
+
+#: src/Admin/ProUpsell.php:98
+msgid "Get notified"
+msgstr ""
+
+#: src/Admin/ProUpsell.php:128
+msgid "Permission denied."
+msgstr ""
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:158
+#, php-format
+msgid "Do more with %s"
+msgstr ""
+
+#: src/Admin/ProUpsell.php:165
+msgid "Dismiss this notice"
+msgstr ""
+
+#: src/Admin/ProUpsell.php:182
+msgid "Unlock every PRO feature"
+msgstr ""
+
+#: src/Admin/ProUpsell.php:195
+msgid "one licence, every PRO feature"
+msgstr ""
+
+#. translators: %s: PRO edition name
+#: src/Admin/ProUpsell.php:214
+#, php-format
+msgid "What %s adds"
 msgstr ""
