@@ -63,8 +63,8 @@ final class RecoveryMailer
         /**
          * Filters the recovery email arguments before they are handed to wp_mail().
          *
-         * Add-ons (e.g. Recover Pro) use this to enrich the message — for example,
-         * injecting a single-use recovery coupon — without modifying core.
+         * Add-ons (e.g. Recover Pro) use this to enrich the message, for example,
+         * injecting a single-use recovery coupon, without modifying core.
          *
          * @param array{to:string, subject:string, message:string, headers:list<string>} $args  Mail arguments.
          * @param AbandonedCart                                                           $cart  The cart being recovered.

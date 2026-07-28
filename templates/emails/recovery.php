@@ -2,12 +2,12 @@
 /**
  * Recovery email template (HTML).
  *
- * The bold move: the call-to-action is "the light we left on for you" — a warm
+ * The bold move: the call-to-action is "the light we left on for you", a warm
  * lantern panel. A soft amber halo (radial-gradient where supported, solid warm
  * panel as the bulletproof fallback) sits behind the button, as if the shop left
  * a porch light burning so the shopper can find their way back to a cart that is
  * still being kept warm. Restraint everywhere else: a calm neutral letter, one
- * lit window. Accent is ember/lantern amber — never transactional blue.
+ * lit window. Accent is ember/lantern amber, never transactional blue.
  *
  * Email-safe: table layout, inline styles, bulletproof background fallbacks.
  * The accent is exposed via inline values rather than CSS custom properties
