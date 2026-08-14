@@ -73,8 +73,16 @@ final class CartTracker implements HasHooks
             return;
         }
 
-        $email   = $this->currentEmail($userId);
-        $consent = $userId !== null && ! $this->settings->requireConsent();
+        $email = $this->currentEmail($userId);
+
+        // "Require consent" is a guest-only rule: the settings screen says so, and the
+        // consent checkbox is only ever drawn at checkout for guest capture. Applying it
+        // to logged-in customers too stamped every account cart consent = 0 with no way
+        // to ever reach 1, and both the sweeper and the mailer skip consent = 0. So the
+        // merchant saw carts piling up and a scheduled run every hour, while the shopper
+        // who left a full cart behind never got a single email. Account carts carry the
+        // customer's own account email, so the flag only gates guests.
+        $consent = $userId !== null;
 
         $token = $this->repository->upsert(
             $this->sessionKey(),

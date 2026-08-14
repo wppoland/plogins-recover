@@ -84,7 +84,7 @@ final class SettingsPage implements HasHooks
 
         $this->checkbox('enabled', __('Enable cart recovery', 'plogins-recover'), __('Track abandoned carts and send recovery emails.', 'plogins-recover'), self::SECTION_GENERAL);
         $this->checkbox('capture_guests', __('Capture guest carts', 'plogins-recover'), __('Record carts and emails from visitors who are not logged in.', 'plogins-recover'), self::SECTION_GENERAL);
-        $this->checkbox('require_consent', __('Require consent', 'plogins-recover'), __('Only store a guest email after they tick a consent checkbox at checkout (recommended for GDPR).', 'plogins-recover'), self::SECTION_GENERAL);
+        $this->checkbox('require_consent', __('Require consent', 'plogins-recover'), __('Only store a guest email after they tick a consent checkbox at checkout (recommended for GDPR). Logged-in customers are always captured with their account email.', 'plogins-recover'), self::SECTION_GENERAL);
         $this->text(
             'consent_label',
             __('Consent checkbox label', 'plogins-recover'),

@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover includes Polish, German and Spanish translations for the plugin interface. The text domain is `plogins-recover`, so WordPress.org language packs can also override or extend these bundled translations.
 
 == Changelog ==
+
+= 1.0.6 =
+* Logged-in customers now receive recovery emails again. With "Require consent" on, their carts were saved but never emailed, even though the consent checkbox is only ever shown to guests.
 
 = 1.0.4 =
 * Translations: completed Polish, German and Spanish for the PRO upgrade panel.
