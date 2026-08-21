@@ -14,7 +14,7 @@ Recover abandoned WooCommerce carts: capture the email early, save the cart, ema
 
 Recover captures WooCommerce carts that shoppers leave behind and emails them a secure, one-click link that puts every item straight back into their cart so they can finish checking out. It runs entirely on your own site: no third-party service, no data leaves your store.
 
-Because everything happens on your own server, you can read exactly what it does. The full source lives at https://github.com/wppoland/plogins-recover, which is also where to file a bug or request a feature.
+Because everything happens on your own server, you can read exactly what it does. The full source lives at [github.com/wppoland/plogins-recover](https://github.com/wppoland/plogins-recover), which is also where to file a bug or request a feature.
 
 **How it works**
 
@@ -56,10 +56,10 @@ On the implementation side, all output is escaped and all input sanitised, every
 
 = Documentation and links =
 
-* **Documentation** - https://plogins.com/plogins-recover/docs/
-* **Plugin page** - https://plogins.com/plogins-recover/
-* **Source code** - https://github.com/wppoland/plogins-recover
-* **Bug reports and feature requests** - https://github.com/wppoland/plogins-recover/issues
+* **Documentation**: [plogins.com/plogins-recover/docs/](https://plogins.com/plogins-recover/docs/)
+* **Plugin page**: [plogins.com/plogins-recover/](https://plogins.com/plogins-recover/)
+* **Source code**: [github.com/wppoland/plogins-recover](https://github.com/wppoland/plogins-recover)
+* **Bug reports and feature requests**: [github.com/wppoland/plogins-recover/issues](https://github.com/wppoland/plogins-recover/issues)
 
 
 = Is Recover free? =
