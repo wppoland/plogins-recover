@@ -15,7 +15,6 @@ return [
     'sellable'   => true,
     'price_from' => 29,
     'currency'   => 'EUR',
-    'price_pln'  => 129,
     'lead'       => [
         'en' => 'Recovery coupons, multi-step sequences and conversion analytics. Feature-complete at version 0.3.0.',
         'pl' => 'Kupon odzyskiwania, wieloetapowe sekwencje i analityka konwersji. Feature-complete w wersji 0.3.0.',
