@@ -3,10 +3,10 @@
  * Plugin Name:       Recover - Abandoned Cart for WooCommerce
  * Plugin URI:        https://plogins.com/plogins-recover/
  * Description:        Capture carts that are left behind and email customers a one-click link to finish checkout.
- * Version:           1.0.7
+ * Version:           1.0.8
  * Requires at least: 6.5
  * Requires PHP:      8.1
- * Tested up to:      7.0
+ * Tested up to:      7.1
  * Requires Plugins:  woocommerce
  * Author:            WPPoland.com
  * Author URI:        https://wppoland.com
@@ -27,7 +27,7 @@ namespace Recover;
 
 defined('ABSPATH') || exit;
 
-const VERSION     = '1.0.7';
+const VERSION     = '1.0.8';
 const PLUGIN_FILE     = __FILE__;
 const PLUGIN_DIR      = __DIR__;
 const MIN_PHP_VERSION = '8.1.0';
