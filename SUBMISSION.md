@@ -18,6 +18,24 @@ Recover abandoned WooCommerce carts: capture the email early, save the cart, ema
 
 (127 characters, and the same line the readme carries, so the two agree.)
 
+## One-paragraph description (paste into the submission form)
+
+Recover saves a private snapshot of a WooCommerce cart as soon as a shopper puts
+something in it, captures the customer email early (automatically for logged-in
+customers, and for guests only after they tick a consent checkbox you can edit or
+switch off), and marks the cart abandoned if checkout is not completed within a
+window the shop sets. A WordPress cron job then sends one recovery email through
+the site's own `wp_mail()`, carrying a tokenised restore link that puts every
+item back into the cart and returns the shopper to checkout. The link holds a
+64-character random token and nothing else: no customer id, no email in the URL.
+Everything runs on the shop's own server, with cart data in a single custom table
+and no third-party service, SDK or remote endpoint of any kind. An admin screen
+lists abandoned, recovered and pending carts with a recovery rate, and erases
+every stored cart for one email address in a click. The worker is idempotent, so
+a re-run never sends a second email for the same cart. Compatible with HPOS and
+the Cart/Checkout Blocks; uninstalling drops the table, removes both options and
+clears the scheduled task. Tested on WordPress 7.1 with WooCommerce 11.1.
+
 ## Listing copy
 
 - **Display name:** Plogins Recover - Abandoned Cart for WooCommerce

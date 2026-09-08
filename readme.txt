@@ -47,7 +47,7 @@ On the implementation side, all output is escaped and all input sanitised, every
 == Installation ==
 
 1. Install and activate WooCommerce (8.0 or later).
-2. Install Recover from the WordPress plugin directory, or upload the `recover` folder to `/wp-content/plugins/`.
+2. Install Recover from the WordPress plugin directory, or upload the `plogins-recover` folder to `/wp-content/plugins/`.
 3. Activate the plugin through the **Plugins** screen.
 4. Visit **WooCommerce → Recover** to set your timing and customise the email; sensible defaults work out of the box.
 5. Abandoned carts and your recovery rate appear under **WooCommerce → Recover Carts**.
