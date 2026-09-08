@@ -44,3 +44,4 @@ glotpress-import/
 # translators import from.
 /languages/*.po
 /languages/*.mo
+/SUBMISSION.md
