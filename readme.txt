@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.11
+Stable tag: 1.0.12
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,11 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.12 =
+* New: **Number of reminders**, from 1 to 5, under Timing. The sequence engine was always in the plugin, but the count was pinned to 1 in code with no way for a merchant to change it. That made it a built-in feature the plugin refused to run, which the WordPress.org guidelines do not allow, so it is a setting now. Existing shops keep sending one reminder until they raise it.
+* The reminders are spaced by the existing Email delay, and every one of them uses the same subject and body. Different copy per step, and a coupon on a chosen step, are what the paid edition adds on top.
+* Fixed: exporting personal data crashed for any shopper who had an abandoned cart. The export cast a date object straight to a string, which is a fatal in PHP, so the one request a shop is obliged to be able to answer was the one that failed. The date is formatted now.
 
 = 1.0.11 =
 * The translation template was regenerated. It still named an older version of the plugin and pointed at source lines that had since moved, which is what translation tools read to show a string in context.

@@ -34,6 +34,7 @@ final class Settings
             'capture_guests'      => true,
             'abandon_after'       => 60,   // Minutes of inactivity before a cart is "abandoned".
             'email_delay'         => 30,   // Minutes after abandonment before the recovery email.
+            'email_count'         => 1,    // How many reminders to send, spaced by email_delay.
             'require_consent'     => true,
             'consent_label'       => '',
             'email_subject'       => '',
@@ -73,6 +74,18 @@ final class Settings
     public function emailDelayMinutes(): int
     {
         return max(0, (int) $this->get('email_delay', 30));
+    }
+
+    /**
+     * How many reminders a shopper receives, spaced by the email delay.
+     *
+     * The sequence engine has always been here; until 1.0.11 the count was
+     * pinned to 1 in code with no way for a merchant to change it, which makes
+     * it a built-in feature the plugin refused to run. It is a setting now.
+     */
+    public function emailCount(): int
+    {
+        return max(1, min(5, (int) $this->get('email_count', 1)));
     }
 
     public function consentLabel(): string

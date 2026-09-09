@@ -104,7 +104,8 @@ final class SettingsPage implements HasHooks
         );
 
         $this->number('abandon_after', __('Mark abandoned after (minutes)', 'plogins-recover'), (string) $this->settings->abandonAfterMinutes(), __('Minutes of inactivity before a pending cart is flagged as abandoned.', 'plogins-recover'), self::SECTION_TIMING, 5);
-        $this->number('email_delay', __('Email delay (minutes)', 'plogins-recover'), (string) $this->settings->emailDelayMinutes(), __('Minutes to wait after abandonment before sending the recovery email.', 'plogins-recover'), self::SECTION_TIMING, 0);
+        $this->number('email_delay', __('Email delay (minutes)', 'plogins-recover'), (string) $this->settings->emailDelayMinutes(), __('Minutes to wait after abandonment before sending the first recovery email, and between the ones after it.', 'plogins-recover'), self::SECTION_TIMING, 0);
+        $this->number('email_count', __('Number of reminders', 'plogins-recover'), (string) $this->settings->emailCount(), __('How many recovery emails one shopper receives, from 1 to 5, spaced by the delay above.', 'plogins-recover'), self::SECTION_TIMING, 1);
 
         // ── Email ────────────────────────────────────────────────────────────
         add_settings_section(
@@ -279,6 +280,7 @@ final class SettingsPage implements HasHooks
             'consent_label'   => sanitize_text_field((string) ($raw['consent_label'] ?? '')),
             'abandon_after'   => max(5, absint($raw['abandon_after'] ?? 60)),
             'email_delay'     => absint($raw['email_delay'] ?? 30),
+            'email_count'     => max(1, min(5, absint($raw['email_count'] ?? 1))),
             'email_subject'   => sanitize_text_field((string) ($raw['email_subject'] ?? '')),
             'email_heading'   => sanitize_text_field((string) ($raw['email_heading'] ?? '')),
             'email_body'      => sanitize_textarea_field((string) ($raw['email_body'] ?? '')),
