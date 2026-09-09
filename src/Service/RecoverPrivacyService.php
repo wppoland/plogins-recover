@@ -126,7 +126,11 @@ final class RecoverPrivacyService implements HasHooks
                 ['name' => __('Cart Total', 'plogins-recover'), 'value' => sprintf('%.2f %s', $cart->cartTotal, (string) $cart->currency)],
                 ['name' => __('Item Count', 'plogins-recover'), 'value' => (string) $cart->itemCount],
                 ['name' => __('Status', 'plogins-recover'), 'value' => $cart->status],
-                ['name' => __('Created At', 'plogins-recover'), 'value' => (string) $cart->createdAt],
+                // createdAt is a DateTimeImmutable. Casting an object to string
+                // is a fatal, so this line took down every personal-data export
+                // that touched a cart, which is the one request a shop must be
+                // able to answer. Same format the carts screen already prints.
+                ['name' => __('Created At', 'plogins-recover'), 'value' => $cart->createdAt->format('Y-m-d H:i')],
             ],
         ];
     }
