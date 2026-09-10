@@ -10,7 +10,10 @@
 	--recover-surface: #ffffff;
 	--recover-border: #e3e6ea;
 	--recover-text: #1f2329;
-	--recover-muted: #6b7280;
+	/* Was #6b7280, which is 4.83:1 on white but only 4.24:1 on the wp-admin
+	   grey #f0f0f1 and 4.34:1 on the promo tint, i.e. under AA everywhere this
+	   is actually used. #5b6270 is 6.13:1 / 5.38:1 / 5.50:1 on those three. */
+	--recover-muted: #5b6270;
 	--recover-pending: #d97706;
 	--recover-abandoned: #dc2626;
 	--recover-recovered: #059669;
@@ -18,6 +21,74 @@
 .recover-cron-status {
 	color: var(--recover-muted);
 	font-size: 13px;
+}
+
+/* Reminder plan ------------------------------------------------------ *
+ * "Number of reminders" and "Email delay (minutes)" only mean anything
+ * together, and neither field can show that alone. The steps are chips, and
+ * they enter and leave as the count changes so the campaign visibly grows or
+ * shrinks instead of silently becoming a different list. Only opacity and
+ * transform move, so nothing on this screen reflows.
+ *
+ * Contrast on the chip tint #faf5f3:
+ *   Accent  #a3360b  6.29:1   PASS
+ *   Ink     #1f2329 14.59:1   PASS
+ * ------------------------------------------------------------------- */
+
+.recover-schedule {
+	max-width: 40rem;
+	margin-top: 10px;
+}
+
+.recover-schedule__intro {
+	margin: 0 0 6px;
+	color: var(--recover-muted);
+	font-size: 12.5px;
+}
+
+.recover-schedule__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.recover-schedule__step {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 8px;
+	padding: 4px 12px;
+	border: 1px solid var(--recover-border);
+	border-inline-start: 3px solid var(--recover-accent);
+	border-radius: 6px;
+	background: color-mix(in srgb, var(--recover-accent) 5%, #fff);
+	font-size: 12.5px;
+	transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.recover-schedule__name {
+	font-weight: 600;
+	color: var(--recover-text);
+}
+
+.recover-schedule__when {
+	color: var(--recover-accent);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+/* Both states are set by the script for one frame only, so a no-JS screen
+   never sees them and the chips are simply there. */
+.recover-schedule__step.is-entering {
+	opacity: 0;
+	transform: translateY(-4px);
+}
+
+.recover-schedule__step.is-leaving {
+	opacity: 0;
+	transform: scale(0.96);
 }
 
 /* Section headings: a small ember rule before each h2 ties the screen to the
@@ -105,6 +176,9 @@
 	}
 	.recover-card:hover {
 		transform: none;
+	}
+	.recover-schedule__step {
+		transition: none;
 	}
 }
 
