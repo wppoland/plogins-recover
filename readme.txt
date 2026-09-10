@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.12
+Stable tag: 1.0.13
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,12 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.13 =
+* Changed: **Number of reminders** now shows the plan it makes. That field and **Email delay (minutes)** only mean anything together, and neither could show it alone, so the sequence is now listed under the field, counted from the moment a cart is marked abandoned. Steps ease in and out as you change the count, so you watch the campaign grow or shrink instead of having to save to find out. The list is rendered from the saved settings, so it is correct with JavaScript switched off too.
+* Changed: the field now carries the upper bound it always had. Anything above 5 was silently clamped down to 5 on save; the input says 1 to 5 now, so the browser stops you before the save does.
+* Fixed: the muted grey used across this screen measured 4.24:1 against the wp-admin background, under the 4.5:1 WCAG AA asks for text. That covered the next-run line, the card labels and the promo copy. It is 5.38:1 now.
+* Changed: every text, number and multiline field on the settings screen ties its help text to the input with `aria-describedby`, so a screen reader reads the explanation with the field rather than leaving it to be found on its own.
 
 = 1.0.12 =
 * New: **Number of reminders**, from 1 to 5, under Timing. The sequence engine was always in the plugin, but the count was pinned to 1 in code with no way for a merchant to change it. That made it a built-in feature the plugin refused to run, which the WordPress.org guidelines do not allow, so it is a setting now. Existing shops keep sending one reminder until they raise it.
