@@ -1,10 +1,10 @@
-=== Recover - Abandoned Cart for WooCommerce ===
+=== Plogins Recover - Abandoned Cart for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.5
+Stable tag: 1.0.14
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Recover abandoned WooCommerce carts: capture the email early, save the cart, ema
 
 Recover captures WooCommerce carts that shoppers leave behind and emails them a secure, one-click link that puts every item straight back into their cart so they can finish checking out. It runs entirely on your own site: no third-party service, no data leaves your store.
 
-Because everything happens on your own server, you can read exactly what it does. The full source lives at https://github.com/wppoland/plogins-recover, which is also where to file a bug or request a feature.
+Because everything happens on your own server, you can read exactly what it does. The full source lives at [github.com/wppoland/plogins-recover](https://github.com/wppoland/plogins-recover), which is also where to file a bug or request a feature.
 
 **How it works**
 
@@ -47,7 +47,7 @@ On the implementation side, all output is escaped and all input sanitised, every
 == Installation ==
 
 1. Install and activate WooCommerce (8.0 or later).
-2. Install Recover from the WordPress plugin directory, or upload the `recover` folder to `/wp-content/plugins/`.
+2. Install Recover from the WordPress plugin directory, or upload the `plogins-recover` folder to `/wp-content/plugins/`.
 3. Activate the plugin through the **Plugins** screen.
 4. Visit **WooCommerce → Recover** to set your timing and customise the email; sensible defaults work out of the box.
 5. Abandoned carts and your recovery rate appear under **WooCommerce → Recover Carts**.
@@ -56,10 +56,10 @@ On the implementation side, all output is escaped and all input sanitised, every
 
 = Documentation and links =
 
-* **Documentation** - https://plogins.com/plogins-recover/docs/
-* **Plugin page** - https://plogins.com/plogins-recover/
-* **Source code** - https://github.com/wppoland/plogins-recover
-* **Bug reports and feature requests** - https://github.com/wppoland/plogins-recover/issues
+* **Documentation**: [plogins.com/plogins-recover/docs/](https://plogins.com/plogins-recover/docs/)
+* **Plugin page**: [plogins.com/plogins-recover/](https://plogins.com/plogins-recover/)
+* **Source code**: [github.com/wppoland/plogins-recover](https://github.com/wppoland/plogins-recover)
+* **Bug reports and feature requests**: [github.com/wppoland/plogins-recover/issues](https://github.com/wppoland/plogins-recover/issues)
 
 
 = Is Recover free? =
@@ -99,9 +99,41 @@ Recover does not connect to any external services. Recovery emails are sent thro
 
 == Translations ==
 
-Plogins Recover includes Polish, German and Spanish translations for the plugin interface. The text domain is `plogins-recover`, so WordPress.org language packs can also override or extend these bundled translations.
+Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.14 =
+* Fixed: deleting the plugin left the per-user "dismiss" flag from the PRO notice in the database. Uninstall now removes it for every user, not just the one who dismissed it.
+
+= 1.0.13 =
+* Changed: **Number of reminders** now shows the plan it makes. That field and **Email delay (minutes)** only mean anything together, and neither could show it alone, so the sequence is now listed under the field, counted from the moment a cart is marked abandoned. Steps ease in and out as you change the count, so you watch the campaign grow or shrink instead of having to save to find out. The list is rendered from the saved settings, so it is correct with JavaScript switched off too.
+* Changed: the field now carries the upper bound it always had. Anything above 5 was silently clamped down to 5 on save; the input says 1 to 5 now, so the browser stops you before the save does.
+* Fixed: the muted grey used across this screen measured 4.24:1 against the wp-admin background, under the 4.5:1 WCAG AA asks for text. That covered the next-run line, the card labels and the promo copy. It is 5.38:1 now.
+* Changed: every text, number and multiline field on the settings screen ties its help text to the input with `aria-describedby`, so a screen reader reads the explanation with the field rather than leaving it to be found on its own.
+
+= 1.0.12 =
+* New: **Number of reminders**, from 1 to 5, under Timing. The sequence engine was always in the plugin, but the count was pinned to 1 in code with no way for a merchant to change it. That made it a built-in feature the plugin refused to run, which the WordPress.org guidelines do not allow, so it is a setting now. Existing shops keep sending one reminder until they raise it.
+* The reminders are spaced by the existing Email delay, and every one of them uses the same subject and body. Different copy per step, and a coupon on a chosen step, are what the paid edition adds on top.
+* Fixed: exporting personal data crashed for any shopper who had an abandoned cart. The export cast a date object straight to a string, which is a fatal in PHP, so the one request a shop is obliged to be able to answer was the one that failed. The date is formatted now.
+
+= 1.0.11 =
+* The translation template was regenerated. It still named an older version of the plugin and pointed at source lines that had since moved, which is what translation tools read to show a string in context.
+
+= 1.0.10 =
+* Renamed to Plogins Recover - Abandoned Cart for WooCommerce so the name leads with the brand rather than a generic word, which is what the WordPress.org plugin review team asks for. The plugin slug is unchanged.
+
+= 1.0.9 =
+* Removed the "Tested up to" header from the main PHP file. It belongs in readme.txt only, where it is already declared; present in both, the header can override the readme and show a compatibility version that was never intended.
+
+= 1.0.8 =
+* Tested against WordPress 7.1. Verified by activating this build on a clean 7.1 install with WooCommerce 11.1, not by editing the header.
+
+= 1.0.7 =
+* Fixed the PRO promo on the settings screen quoting a price in PLN. PRO is priced and charged in EUR, so an admin on a Polish site was shown a zloty amount and then billed in euro, and the zloty figure was a fixed conversion that drifted from the real charge as the rate moved. The promo now shows the euro price that is actually taken.
+
+= 1.0.6 =
+* Logged-in customers now receive recovery emails again. With "Require consent" on, their carts were saved but never emailed, even though the consent checkbox is only ever shown to guests.
 
 = 1.0.4 =
 * Translations: completed Polish, German and Spanish for the PRO upgrade panel.

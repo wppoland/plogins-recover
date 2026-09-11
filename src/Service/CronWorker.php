@@ -63,7 +63,10 @@ final class CronWorker implements HasHooks
 
     private function sendDue(): void
     {
-        $maxEmails = max(1, (int) apply_filters('recover/max_emails', 1));
+        // The merchant's own setting is the default. An add-on may raise it
+        // further through the filter, but nothing here caps what this plugin
+        // can already do on its own.
+        $maxEmails = max(1, (int) apply_filters('recover/max_emails', $this->settings->emailCount()));
         $due       = $this->repository->findDueForEmail(50, $maxEmails);
 
         foreach ($due as $cart) {
