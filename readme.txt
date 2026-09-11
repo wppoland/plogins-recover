@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.14
+Stable tag: 1.0.15
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,8 +49,8 @@ On the implementation side, all output is escaped and all input sanitised, every
 1. Install and activate WooCommerce (8.0 or later).
 2. Install Recover from the WordPress plugin directory, or upload the `plogins-recover` folder to `/wp-content/plugins/`.
 3. Activate the plugin through the **Plugins** screen.
-4. Visit **WooCommerce → Recover** to set your timing and customise the email; sensible defaults work out of the box.
-5. Abandoned carts and your recovery rate appear under **WooCommerce → Recover Carts**.
+4. Visit **WooCommerce > Recover** to set your timing and customise the email; sensible defaults work out of the box.
+5. Abandoned carts and your recovery rate appear under **WooCommerce > Recover Carts**.
 
 == Frequently Asked Questions ==
 
@@ -75,7 +75,7 @@ On a WordPress cron schedule (hourly by default). Each run marks carts that have
 Yes. Each cart has a 64-character cryptographically random token. The restore link contains only that token: no customer id, no email, nothing personal. Without the exact token a cart cannot be restored, so there is no enumeration or IDOR risk.
 
 = Does this comply with GDPR / consent requirements? =
-Guest email capture only happens after the shopper ticks a consent checkbox (you can edit the wording, and consent can be required or not). Cart data is stored only in your own database and never sent to any third party. From **WooCommerce → Recover Carts** you can erase all stored cart data for any email address in one click. You remain responsible for your store's privacy policy.
+Guest email capture only happens after the shopper ticks a consent checkbox (you can edit the wording, and consent can be required or not). Cart data is stored only in your own database and never sent to any third party. From **WooCommerce > Recover Carts** you can erase all stored cart data for any email address in one click. You remain responsible for your store's privacy policy.
 
 = Where is cart data stored? =
 In a custom `{prefix}_recover_carts` table in your WordPress database. Nothing is sent anywhere else.
@@ -102,6 +102,11 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.15 =
+* Fixed: the link under the timing fields had an arrow glyph inside the translatable string, so every translator had to carry the arrow and any locale that dropped it changed the layout. The label is plain text now.
+* Fixed: the German translation of the subject-line help carried two zero-width spaces, invisible in the editor and passed through to the screen.
+* Changed: Polish, German and Spanish are complete again at 93 of 93 strings. Twenty strings added since the last refresh, among them the whole cart search and the reminder plan, had no translation at all.
 
 = 1.0.14 =
 * Fixed: deleting the plugin left the per-user "dismiss" flag from the PRO notice in the database. Uninstall now removes it for every user, not just the one who dismissed it.
