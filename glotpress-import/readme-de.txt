@@ -49,8 +49,8 @@ Auf der Implementierungsseite wird jede Ausgabe escaped und jede Eingabe bereini
 1. Installiere und aktiviere WooCommerce (8.0 oder höher).
 2. Installiere Recover aus dem WordPress-Plugin-Verzeichnis oder lade den Ordner `recover` nach `/wp-content/plugins/` hoch.
 3. Aktiviere das Plugin über den Bildschirm <strong>Plugins</strong>.
-4. Öffne <strong>WooCommerce → Recover</strong>, um dein Timing festzulegen und die E-Mail anzupassen; sinnvolle Standardwerte funktionieren sofort.
-5. Abgebrochene Warenkörbe und deine Wiederherstellungsrate erscheinen unter <strong>WooCommerce → Recover Carts</strong>.
+4. Öffne <strong>WooCommerce > Recover</strong>, um dein Timing festzulegen und die E-Mail anzupassen; sinnvolle Standardwerte funktionieren sofort.
+5. Abgebrochene Warenkörbe und deine Wiederherstellungsrate erscheinen unter <strong>WooCommerce > Recover Carts</strong>.
 
 == Frequently Asked Questions ==
 
@@ -75,7 +75,7 @@ Ja. Recover ist eine WooCommerce-Erweiterung und erfordert WooCommerce 8.0 oder 
 Ja. Jeder Warenkorb hat einen 64-stelligen, kryptografisch zufälligen Token. Der Wiederherstellungslink enthält nur diesen Token: keine Kunden-ID, keine E-Mail-Adresse, nichts Persönliches. Ohne den genauen Token lässt sich ein Warenkorb nicht wiederherstellen, es gibt also kein Enumerations- oder IDOR-Risiko.
 
 = Does this comply with GDPR / consent requirements? =
-Die E-Mail-Erfassung bei Gästen erfolgt erst, nachdem der Kunde ein Einwilligungs-Kontrollkästchen angekreuzt hat (du kannst den Wortlaut bearbeiten, und die Einwilligung kann verpflichtend sein oder nicht). Warenkorbdaten werden nur in deiner eigenen Datenbank gespeichert und nie an Dritte gesendet. Unter <strong>WooCommerce → Recover Carts</strong> kannst du mit einem Klick alle gespeicherten Warenkorbdaten für eine beliebige E-Mail-Adresse löschen. Für die Datenschutzerklärung deines Shops bleibst du selbst verantwortlich.
+Die E-Mail-Erfassung bei Gästen erfolgt erst, nachdem der Kunde ein Einwilligungs-Kontrollkästchen angekreuzt hat (du kannst den Wortlaut bearbeiten, und die Einwilligung kann verpflichtend sein oder nicht). Warenkorbdaten werden nur in deiner eigenen Datenbank gespeichert und nie an Dritte gesendet. Unter <strong>WooCommerce > Recover Carts</strong> kannst du mit einem Klick alle gespeicherten Warenkorbdaten für eine beliebige E-Mail-Adresse löschen. Für die Datenschutzerklärung deines Shops bleibst du selbst verantwortlich.
 
 = Where is cart data stored? =
 In einer eigenen Tabelle `{prefix}_recover_carts` in deiner WordPress-Datenbank. Nichts wird sonst irgendwohin gesendet.
