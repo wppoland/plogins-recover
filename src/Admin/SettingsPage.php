@@ -18,6 +18,9 @@ final class SettingsPage implements HasHooks
 {
     private const PAGE = 'recover';
 
+    /** Upper bound the save already enforces; the field now states it too. */
+    private const MAX_REMINDERS = 5;
+
     private const SECTION_GENERAL = 'recover_general';
     private const SECTION_TIMING  = 'recover_timing';
     private const SECTION_EMAIL   = 'recover_email';
@@ -66,6 +69,14 @@ final class SettingsPage implements HasHooks
             [],
             \Recover\VERSION,
         );
+
+        wp_enqueue_script(
+            'recover-admin',
+            \Recover\Plugin::instance()->url('assets/js/admin.js'),
+            [],
+            \Recover\VERSION,
+            ['in_footer' => true, 'strategy' => 'defer'],
+        );
     }
 
     public function registerSettings(): void
@@ -84,7 +95,7 @@ final class SettingsPage implements HasHooks
 
         $this->checkbox('enabled', __('Enable cart recovery', 'plogins-recover'), __('Track abandoned carts and send recovery emails.', 'plogins-recover'), self::SECTION_GENERAL);
         $this->checkbox('capture_guests', __('Capture guest carts', 'plogins-recover'), __('Record carts and emails from visitors who are not logged in.', 'plogins-recover'), self::SECTION_GENERAL);
-        $this->checkbox('require_consent', __('Require consent', 'plogins-recover'), __('Only store a guest email after they tick a consent checkbox at checkout (recommended for GDPR).', 'plogins-recover'), self::SECTION_GENERAL);
+        $this->checkbox('require_consent', __('Require consent', 'plogins-recover'), __('Only store a guest email after they tick a consent checkbox at checkout (recommended for GDPR). Logged-in customers are always captured with their account email.', 'plogins-recover'), self::SECTION_GENERAL);
         $this->text(
             'consent_label',
             __('Consent checkbox label', 'plogins-recover'),
@@ -104,7 +115,8 @@ final class SettingsPage implements HasHooks
         );
 
         $this->number('abandon_after', __('Mark abandoned after (minutes)', 'plogins-recover'), (string) $this->settings->abandonAfterMinutes(), __('Minutes of inactivity before a pending cart is flagged as abandoned.', 'plogins-recover'), self::SECTION_TIMING, 5);
-        $this->number('email_delay', __('Email delay (minutes)', 'plogins-recover'), (string) $this->settings->emailDelayMinutes(), __('Minutes to wait after abandonment before sending the recovery email.', 'plogins-recover'), self::SECTION_TIMING, 0);
+        $this->number('email_delay', __('Email delay (minutes)', 'plogins-recover'), (string) $this->settings->emailDelayMinutes(), __('Minutes to wait after abandonment before sending the first recovery email, and between the ones after it.', 'plogins-recover'), self::SECTION_TIMING, 0);
+        $this->number('email_count', __('Number of reminders', 'plogins-recover'), (string) $this->settings->emailCount(), __('How many recovery emails one shopper receives, from 1 to 5, spaced by the delay above.', 'plogins-recover'), self::SECTION_TIMING, 1, self::MAX_REMINDERS, true);
 
         // ── Email ────────────────────────────────────────────────────────────
         add_settings_section(
@@ -221,13 +233,13 @@ final class SettingsPage implements HasHooks
     {
         $id = $args['id'];
         printf(
-            '<input type="text" id="%1$s" name="%2$s[%1$s]" value="%3$s" placeholder="%4$s" class="regular-text" />',
+            '<input type="text" id="%1$s" name="%2$s[%1$s]" value="%3$s" placeholder="%4$s" class="regular-text" aria-describedby="%1$s_desc" />',
             esc_attr($id),
             esc_attr(Settings::OPTION),
             esc_attr($args['value']),
             esc_attr($args['placeholder'] ?? ''),
         );
-        $this->description($args['description'] ?? '');
+        $this->description($args['description'] ?? '', $args['id'] . '_desc');
     }
 
     /**
@@ -237,29 +249,82 @@ final class SettingsPage implements HasHooks
     {
         $id = $args['id'];
         printf(
-            '<textarea id="%1$s" name="%2$s[%1$s]" class="large-text" rows="3" placeholder="%4$s">%3$s</textarea>',
+            '<textarea id="%1$s" name="%2$s[%1$s]" class="large-text" rows="3" placeholder="%4$s" aria-describedby="%1$s_desc">%3$s</textarea>',
             esc_attr($id),
             esc_attr(Settings::OPTION),
             esc_textarea($args['value']),
             esc_attr($args['placeholder'] ?? ''),
         );
-        $this->description($args['description'] ?? '');
+        $this->description($args['description'] ?? '', $id . '_desc');
     }
 
     /**
-     * @param array{id:string, value:string, min:int, description?:string} $args
+     * @param array{id:string, value:string, min:int, max?:int|null, description?:string, schedule?:bool} $args
      */
     public function renderNumber(array $args): void
     {
-        $id = $args['id'];
+        $id  = $args['id'];
+        $max = $args['max'] ?? null;
+
         printf(
-            '<input type="number" id="%1$s" name="%2$s[%1$s]" value="%3$s" min="%4$d" step="1" class="small-text" />',
+            '<input type="number" id="%1$s" name="%2$s[%1$s]" value="%3$s" min="%4$d"%5$s step="1" class="small-text" aria-describedby="%1$s_desc" />',
             esc_attr($id),
             esc_attr(Settings::OPTION),
             esc_attr($args['value']),
             (int) $args['min'],
+            null === $max ? '' : ' max="' . (int) $max . '"',
         );
-        $this->description($args['description'] ?? '');
+        $this->description($args['description'] ?? '', $id . '_desc');
+
+        if (! empty($args['schedule'])) {
+            $this->reminderSchedule((int) $args['value']);
+        }
+    }
+
+    /**
+     * The send plan the two timing fields add up to, spelled out.
+     *
+     * "Number of reminders" and "Email delay" only mean something together,
+     * and neither field can show that on its own: three reminders at a delay
+     * of 45 minutes is a very different campaign from three at 10. The list is
+     * rendered here from the saved values, so it is correct with JavaScript
+     * off; assets/js/admin.js only keeps it in step while you are still typing.
+     *
+     * Timing matches {@see \Recover\Service\CronWorker::isStepDue()}: the
+     * first reminder is due one delay after the cart is marked abandoned, and
+     * each later one a further delay after the previous send.
+     */
+    private function reminderSchedule(int $count): void
+    {
+        $count = max(1, min(self::MAX_REMINDERS, $count));
+        $delay = $this->settings->emailDelayMinutes();
+
+        /* translators: %s: the reminder's position in the sequence, e.g. 2. */
+        $stepFormat = __('Reminder %s', 'plogins-recover');
+        /* translators: %s: whole minutes counted from the moment the cart is marked abandoned. */
+        $whenFormat = __('+%s min', 'plogins-recover');
+
+        printf(
+            '<div class="recover-schedule" data-recover-schedule data-step-format="%s" data-when-format="%s" data-max="%s">',
+            esc_attr($stepFormat),
+            esc_attr($whenFormat),
+            esc_attr((string) self::MAX_REMINDERS),
+        );
+
+        printf(
+            '<p class="recover-schedule__intro">%s</p>',
+            esc_html__('Counted from the moment a cart is marked abandoned:', 'plogins-recover'),
+        );
+
+        echo '<ol class="recover-schedule__list" data-recover-steps>';
+        for ($step = 1; $step <= $count; $step++) {
+            printf(
+                '<li class="recover-schedule__step"><span class="recover-schedule__name">%s</span><span class="recover-schedule__when">%s</span></li>',
+                esc_html(sprintf($stepFormat, number_format_i18n($step))),
+                esc_html(sprintf($whenFormat, number_format_i18n($step * $delay))),
+            );
+        }
+        echo '</ol></div>';
     }
 
     /**
@@ -279,6 +344,7 @@ final class SettingsPage implements HasHooks
             'consent_label'   => sanitize_text_field((string) ($raw['consent_label'] ?? '')),
             'abandon_after'   => max(5, absint($raw['abandon_after'] ?? 60)),
             'email_delay'     => absint($raw['email_delay'] ?? 30),
+            'email_count'     => max(1, min(5, absint($raw['email_count'] ?? 1))),
             'email_subject'   => sanitize_text_field((string) ($raw['email_subject'] ?? '')),
             'email_heading'   => sanitize_text_field((string) ($raw['email_heading'] ?? '')),
             'email_body'      => sanitize_textarea_field((string) ($raw['email_body'] ?? '')),
@@ -286,11 +352,17 @@ final class SettingsPage implements HasHooks
         ];
     }
 
-    private function description(string $text): void
+    private function description(string $text, string $id = ''): void
     {
-        if ($text !== '') {
-            printf('<p class="description">%s</p>', esc_html($text));
+        if ($text === '') {
+            return;
         }
+
+        printf(
+            '<p class="description"%s>%s</p>',
+            $id === '' ? '' : ' id="' . esc_attr($id) . '"',
+            esc_html($text),
+        );
     }
 
     private function checkbox(string $id, string $title, string $label, string $section): void
@@ -319,8 +391,8 @@ final class SettingsPage implements HasHooks
         add_settings_field($id, $title, [$this, 'renderTextarea'], self::PAGE, $section, ['id' => $id, 'value' => $current, 'description' => $description, 'placeholder' => $default, 'label_for' => $id]);
     }
 
-    private function number(string $id, string $title, string $value, string $description, string $section, int $min): void
+    private function number(string $id, string $title, string $value, string $description, string $section, int $min, ?int $max = null, bool $schedule = false): void
     {
-        add_settings_field($id, $title, [$this, 'renderNumber'], self::PAGE, $section, ['id' => $id, 'value' => $value, 'description' => $description, 'min' => $min, 'label_for' => $id]);
+        add_settings_field($id, $title, [$this, 'renderNumber'], self::PAGE, $section, ['id' => $id, 'value' => $value, 'description' => $description, 'min' => $min, 'max' => $max, 'schedule' => $schedule, 'label_for' => $id]);
     }
 }

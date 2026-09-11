@@ -46,6 +46,9 @@ return static function (Container $c): void {
         $c->get(Settings::class),
         $c->get(RecoveryMailer::class),
     ));
+    $c->singleton(\Recover\Service\RecoverPrivacyService::class, static fn (Container $c): \Recover\Service\RecoverPrivacyService => new \Recover\Service\RecoverPrivacyService(
+        $c->get(CartRepository::class),
+    ));
 
     // Admin (only in wp-admin context).
     if (is_admin()) {

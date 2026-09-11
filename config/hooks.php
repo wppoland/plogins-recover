@@ -24,6 +24,7 @@ return is_admin()
         CartTracker::class,
         RestoreHandler::class,
         CronWorker::class,
+        \Recover\Service\RecoverPrivacyService::class,
         SettingsPage::class,
         CartsPage::class,
     ]
@@ -31,4 +32,5 @@ return is_admin()
         CartTracker::class,
         RestoreHandler::class,
         CronWorker::class,
+        \Recover\Service\RecoverPrivacyService::class,
     ];
