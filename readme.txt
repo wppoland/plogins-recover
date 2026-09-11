@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,18 @@ On the implementation side, all output is escaped and all input sanitised, every
 * Customisable email subject, heading, body and button text
 * GDPR-friendly consent checkbox and one-click per-email data wipe
 * Compatible with WooCommerce HPOS (Custom Order Tables) and Cart/Checkout Blocks
+
+== Recover PRO ==
+
+The free edition sends the whole recovery sequence, with no cap on what it will do. **Recover PRO** is for shops that want to tune it and measure it, and adds:
+
+* **Per-step sequence control** - a separate delay and its own copy for each step, plus a coupon on the steps you pick
+* **Discount codes** - a unique, expiring coupon in the recovery email, to give a hesitant shopper a reason to finish
+* **Conversion analytics** - recovered revenue, recovery rate by step, and what the coupon emails actually did
+
+Everything in the free edition stays free and open. Recover PRO starts at 29 EUR per year, billed in EUR.
+
+Compare editions and pricing: [plogins.com/plogins-recover-pro/pricing/](https://plogins.com/plogins-recover-pro/pricing/)
 
 == Installation ==
 
@@ -102,6 +114,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.16 =
+* Changed: the listing now says a paid edition exists and what it adds. It never did, so anyone reading the WordPress.org page had no way of knowing there was one.
 
 = 1.0.15 =
 * Fixed: the PRO upgrade promo kept selling to people who had already bought the paid edition. Only the banner could be dismissed, so the sidebar promo and the locked feature cards followed a paying customer around for good. The promo now checks whether the paid edition is active and steps aside when it is.
