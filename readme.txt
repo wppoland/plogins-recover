@@ -104,6 +104,7 @@ Plogins Recover is fully translatable and ships the `plogins-recover.pot` templa
 == Changelog ==
 
 = 1.0.15 =
+* Fixed: the PRO upgrade promo kept selling to people who had already bought the paid edition. Only the banner could be dismissed, so the sidebar promo and the locked feature cards followed a paying customer around for good. The promo now checks whether the paid edition is active and steps aside when it is.
 * Fixed: the link under the timing fields had an arrow glyph inside the translatable string, so every translator had to carry the arrow and any locale that dropped it changed the layout. The label is plain text now.
 * Fixed: the German translation of the subject-line help carried two zero-width spaces, invisible in the editor and passed through to the screen.
 * Changed: Polish, German and Spanish are complete again at 93 of 93 strings. Twenty strings added since the last refresh, among them the whole cart search and the reminder plan, had no translation at all.
