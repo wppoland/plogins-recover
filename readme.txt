@@ -1,10 +1,10 @@
-=== Plogins Recover - Abandoned Cart for WooCommerce ===
+=== Recover - Abandoned Cart for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.18
+Stable tag: 1.0.19
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.19 =
+* Display name drops the "Plogins " prefix. The slug, the text domain and every option key are unchanged, so nothing on an existing install moves.
 
 = 1.0.18 =
 * Fixed the second screenshot caption on the WordPress.org listing. It promised "the recovery email with its one-click Complete my order button" while the image beside it was the settings screen, so the listing described a screen no visitor could see.
