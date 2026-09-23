@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Recover - Abandoned Cart Recovery for WooCommerce 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plogins-recover\n"
-"POT-Creation-Date: 2026-09-10T12:44:44+00:00\n"
+"POT-Creation-Date: 2026-09-11T16:53:41+00:00\n"
 "PO-Revision-Date: 2026-06-16T20:24:51+00:00\n"
 "Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
@@ -407,14 +407,17 @@ msgstr ""
 "Der Wiederherstellungsarbeiter ist nicht eingeplant. Aktiviere das Plugin "
 "erneut, um es wiederherzustellen."
 
+#: src/Admin/SettingsPage.php:192
+msgid "View abandoned carts"
+msgstr "Abgebrochene Warenkörbe anzeigen"
+
 #. translators: %s: the reminder's position in the sequence, e.g. 2.
 #: src/Admin/SettingsPage.php:303
 #, php-format
 msgid "Reminder %s"
 msgstr "Erinnerung %s"
 
-#. translators: %s: whole minutes counted from the moment the cart is marked
-#. abandoned.
+#. translators: %s: whole minutes counted from the moment the cart is marked abandoned.
 #: src/Admin/SettingsPage.php:305
 #, php-format
 msgid "+%s min"
@@ -490,7 +493,3 @@ msgid ""
 msgstr ""
 "Diese Nachricht wurde von %s gesendet, weil ein Einkaufswagen zurückgelassen "
 "wurde. Wenn du das nicht warst, kannst du diese E-Mail getrost ignorieren."
-
-#: src/Admin/SettingsPage.php:192
-msgid "View abandoned carts"
-msgstr "Abgebrochene Warenkörbe anzeigen"

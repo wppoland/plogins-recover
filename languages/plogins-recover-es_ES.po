@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Recover - Abandoned Cart Recovery for WooCommerce 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plogins-recover\n"
-"POT-Creation-Date: 2026-09-10T12:44:44+00:00\n"
+"POT-Creation-Date: 2026-09-11T16:53:41+00:00\n"
 "PO-Revision-Date: 2026-06-16T20:24:51+00:00\n"
 "Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -412,14 +412,17 @@ msgstr ""
 "El trabajador de recuperación no está programado. Vuelva a activar el "
 "complemento para restaurarlo."
 
+#: src/Admin/SettingsPage.php:192
+msgid "View abandoned carts"
+msgstr "Ver carritos abandonados"
+
 #. translators: %s: the reminder's position in the sequence, e.g. 2.
 #: src/Admin/SettingsPage.php:303
 #, php-format
 msgid "Reminder %s"
 msgstr "Recordatorio %s"
 
-#. translators: %s: whole minutes counted from the moment the cart is marked
-#. abandoned.
+#. translators: %s: whole minutes counted from the moment the cart is marked abandoned.
 #: src/Admin/SettingsPage.php:305
 #, php-format
 msgid "+%s min"
@@ -494,7 +497,3 @@ msgid ""
 msgstr ""
 "Este mensaje fue enviado por %s porque se dejó un carrito. Si no eres tú, "
 "puedes ignorar este correo electrónico con seguridad."
-
-#: src/Admin/SettingsPage.php:192
-msgid "View abandoned carts"
-msgstr "Ver carritos abandonados"
