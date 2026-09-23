@@ -479,7 +479,7 @@ msgstr "Wir haben das Licht angelassen, dein Warenkorb ist immer noch hier."
 
 #: templates/emails/recovery.php:90
 msgid "The link picks up right where you left off."
-msgstr "Der Link setzt genau dort fort, wo Sie aufgehört haben."
+msgstr "Der Link setzt genau dort fort, wo du aufgehört hast."
 
 #. translators: %s: site name
 #: templates/emails/recovery.php:100
