@@ -1,10 +1,10 @@
-=== Plogins Recover - Abandoned Cart for WooCommerce ===
+=== Recover - Abandoned Cart for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.14
+Stable tag: 1.0.19
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,13 +44,25 @@ On the implementation side, all output is escaped and all input sanitised, every
 * GDPR-friendly consent checkbox and one-click per-email data wipe
 * Compatible with WooCommerce HPOS (Custom Order Tables) and Cart/Checkout Blocks
 
+== Recover PRO ==
+
+The free edition sends the whole recovery sequence, with no cap on what it will do. **Recover PRO** is for shops that want to tune it and measure it, and adds:
+
+* **Per-step sequence control** - a separate delay and its own copy for each step, plus a coupon on the steps you pick
+* **Discount codes** - a unique, expiring coupon in the recovery email, to give a hesitant shopper a reason to finish
+* **Conversion analytics** - recovered revenue, recovery rate by step, and what the coupon emails actually did
+
+Everything in the free edition stays free and open. Recover PRO starts at 29 EUR per year, billed in EUR.
+
+Compare editions and pricing: [plogins.com/plogins-recover-pro/pricing/](https://plogins.com/plogins-recover-pro/pricing/)
+
 == Installation ==
 
 1. Install and activate WooCommerce (8.0 or later).
 2. Install Recover from the WordPress plugin directory, or upload the `plogins-recover` folder to `/wp-content/plugins/`.
 3. Activate the plugin through the **Plugins** screen.
-4. Visit **WooCommerce → Recover** to set your timing and customise the email; sensible defaults work out of the box.
-5. Abandoned carts and your recovery rate appear under **WooCommerce → Recover Carts**.
+4. Visit **WooCommerce > Recover** to set your timing and customise the email; sensible defaults work out of the box.
+5. Abandoned carts and your recovery rate appear under **WooCommerce > Recover Carts**.
 
 == Frequently Asked Questions ==
 
@@ -75,7 +87,7 @@ On a WordPress cron schedule (hourly by default). Each run marks carts that have
 Yes. Each cart has a 64-character cryptographically random token. The restore link contains only that token: no customer id, no email, nothing personal. Without the exact token a cart cannot be restored, so there is no enumeration or IDOR risk.
 
 = Does this comply with GDPR / consent requirements? =
-Guest email capture only happens after the shopper ticks a consent checkbox (you can edit the wording, and consent can be required or not). Cart data is stored only in your own database and never sent to any third party. From **WooCommerce → Recover Carts** you can erase all stored cart data for any email address in one click. You remain responsible for your store's privacy policy.
+Guest email capture only happens after the shopper ticks a consent checkbox (you can edit the wording, and consent can be required or not). Cart data is stored only in your own database and never sent to any third party. From **WooCommerce > Recover Carts** you can erase all stored cart data for any email address in one click. You remain responsible for your store's privacy policy.
 
 = Where is cart data stored? =
 In a custom `{prefix}_recover_carts` table in your WordPress database. Nothing is sent anywhere else.
@@ -95,13 +107,31 @@ Recover does not connect to any external services. Recovery emails are sent thro
 == Screenshots ==
 
 1. Abandoned cart list with pending / abandoned / recovered counts and recovery rate.
-2. The recovery email with its one-click "Complete my order" button.
+2. The settings screen: when a cart counts as abandoned, when the email goes out, and the wording of the email itself.
 
 == Translations ==
 
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.0.19 =
+* Display name drops the "Plogins " prefix. The slug, the text domain and every option key are unchanged, so nothing on an existing install moves.
+
+= 1.0.18 =
+* Fixed the second screenshot caption on the WordPress.org listing. It promised "the recovery email with its one-click Complete my order button" while the image beside it was the settings screen, so the listing described a screen no visitor could see.
+
+= 1.0.17 =
+* The sidebar upgrade promo now follows the same dismissal as the banner. Dismissing the banner used to leave a full-height advert on the settings screen for good, which is not what the WordPress.org guideline on upgrade prompts means by used with moderation.
+
+= 1.0.16 =
+* Changed: the listing now says a paid edition exists and what it adds. It never did, so anyone reading the WordPress.org page had no way of knowing there was one.
+
+= 1.0.15 =
+* Fixed: the PRO upgrade promo kept selling to people who had already bought the paid edition. Only the banner could be dismissed, so the sidebar promo and the locked feature cards followed a paying customer around for good. The promo now checks whether the paid edition is active and steps aside when it is.
+* Fixed: the link under the timing fields had an arrow glyph inside the translatable string, so every translator had to carry the arrow and any locale that dropped it changed the layout. The label is plain text now.
+* Fixed: the German translation of the subject-line help carried two zero-width spaces, invisible in the editor and passed through to the screen.
+* Changed: Polish, German and Spanish are complete again at 93 of 93 strings. Twenty strings added since the last refresh, among them the whole cart search and the reminder plan, had no translation at all.
 
 = 1.0.14 =
 * Fixed: deleting the plugin left the per-user "dismiss" flag from the PRO notice in the database. Uninstall now removes it for every user, not just the one who dismissed it.

@@ -49,8 +49,8 @@ Po stronie implementacji cały wynik jest escapowany, a każde wejście sanityzo
 1. Zainstaluj i włącz WooCommerce (8.0 lub nowsze).
 2. Zainstaluj Recover z katalogu wtyczek WordPress lub prześlij folder `recover` do `/wp-content/plugins/`.
 3. Włącz wtyczkę na ekranie <strong>Wtyczki</strong>.
-4. Wejdź w <strong>WooCommerce → Recover</strong>, aby ustawić czasy i dostosować e-mail; rozsądne ustawienia domyślne działają od razu.
-5. Porzucone koszyki i Twój współczynnik odzysku pojawią się w <strong>WooCommerce → Recover Carts</strong>.
+4. Wejdź w <strong>WooCommerce > Recover</strong>, aby ustawić czasy i dostosować e-mail; rozsądne ustawienia domyślne działają od razu.
+5. Porzucone koszyki i Twój współczynnik odzysku pojawią się w <strong>WooCommerce > Recover Carts</strong>.
 
 == Frequently Asked Questions ==
 
@@ -75,7 +75,7 @@ Według harmonogramu crona WordPressa (domyślnie co godzinę). Każde uruchomie
 Tak. Każdy koszyk ma 64-znakowy, kryptograficznie losowy token. Link przywracający zawiera tylko ten token: brak identyfikatora klienta, brak adresu e-mail, nic osobistego. Bez dokładnego tokenu koszyka nie da się przywrócić, więc nie ma ryzyka enumeracji ani IDOR.
 
 = Does this comply with GDPR / consent requirements? =
-Przechwytywanie adresu e-mail gościa następuje dopiero po zaznaczeniu przez klienta pola zgody (możesz edytować treść, a zgodę można uczynić wymaganą lub nie). Dane koszyka są przechowywane wyłącznie w Twojej własnej bazie danych i nigdy nie są wysyłane do podmiotów trzecich. W <strong>WooCommerce → Recover Carts</strong> możesz jednym kliknięciem usunąć wszystkie zapisane dane koszyka dla dowolnego adresu e-mail. Za politykę prywatności swojego sklepu odpowiadasz Ty.
+Przechwytywanie adresu e-mail gościa następuje dopiero po zaznaczeniu przez klienta pola zgody (możesz edytować treść, a zgodę można uczynić wymaganą lub nie). Dane koszyka są przechowywane wyłącznie w Twojej własnej bazie danych i nigdy nie są wysyłane do podmiotów trzecich. W <strong>WooCommerce > Recover Carts</strong> możesz jednym kliknięciem usunąć wszystkie zapisane dane koszyka dla dowolnego adresu e-mail. Za politykę prywatności swojego sklepu odpowiadasz Ty.
 
 = Where is cart data stored? =
 W niestandardowej tabeli `{prefix}_recover_carts` w Twojej bazie danych WordPress. Nic nie jest wysyłane nigdzie indziej.

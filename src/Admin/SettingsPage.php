@@ -10,7 +10,7 @@ use Recover\Contract\HasHooks;
 use Recover\Settings;
 
 /**
- * Admin settings page under WooCommerce → Recover.
+ * Admin settings page under WooCommerce > Recover.
  *
  * Stores settings in the `recover_settings` option (array).
  */
@@ -189,7 +189,7 @@ final class SettingsPage implements HasHooks
                     esc_html_e('The recovery worker is not scheduled. Re-activate the plugin to restore it.', 'plogins-recover');
                 }
                 ?>
-                &nbsp;<a href="<?php echo esc_url(admin_url('admin.php?page=recover-carts')); ?>"><?php esc_html_e('View abandoned carts →', 'plogins-recover'); ?></a>
+                &nbsp;<a href="<?php echo esc_url(admin_url('admin.php?page=recover-carts')); ?>"><?php esc_html_e('View abandoned carts', 'plogins-recover'); ?></a>
             </p>
 
             <div class="recover-cols">

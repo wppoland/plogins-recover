@@ -11,7 +11,7 @@ use Recover\Model\AbandonedCart;
 use Recover\Repository\CartRepository;
 
 /**
- * Admin list of abandoned / recovered carts under WooCommerce → Recover → Carts.
+ * Admin list of abandoned / recovered carts under WooCommerce > Recover > Carts.
  */
 final class CartsPage implements HasHooks
 {
