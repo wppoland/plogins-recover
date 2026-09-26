@@ -49,8 +49,8 @@ En la implementación, toda la salida se escapa y toda la entrada se sanea, cada
 1. Instala y activa WooCommerce (8.0 o posterior).
 2. Instala Recover desde el directorio de plugins de WordPress o sube la carpeta `recover` a `/wp-content/plugins/`.
 3. Activa el plugin en la pantalla <strong>Plugins</strong>.
-4. Entra en <strong>WooCommerce → Recover</strong> para configurar los tiempos y personalizar el correo electrónico; los valores predeterminados sensatos funcionan de inmediato.
-5. Los carritos abandonados y tu tasa de recuperación aparecen en <strong>WooCommerce → Recover Carts</strong>.
+4. Entra en <strong>WooCommerce > Recover</strong> para configurar los tiempos y personalizar el correo electrónico; los valores predeterminados sensatos funcionan de inmediato.
+5. Los carritos abandonados y tu tasa de recuperación aparecen en <strong>WooCommerce > Recover Carts</strong>.
 
 == Frequently Asked Questions ==
 
@@ -75,7 +75,7 @@ Según un horario de cron de WordPress (por defecto, cada hora). Cada ejecución
 Sí. Cada carrito tiene un token aleatorio criptográfico de 64 caracteres. El enlace de restauración contiene solo ese token: sin id de cliente, sin correo electrónico, nada personal. Sin el token exacto no se puede restaurar un carrito, así que no hay riesgo de enumeración ni IDOR.
 
 = Does this comply with GDPR / consent requirements? =
-La captura del correo electrónico de invitados solo ocurre después de que el cliente marque una casilla de consentimiento (puedes editar el texto, y el consentimiento puede ser obligatorio o no). Los datos del carrito se almacenan solo en tu propia base de datos y nunca se envían a terceros. Desde <strong>WooCommerce → Recover Carts</strong> puedes borrar con un clic todos los datos de carrito guardados para cualquier dirección de correo electrónico. Sigues siendo responsable de la política de privacidad de tu tienda.
+La captura del correo electrónico de invitados solo ocurre después de que el cliente marque una casilla de consentimiento (puedes editar el texto, y el consentimiento puede ser obligatorio o no). Los datos del carrito se almacenan solo en tu propia base de datos y nunca se envían a terceros. Desde <strong>WooCommerce > Recover Carts</strong> puedes borrar con un clic todos los datos de carrito guardados para cualquier dirección de correo electrónico. Sigues siendo responsable de la política de privacidad de tu tienda.
 
 = Where is cart data stored? =
 En una tabla personalizada `{prefix}_recover_carts` en tu base de datos de WordPress. No se envía nada a ningún otro sitio.

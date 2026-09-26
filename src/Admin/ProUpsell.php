@@ -48,6 +48,13 @@ final class ProUpsell
     /** Whether to render the promo at all (filterable for white-label builds). */
     public function enabled(): bool
     {
+
+        // Somebody running the paid edition has already bought what this sells.
+        // Only the banner was ever dismissible, so without this the sidebar promo
+        // and the locked cards followed a paying customer around for ever.
+        if (defined('Recover\\Pro\\VERSION')) {
+            return false;
+        }
         /**
          * Filters whether the Recover PRO promo is shown on the settings screen.
          *
@@ -164,9 +171,14 @@ final class ProUpsell
     }
 
     /** Sidebar promo panel (sits in the settings two-column layout). */
+    /**
+     * The sidebar promo follows the banner's dismissal. Without that, dismissing
+     * the banner left a full-height advert on the screen for good, which is not
+     * what Guideline 11 means by used with moderation.
+     */
     public function aside(): void
     {
-        if (! $this->enabled()) {
+        if (! $this->enabled() || $this->bannerDismissed()) {
             return;
         }
         $name     = (string) ($this->data()['name'] ?? 'Recover Pro');
