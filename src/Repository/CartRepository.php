@@ -271,15 +271,26 @@ final class CartRepository
     }
 
     /**
-     * Resolve an open cart (pending/abandoned) for the given identifiers and
-     * mark it recovered. Used when an order is placed.
+     * Close the open cart for the given identifiers when an order is placed.
+     *
+     * Only an abandoned cart counts as recovered. A pending cart was never
+     * abandoned, so it is an ordinary checkout: counting it as recovered made
+     * every normal order inflate the recovery rate. It is deleted instead,
+     * because a cart that became an order has nothing left to recover.
      */
     public function markRecoveredBySessionOrUser(?string $sessionKey, ?int $userId): void
     {
         $cart = $this->findOpenBySessionOrUser($sessionKey, $userId);
-        if ($cart !== null) {
-            $this->markRecovered($cart->id);
+        if ($cart === null) {
+            return;
         }
+
+        if ($cart->status === AbandonedCart::STATUS_ABANDONED) {
+            $this->markRecovered($cart->id);
+            return;
+        }
+
+        $this->delete($cart->id);
     }
 
     /**
