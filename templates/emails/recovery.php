@@ -52,7 +52,7 @@ defined('ABSPATH') || exit;
                                 </tr>
                             </table>
                             <p style="margin:0 0 8px;font-size:15px;line-height:1.65;color:#374151;">
-                                <?php echo esc_html($recover_body); ?>
+                                <?php echo nl2br(esc_html($recover_body)); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by esc_html(); nl2br() only adds <br />. ?>
                             </p>
                         </td>
                     </tr>
