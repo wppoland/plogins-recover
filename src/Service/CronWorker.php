@@ -14,16 +14,23 @@ use Recover\Settings;
 use const Recover\CRON_HOOK;
 
 /**
- * wp-cron worker. Two idempotent passes per run:
+ * Recovery worker. Runs every 10 minutes on Action Scheduler (bundled with
+ * WooCommerce), falling back to the hourly WP-Cron event when Action Scheduler
+ * is not available. Two idempotent passes per run:
  *   1. Sweep: mark pending carts inactive past the configured window as abandoned.
  *   2. Send: email a recovery link for each abandoned cart that is due and has
  *      not been emailed yet.
  *
- * Idempotency: a cart is only marked abandoned once (status transition), and
- * emails_sent gates the send so a re-run never double-sends.
+ * Idempotency: a cart is only marked abandoned once (conditional status
+ * transition), and each email step is claimed with a conditional update on
+ * emails_sent before it is sent, so two overlapping runs never double-send.
+ * Both passes are bounded by a LIMIT per run.
  */
 final class CronWorker implements HasHooks
 {
+    public const GROUP    = 'plogins-recover';
+    public const INTERVAL = 600;
+
     public function __construct(
         private readonly CartRepository $repository,
         private readonly Settings $settings,
@@ -35,10 +42,54 @@ final class CronWorker implements HasHooks
     {
         add_action(CRON_HOOK, [$this, 'run']);
 
-        // Self-heal: ensure the event exists even if activation was missed
-        // (e.g. plugin updated via file copy without re-activation).
+        // Self-heal and upgrade path: ensure the schedule exists even if
+        // activation was missed (e.g. plugin updated via file copy). Admin and
+        // cron requests are enough for that and keep the storefront query-free.
+        if (is_admin() || wp_doing_cron()) {
+            self::schedule();
+        }
+    }
+
+    /**
+     * Schedule the worker: a 10-minute Action Scheduler recurring action when
+     * Action Scheduler is available, otherwise the hourly WP-Cron event.
+     * Moving to Action Scheduler also removes the old hourly WP-Cron event.
+     */
+    public static function schedule(): void
+    {
+        if (function_exists('as_schedule_recurring_action') && function_exists('as_has_scheduled_action')) {
+            // Action Scheduler's store is not ready before its own init.
+            if (! did_action('action_scheduler_init')) {
+                if (! has_action('action_scheduler_init', [self::class, 'schedule'])) {
+                    add_action('action_scheduler_init', [self::class, 'schedule']);
+                }
+                return;
+            }
+
+            if (wp_next_scheduled(CRON_HOOK)) {
+                wp_clear_scheduled_hook(CRON_HOOK);
+            }
+
+            if (! as_has_scheduled_action(CRON_HOOK, [], self::GROUP)) {
+                as_schedule_recurring_action(time() + 60, self::INTERVAL, CRON_HOOK, [], self::GROUP, true);
+            }
+            return;
+        }
+
         if (! wp_next_scheduled(CRON_HOOK)) {
             wp_schedule_event(time() + 300, 'hourly', CRON_HOOK);
+        }
+    }
+
+    /**
+     * Remove both possible schedules (deactivation).
+     */
+    public static function unschedule(): void
+    {
+        wp_clear_scheduled_hook(CRON_HOOK);
+
+        if (function_exists('as_unschedule_all_actions')) {
+            as_unschedule_all_actions(CRON_HOOK, [], self::GROUP);
         }
     }
 
@@ -76,17 +127,24 @@ final class CronWorker implements HasHooks
                 continue;
             }
 
-            if ($this->mailer->send($cart, $step)) {
-                $this->repository->recordEmailSent($cart->id);
-
-                /**
-                 * Fires after a recovery email is accepted by wp_mail.
-                 *
-                 * @param AbandonedCart $cart The cart that received the email.
-                 * @param int           $step Zero-based sequence index that was sent.
-                 */
-                do_action('recover/email_sent', $cart, $step);
+            // Claim the step first: a run that overlaps this one sees the
+            // incremented counter and skips the cart.
+            if (! $this->repository->claimEmailStep($cart->id, $step)) {
+                continue;
             }
+
+            if (! $this->mailer->send($cart, $step)) {
+                $this->repository->releaseEmailStep($cart->id, $step, $cart->lastEmailAt);
+                continue;
+            }
+
+            /**
+             * Fires after a recovery email is accepted by wp_mail.
+             *
+             * @param AbandonedCart $cart The cart that received the email.
+             * @param int           $step Zero-based sequence index that was sent.
+             */
+            do_action('recover/email_sent', $cart, $step);
         }
     }
 

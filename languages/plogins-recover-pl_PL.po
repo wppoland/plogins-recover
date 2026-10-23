@@ -475,11 +475,11 @@ msgstr "Dokończ zamówienie"
 
 #: templates/emails/recovery.php:76
 msgid "We left the light on, your cart is still here."
-msgstr "Zostawiliśmy włączone światło, Twój koszyk nadal tu jest."
+msgstr "Zostawiliśmy zapalone światło, Twój koszyk wciąż na Ciebie czeka."
 
 #: templates/emails/recovery.php:90
 msgid "The link picks up right where you left off."
-msgstr "Link rozpoczyna się w miejscu, w którym przerwałeś."
+msgstr "Link przywróci koszyk dokładnie w takim stanie, w jakim go zostawiono."
 
 #. translators: %s: site name
 #: templates/emails/recovery.php:100

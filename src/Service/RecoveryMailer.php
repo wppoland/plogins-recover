@@ -33,6 +33,8 @@ final class RecoveryMailer
             return false;
         }
 
+        $items = $this->items($cart);
+
         $templateArgs = [
             'subject'     => $this->settings->emailSubject(),
             'heading'     => $this->settings->emailHeading(),
@@ -40,12 +42,19 @@ final class RecoveryMailer
             'button'      => $this->settings->emailButton(),
             'restore_url' => RestoreHandler::url($cart->token),
             'site_name'   => get_bloginfo('name'),
+            'items'       => $items,
+            // The stored total still counts lines dropped since capture, so it
+            // is shown only when every captured line is listed above it.
+            'total'       => function_exists('wc_price') && count($items) === count($cart->cartContents) ? wc_price($cart->cartTotal, $this->priceArgs($cart)) : '',
         ];
 
         /**
          * Filters the template variables used to render the recovery email.
          *
-         * @param array{subject:string, heading:string, body:string, button:string, restore_url:string, site_name:string} $templateArgs
+         * `items` is a list of {name, quantity, image, line_total}; `line_total`
+         * and `total` are price HTML from wc_price().
+         *
+         * @param array{subject:string, heading:string, body:string, button:string, restore_url:string, site_name:string, items:list<array{name:string, quantity:int, image:string, line_total:string}>, total:string} $templateArgs
          * @param AbandonedCart                                                                                              $cart
          * @param int                                                                                                        $step Zero-based sequence index.
          */
@@ -81,6 +90,59 @@ final class RecoveryMailer
     }
 
     /**
+     * Cart lines for the email. Products deleted or trashed since the cart was
+     * captured are skipped. Line prices use the product's current price.
+     *
+     * @return list<array{name:string, quantity:int, image:string, line_total:string}>
+     */
+    public function items(AbandonedCart $cart): array
+    {
+        if (! function_exists('wc_get_product')) {
+            return [];
+        }
+
+        $items = [];
+
+        foreach ($cart->cartContents as $line) {
+            $productId = (int) ($line['variation_id'] ?? 0);
+            if ($productId <= 0) {
+                $productId = (int) ($line['product_id'] ?? 0);
+            }
+
+            $product = $productId > 0 ? wc_get_product($productId) : null;
+            if (! $product instanceof \WC_Product || $product->get_status() === 'trash') {
+                continue;
+            }
+
+            $quantity = max(1, (int) ($line['quantity'] ?? 1));
+            $imageId  = (int) $product->get_image_id();
+            $image    = $imageId > 0 ? wp_get_attachment_image_url($imageId, 'thumbnail') : false;
+
+            $items[] = [
+                'name'       => $product->get_name(),
+                'quantity'   => $quantity,
+                'image'      => is_string($image) && $image !== '' ? $image : wc_placeholder_img_src('thumbnail'),
+                'line_total' => wc_price(
+                    (float) wc_get_price_to_display($product, ['qty' => $quantity]),
+                    $this->priceArgs($cart),
+                ),
+            ];
+        }
+
+        return $items;
+    }
+
+    /**
+     * Format prices in the currency the cart was captured in.
+     *
+     * @return array<string, string>
+     */
+    private function priceArgs(AbandonedCart $cart): array
+    {
+        return $cart->currency !== null ? ['currency' => $cart->currency] : [];
+    }
+
+    /**
      * Render the bundled recovery email template to an HTML string.
      *
      * @param array<string, mixed> $args
@@ -92,6 +154,8 @@ final class RecoveryMailer
         $recover_button      = (string) $args['button'];
         $recover_restore_url = (string) $args['restore_url'];
         $recover_site_name   = (string) $args['site_name'];
+        $recover_items       = is_array($args['items'] ?? null) ? $args['items'] : [];
+        $recover_total       = (string) ($args['total'] ?? '');
 
         ob_start();
         include PLUGIN_DIR . '/templates/emails/recovery.php';
