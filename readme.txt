@@ -8,7 +8,7 @@ Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Recover abandoned WooCommerce carts: capture the email early, save the cart, email a secure one-click link to finish checkout.
+Win back abandoned carts: a reminder email with the products and a one-click link back to checkout, sent minutes after the shopper leaves.
 
 == Description ==
 
@@ -106,8 +106,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 
 == Screenshots ==
 
-1. Abandoned cart list with pending / abandoned / recovered counts and recovery rate.
-2. The settings screen: when a cart counts as abandoned, when the email goes out, and the wording of the email itself.
+1. The recovery email as the shopper gets it: each product with its photo, quantity and price, the cart total and a button back to checkout.
+2. Abandoned cart list with pending / abandoned / recovered counts and recovery rate.
+3. The settings screen: when a cart counts as abandoned, when the email goes out, and the wording of the email itself.
 
 == Translations ==
 
