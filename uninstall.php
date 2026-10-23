@@ -29,5 +29,9 @@ delete_option( 'recover_db_version' );
 // than a loop over the users of one blog.
 delete_metadata('user', 0, 'recover_pro_banner_dismissed', '', true);
 
-// Clear the scheduled recovery worker.
+// Clear the scheduled recovery worker: the WP-Cron fallback and the
+// Action Scheduler recurring action.
 wp_clear_scheduled_hook( 'recover_process_carts' );
+if ( function_exists( 'as_unschedule_all_actions' ) ) {
+	as_unschedule_all_actions( 'recover_process_carts', array(), 'plogins-recover' );
+}

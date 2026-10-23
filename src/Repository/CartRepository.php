@@ -199,15 +199,19 @@ final class CartRepository
         );
     }
 
+    /**
+     * Pending to abandoned, once: the status condition keeps an overlapping
+     * run from resetting abandoned_at, which anchors the first email.
+     */
     public function markAbandoned(int $id): void
     {
         $now = current_time('mysql', true);
         $this->wpdb->update(
             $this->tableName(),
             ['status' => AbandonedCart::STATUS_ABANDONED, 'abandoned_at' => $now, 'updated_at' => $now],
-            ['id' => $id],
+            ['id' => $id, 'status' => AbandonedCart::STATUS_PENDING],
             ['%s', '%s', '%s'],
-            ['%d'],
+            ['%d', '%s'],
         );
     }
 
@@ -253,21 +257,45 @@ final class CartRepository
         return $row instanceof \stdClass ? AbandonedCart::fromRow($row) : null;
     }
 
-    public function recordEmailSent(int $id): void
+    /**
+     * Atomically claim email step $step for a cart. Returns false when another
+     * run already claimed it (emails_sent moved on), so it is never sent twice.
+     */
+    public function claimEmailStep(int $id, int $step): bool
     {
         $now = current_time('mysql', true);
 
-        // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Own custom plugin table, atomic increment.
-        $this->wpdb->query(
+        // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Own custom plugin table, atomic conditional increment.
+        $affected = $this->wpdb->query(
             $this->wpdb->prepare(
-                'UPDATE %i SET emails_sent = emails_sent + 1, last_email_at = %s, updated_at = %s WHERE id = %d',
+                'UPDATE %i SET emails_sent = emails_sent + 1, last_email_at = %s, updated_at = %s WHERE id = %d AND emails_sent = %d',
                 $this->tableName(),
                 $now,
                 $now,
                 $id,
+                $step,
             ),
         );
         // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter
+
+        return $affected === 1;
+    }
+
+    /**
+     * Undo a claim whose email was not accepted by wp_mail, so the next run retries it.
+     */
+    public function releaseEmailStep(int $id, int $step, ?\DateTimeImmutable $previousLastEmailAt): void
+    {
+        $this->wpdb->update(
+            $this->tableName(),
+            [
+                'emails_sent'   => $step,
+                'last_email_at' => $previousLastEmailAt?->format('Y-m-d H:i:s'),
+            ],
+            ['id' => $id, 'emails_sent' => $step + 1],
+            ['%d', '%s'],
+            ['%d', '%d'],
+        );
     }
 
     /**

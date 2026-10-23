@@ -109,7 +109,7 @@ final class SettingsPage implements HasHooks
             self::SECTION_TIMING,
             __('Timing', 'plogins-recover'),
             static function (): void {
-                echo '<p>' . esc_html__('Control how long to wait before a cart is considered abandoned and emails go out. The recovery worker runs hourly via wp-cron.', 'plogins-recover') . '</p>';
+                echo '<p>' . esc_html__('Control how long to wait before a cart is considered abandoned and emails go out. The recovery worker runs every 10 minutes with Action Scheduler, or hourly via WP-Cron when Action Scheduler is not available.', 'plogins-recover') . '</p>';
             },
             self::PAGE,
         );

@@ -20,6 +20,8 @@
  * @var string $recover_button
  * @var string $recover_restore_url
  * @var string $recover_site_name
+ * @var array<int, array{name:string, quantity:int, image:string, line_total:string}> $recover_items
+ * @var string $recover_total Price HTML from wc_price(), empty to hide the total.
  *
  * @package Recover
  */
@@ -56,6 +58,47 @@ defined('ABSPATH') || exit;
                             </p>
                         </td>
                     </tr>
+                    <?php if (! empty($recover_items)) : ?>
+                    <tr>
+                        <td style="padding:8px 36px 16px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e3e6ea;">
+                                <?php foreach ($recover_items as $recover_item) : ?>
+                                <tr>
+                                    <td width="64" style="width:64px;padding:12px 12px 12px 0;border-bottom:1px solid #e3e6ea;vertical-align:middle;">
+                                        <img src="<?php echo esc_url((string) $recover_item['image']); ?>" width="64" height="64" alt="<?php echo esc_attr((string) $recover_item['name']); ?>" style="display:block;width:64px;height:64px;border:0;border-radius:8px;object-fit:cover;" />
+                                    </td>
+                                    <td style="padding:12px 12px 12px 0;border-bottom:1px solid #e3e6ea;vertical-align:middle;font-size:14px;line-height:1.4;color:#1f2329;">
+                                        <?php echo esc_html((string) $recover_item['name']); ?>
+                                        <br />
+                                        <span style="font-size:12px;color:#6b7280;">
+                                            <?php
+                                            printf(
+                                                /* translators: %d: quantity of this product in the cart */
+                                                esc_html__('Quantity: %d', 'plogins-recover'),
+                                                (int) $recover_item['quantity'],
+                                            );
+                                            ?>
+                                        </span>
+                                    </td>
+                                    <td align="right" style="padding:12px 0;border-bottom:1px solid #e3e6ea;vertical-align:middle;font-size:14px;color:#1f2329;white-space:nowrap;">
+                                        <?php echo wp_kses_post((string) $recover_item['line_total']); ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                                <?php if ($recover_total !== '') : ?>
+                                <tr>
+                                    <td colspan="2" style="padding:12px 12px 0 0;font-size:14px;font-weight:700;color:#111827;">
+                                        <?php echo esc_html__('Cart total', 'plogins-recover'); ?>
+                                    </td>
+                                    <td align="right" style="padding:12px 0 0;font-size:14px;font-weight:700;color:#111827;white-space:nowrap;">
+                                        <?php echo wp_kses_post($recover_total); ?>
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
+                            </table>
+                        </td>
+                    </tr>
+                    <?php endif; ?>
                     <tr>
                         <td align="center" style="padding:8px 24px 4px;">
                             <!--
