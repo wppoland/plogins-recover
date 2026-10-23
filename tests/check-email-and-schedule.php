@@ -143,8 +143,13 @@ namespace Recover\Tests {
     $html = (string) $t['mail'];
     assert(str_contains($html, '<img src="https://shop.test/img/7-150x150.jpg" width="64" height="64" alt="Blue Mug"'), 'thumbnail with absolute src, size, alt');
     assert(str_contains($html, 'Quantity: 2'), 'quantity rendered');
-    assert(str_contains($html, 'EUR 45.00'), 'cart total in stored currency');
+    assert(! str_contains($html, 'Cart total'), 'no stored total when a captured line was dropped');
     assert(! str_contains($html, 'Trashed Cap'), 'trashed product not rendered');
+
+    // Every captured line still listed: the stored total is shown.
+    $full = new AbandonedCart(1, 'abc', null, 1, 'a@b.test', [['product_id' => 10, 'quantity' => 2]], 'EUR', 45.0, 2, 'abandoned', true, 0, $now, $now, $now, null, null);
+    $mailer->send($full);
+    assert(str_contains((string) $t['mail'], 'EUR 45.00'), 'cart total in stored currency');
 
     // Empty cart after deletions: no item table, no total.
     $gone = new AbandonedCart(1, 'abc', null, 1, 'a@b.test', [['product_id' => 99]], 'EUR', 9.0, 1, 'abandoned', true, 0, $now, $now, $now, null, null);
