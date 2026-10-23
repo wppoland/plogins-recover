@@ -8,7 +8,7 @@ Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Win back abandoned carts: a reminder email with the products and a one-click link back to checkout, sent minutes after the shopper leaves.
+Win back abandoned carts: a reminder email with the products and a one-click link back to checkout, sent automatically after the shopper leaves.
 
 == Description ==
 
