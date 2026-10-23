@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,10 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.2 =
+* Fix: on the block checkout the consent checkbox for guest email capture was drawn inside the email field, on top of its label. It now sits below the field, and if the checkout redraws the field the checkbox comes back with the shopper's choice kept.
+* Fix: guest email capture no longer depends on the block checkout being on screen before the capture script loads, and keeps working after the checkout redraws its fields. Without the ticked consent box nothing is sent, as before.
 
 = 1.1.1 =
 * The recovery email no longer shows the captured cart total when a product in the cart has since been deleted, so the total never contradicts the products listed above it.
