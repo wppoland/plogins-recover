@@ -4,11 +4,11 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.21
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Recover abandoned WooCommerce carts: capture the email early, save the cart, email a secure one-click link to finish checkout.
+Win back abandoned carts: a reminder email with the products and a one-click link back to checkout, sent automatically after the shopper leaves.
 
 == Description ==
 
@@ -81,7 +81,7 @@ Yes. Recover is free and licensed under the GPL.
 Yes. Recover is a WooCommerce extension and requires WooCommerce 8.0 or later. It shows an admin notice and stays inactive if WooCommerce is missing or out of date.
 
 = How is the recovery email sent? =
-On a WordPress cron schedule (hourly by default). Each run marks carts that have been inactive past your window as abandoned, then emails a recovery link to any abandoned cart that is due, using your own site mailer (`wp_mail`). The worker is idempotent, so a re-run never sends the same step twice: each cart receives the number of reminders you set (1 to 5), spaced by the email delay.
+Every 10 minutes through Action Scheduler, which ships with WooCommerce (hourly through WP-Cron if Action Scheduler is not available). Each run marks carts that have been inactive past your window as abandoned, then emails a recovery link to any abandoned cart that is due, using your own site mailer (`wp_mail`). The worker is idempotent, so a re-run never sends the same step twice: each cart receives the number of reminders you set (1 to 5), spaced by the email delay.
 
 = Is the restore link safe? =
 Yes. Each cart has a 64-character cryptographically random token. The restore link contains only that token: no customer id, no email, nothing personal. Without the exact token a cart cannot be restored, so there is no enumeration or IDOR risk.
@@ -106,14 +106,23 @@ Recover does not connect to any external services. Recovery emails are sent thro
 
 == Screenshots ==
 
-1. Abandoned cart list with pending / abandoned / recovered counts and recovery rate.
-2. The settings screen: when a cart counts as abandoned, when the email goes out, and the wording of the email itself.
+1. The recovery email as the shopper gets it: each product with its photo, quantity and price, the cart total and a button back to checkout.
+2. Abandoned cart list with pending / abandoned / recovered counts and recovery rate.
+3. The settings screen: when a cart counts as abandoned, when the email goes out, and the wording of the email itself.
 
 == Translations ==
 
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.1 =
+* The recovery email no longer shows the captured cart total when a product in the cart has since been deleted, so the total never contradicts the products listed above it.
+
+= 1.1.0 =
+* The recovery email now lists the products left in the cart: thumbnail, name, quantity and line price, plus the cart total in the currency the cart was captured in. Products deleted since then are left out.
+* The recovery worker runs every 10 minutes through Action Scheduler instead of hourly WP-Cron, so the email goes out close to the delay you set rather than up to an hour later. Existing sites move over on update; WP-Cron stays as the fallback.
+* Two overlapping worker runs can no longer send the same reminder twice or reset the time a cart was abandoned.
 
 = 1.0.21 =
 * An order placed from a cart that was never abandoned no longer counts as a recovered cart; it inflated the recovery rate with every ordinary checkout. Such a cart is now removed when the order is placed.
