@@ -33,6 +33,8 @@ final class RecoveryMailer
             return false;
         }
 
+        $items = $this->items($cart);
+
         $templateArgs = [
             'subject'     => $this->settings->emailSubject(),
             'heading'     => $this->settings->emailHeading(),
@@ -40,8 +42,10 @@ final class RecoveryMailer
             'button'      => $this->settings->emailButton(),
             'restore_url' => RestoreHandler::url($cart->token),
             'site_name'   => get_bloginfo('name'),
-            'items'       => $this->items($cart),
-            'total'       => function_exists('wc_price') ? wc_price($cart->cartTotal, $this->priceArgs($cart)) : '',
+            'items'       => $items,
+            // The stored total still counts lines dropped since capture, so it
+            // is shown only when every captured line is listed above it.
+            'total'       => function_exists('wc_price') && count($items) === count($cart->cartContents) ? wc_price($cart->cartTotal, $this->priceArgs($cart)) : '',
         ];
 
         /**
