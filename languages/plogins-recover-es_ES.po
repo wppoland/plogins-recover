@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Recover - Abandoned Cart Recovery for WooCommerce 0.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recover\n"
-"POT-Creation-Date: 2026-09-26T04:48:57+00:00\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plogins-recover\n"
+"POT-Creation-Date: 2026-10-23T11:53:44+00:00\n"
 "PO-Revision-Date: 2026-06-16T20:24:51+00:00\n"
 "Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -180,10 +180,6 @@ msgid "Erase"
 msgstr "borrar"
 
 #: src/Admin/ProUpsell.php:85
-msgid "Wkrótce"
-msgstr "Próximamente"
-
-#: src/Admin/ProUpsell.php:85
 msgid "Coming soon"
 msgstr "Próximamente"
 
@@ -196,10 +192,6 @@ msgstr "desde %1$s%2$d/año"
 #: src/Admin/ProUpsell.php:100
 msgid "Upgrade to PRO"
 msgstr "Mejora a PRO"
-
-#: src/Admin/ProUpsell.php:101
-msgid "Powiadom mnie"
-msgstr "Avísame"
 
 #: src/Admin/ProUpsell.php:101
 msgid "Get notified"
@@ -294,11 +286,9 @@ msgstr "Sincronización"
 #: src/Admin/SettingsPage.php:112
 msgid ""
 "Control how long to wait before a cart is considered abandoned and emails go "
-"out. The recovery worker runs hourly via wp-cron."
+"out. The recovery worker runs every 10 minutes with Action Scheduler, or "
+"hourly via WP-Cron when Action Scheduler is not available."
 msgstr ""
-"Controle cuánto tiempo esperar antes de que un carrito se considere "
-"abandonado y se envíen correos electrónicos. El trabajador de recuperación "
-"se ejecuta cada hora a través de wp-cron."
 
 #: src/Admin/SettingsPage.php:117
 msgid "Mark abandoned after (minutes)"
@@ -422,8 +412,7 @@ msgstr "Ver carritos abandonados"
 msgid "Reminder %s"
 msgstr "Recordatorio %s"
 
-#. translators: %s: whole minutes counted from the moment the cart is marked
-#. abandoned.
+#. translators: %s: whole minutes counted from the moment the cart is marked abandoned.
 #: src/Admin/SettingsPage.php:305
 #, php-format
 msgid "+%s min"
@@ -481,16 +470,26 @@ msgstr ""
 msgid "Complete my order"
 msgstr "Completar mi pedido"
 
-#: templates/emails/recovery.php:76
+#. translators: %d: quantity of this product in the cart
+#: templates/emails/recovery.php:77
+#, php-format
+msgid "Quantity: %d"
+msgstr ""
+
+#: templates/emails/recovery.php:91
+msgid "Cart total"
+msgstr ""
+
+#: templates/emails/recovery.php:119
 msgid "We left the light on, your cart is still here."
 msgstr "Dejamos la luz encendida, tu carrito sigue aquí."
 
-#: templates/emails/recovery.php:90
+#: templates/emails/recovery.php:133
 msgid "The link picks up right where you left off."
 msgstr "El enlace continúa justo donde lo dejaste."
 
 #. translators: %s: site name
-#: templates/emails/recovery.php:100
+#: templates/emails/recovery.php:143
 #, php-format
 msgid ""
 "This message was sent by %s because a cart was left behind. If this was not "
@@ -498,3 +497,17 @@ msgid ""
 msgstr ""
 "Este mensaje fue enviado por %s porque se dejó un carrito. Si no eres tú, "
 "puedes ignorar este correo electrónico con seguridad."
+
+#~ msgid "Wkrótce"
+#~ msgstr "Próximamente"
+
+#~ msgid "Powiadom mnie"
+#~ msgstr "Avísame"
+
+#~ msgid ""
+#~ "Control how long to wait before a cart is considered abandoned and emails "
+#~ "go out. The recovery worker runs hourly via wp-cron."
+#~ msgstr ""
+#~ "Controle cuánto tiempo esperar antes de que un carrito se considere "
+#~ "abandonado y se envíen correos electrónicos. El trabajador de "
+#~ "recuperación se ejecuta cada hora a través de wp-cron."
