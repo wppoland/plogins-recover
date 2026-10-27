@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,18 +46,21 @@ On the implementation side, all output is escaped and all input sanitised, every
 
 == Recover Pro ==
 
-Recover Pro is a separate paid plugin that extends Recover:
+Recover Pro is a separate paid plugin that extends Recover.
 
-| Feature | Free | Pro |
-|:--- |:---:|:---:|
-| Automatic snapshots | Yes | Yes |
-| Early email capture | Yes | Yes |
-| Configurable timing and reminder count | Yes | Yes |
-| Tokenised restore link | Yes | Yes |
-| Cron-driven emails | Yes | Yes |
-| Per-step sequence control | - | Yes |
-| Discount codes | - | Yes |
-| Conversion analytics | - | Yes |
+Included in Recover:
+
+* Automatic snapshots
+* Early email capture
+* Configurable timing and reminder count
+* Tokenised restore link
+* Cron-driven emails
+
+Recover Pro adds:
+
+* Per-step sequence control
+* Discount codes
+* Conversion analytics
 
 The free edition is not a trial and its features stay available without a time limit.
 
@@ -125,6 +128,10 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.4 =
+* The Upgrade to PRO links open the pricing page in the admin's language where plogins.com has one, and tell plogins.com which plugin the visit came from (utm_source, utm_medium and utm_campaign in the link). Nothing is sent from your site.
+* Readme: the PRO section lists what the free plugin includes and what the paid edition adds as two lists, which WordPress.org can display (it does not display tables).
 
 = 1.1.3 =
 * Readme only: a PRO section with links to the paid edition.
