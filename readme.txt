@@ -46,11 +46,18 @@ On the implementation side, all output is escaped and all input sanitised, every
 
 == Recover Pro ==
 
-Recover Pro is a separate paid plugin that works on top of Recover. It adds:
+Recover Pro is a separate paid plugin that extends Recover:
 
-* Per-step sequence control
-* Discount codes
-* Conversion analytics
+| Feature | Free | Pro |
+|:--- |:---:|:---:|
+| Automatic snapshots | Yes | Yes |
+| Early email capture | Yes | Yes |
+| Configurable timing and reminder count | Yes | Yes |
+| Tokenised restore link | Yes | Yes |
+| Cron-driven emails | Yes | Yes |
+| Per-step sequence control | - | Yes |
+| Discount codes | - | Yes |
+| Conversion analytics | - | Yes |
 
 The free edition is not a trial and its features stay available without a time limit.
 
