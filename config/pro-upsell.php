@@ -12,6 +12,8 @@ defined('ABSPATH') || exit;
 return [
     'name'       => 'Recover Pro',
     'url'        => 'https://plogins.com/plogins-recover-pro/pricing/',
+    'campaign'   => 'plogins-recover',
+    'locales'    => ['pl', 'de', 'es'],
     'sellable'   => true,
     'price_from' => 29,
     'currency'   => 'EUR',
