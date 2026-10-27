@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,17 +44,19 @@ On the implementation side, all output is escaped and all input sanitised, every
 * GDPR-friendly consent checkbox and one-click per-email data wipe
 * Compatible with WooCommerce HPOS (Custom Order Tables) and Cart/Checkout Blocks
 
-== Recover PRO ==
+== Recover Pro ==
 
-The free edition sends the whole recovery sequence, with no cap on what it will do. **Recover PRO** is for shops that want to tune it and measure it, and adds:
+Recover Pro is a separate paid plugin that works on top of Recover. It adds:
 
-* **Per-step sequence control** - a separate delay and its own copy for each step, plus a coupon on the steps you pick
-* **Discount codes** - a unique, expiring coupon in the recovery email, to give a hesitant shopper a reason to finish
-* **Conversion analytics** - recovered revenue, recovery rate by step, and what the coupon emails actually did
+* Per-step sequence control
+* Discount codes
+* Conversion analytics
 
-Everything in the free edition stays free and open. Recover PRO starts at 29 EUR per year, billed in EUR.
+The free edition is not a trial and its features stay available without a time limit.
 
-Compare editions and pricing: [plogins.com/plogins-recover-pro/pricing/](https://plogins.com/plogins-recover-pro/pricing/)
+* **Recover Pro** - [plogins.com/plogins-recover-pro/](https://plogins.com/plogins-recover-pro/)
+* **Compare editions and pricing** - [plogins.com/plogins-recover-pro/pricing/](https://plogins.com/plogins-recover-pro/pricing/)
+* **PRO documentation** - [plogins.com/plogins-recover-pro/docs/](https://plogins.com/plogins-recover-pro/docs/)
 
 == Installation ==
 
@@ -72,6 +74,7 @@ Compare editions and pricing: [plogins.com/plogins-recover-pro/pricing/](https:/
 * **Plugin page**: [plogins.com/plogins-recover/](https://plogins.com/plogins-recover/)
 * **Source code**: [github.com/wppoland/plogins-recover](https://github.com/wppoland/plogins-recover)
 * **Bug reports and feature requests**: [github.com/wppoland/plogins-recover/issues](https://github.com/wppoland/plogins-recover/issues)
+* **Recover Pro**: [plogins.com/plogins-recover-pro/](https://plogins.com/plogins-recover-pro/)
 
 
 = Is Recover free? =
@@ -115,6 +118,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.1.3 =
+* Readme only: a PRO section with links to the paid edition.
 
 = 1.1.2 =
 * Fix: on the block checkout the consent checkbox for guest email capture was drawn inside the email field, on top of its label. It now sits below the field, and if the checkout redraws the field the checkbox comes back with the shopper's choice kept.
