@@ -20,6 +20,7 @@ use const Recover\CRON_HOOK;
  *   1. Sweep: mark pending carts inactive past the configured window as abandoned.
  *   2. Send: email a recovery link for each abandoned cart that is due and has
  *      not been emailed yet.
+ *   3. Retention: delete carts (with their email) past the retention period.
  *
  * Idempotency: a cart is only marked abandoned once (conditional status
  * transition), and each email step is claimed with a conditional update on
@@ -95,6 +96,10 @@ final class CronWorker implements HasHooks
 
     public function run(): void
     {
+        // Retention runs even with recovery switched off: stored emails still age out.
+        if ($this->settings->retentionDays() > 0) {
+            $this->repository->deleteOlderThan($this->utcMinutesAgo($this->settings->retentionDays() * 24 * 60));
+        }
         if (! $this->settings->enabled()) {
             return;
         }

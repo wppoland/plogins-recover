@@ -112,6 +112,15 @@ final class SettingsPage implements HasHooks
             self::SECTION_GENERAL,
         );
 
+        $this->number(
+            'retention_days',
+            __('Delete carts after (days)', 'plogins-recover'),
+            (string) $this->settings->retentionDays(),
+            __('Carts, with the email and consent stored for them, are deleted this many days after their last change. 0 keeps them. A retention period is what a privacy policy has to state.', 'plogins-recover'),
+            self::SECTION_GENERAL,
+            0,
+        );
+
         // ── Timing ──────────────────────────────────────────────────────────
         add_settings_section(
             self::SECTION_TIMING,
@@ -351,6 +360,7 @@ final class SettingsPage implements HasHooks
             'require_consent' => ! empty($raw['require_consent']),
             'consent_label'   => sanitize_text_field((string) ($raw['consent_label'] ?? '')),
             'consent_selector' => sanitize_text_field((string) ($raw['consent_selector'] ?? '')),
+            'retention_days'  => absint($raw['retention_days'] ?? 90),
             'abandon_after'   => max(5, absint($raw['abandon_after'] ?? 60)),
             'email_delay'     => absint($raw['email_delay'] ?? 30),
             'email_count'     => max(1, min(5, absint($raw['email_count'] ?? 1))),

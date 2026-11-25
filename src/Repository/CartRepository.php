@@ -405,6 +405,14 @@ final class CartRepository
         ];
     }
 
+    /** Delete every cart last changed before the given UTC datetime; returns how many. */
+    public function deleteOlderThan(string $beforeUtc): int
+    {
+        // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Own custom plugin table, statement prepared with placeholders.
+        return (int) $this->wpdb->query($this->wpdb->prepare('DELETE FROM %i WHERE updated_at < %s', $this->tableName(), $beforeUtc));
+        // phpcs:enable
+    }
+
     public function delete(int $id): void
     {
         $this->wpdb->delete($this->tableName(), ['id' => $id], ['%d']);
