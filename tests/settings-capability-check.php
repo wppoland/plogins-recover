@@ -24,6 +24,11 @@ namespace Recover\Contract {
 
 namespace {
     define('ABSPATH', sys_get_temp_dir() . '/');
+    define('Recover\\PLUGIN_FILE', __FILE__);
+    function plugin_basename(string $file): string
+    {
+        return basename($file);
+    }
 
     $GLOBALS['hooks'] = [];
     function add_action(string $hook, callable|array $cb): void {}
