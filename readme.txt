@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.2
 Requires PHP: 8.1
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.4.0 =
+* Added: "Match WooCommerce emails". The reminder takes its colours and header image from WooCommerce > Settings > Emails, with a plain button in your base colour (dark or light text picked for contrast), so it looks like your order emails. Products without their own image are listed without the grey placeholder.
 
 = 1.3.1 =
 * Plugins list shows shortcuts to the settings screens.

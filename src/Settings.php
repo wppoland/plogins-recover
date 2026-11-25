@@ -38,6 +38,7 @@ final class Settings
             'require_consent'     => true,
             'consent_label'       => '',
             'consent_selector'    => '',
+            'match_wc_emails'     => false, // Colours and logo of the shop's WooCommerce emails instead of the bundled warm look.
             'retention_days'      => 90,   // Days a cart (and its email) is kept after its last change; 0 keeps it.
             'email_subject'       => '',
             'email_heading'       => '',
@@ -107,6 +108,12 @@ final class Settings
     public function consentSelector(): string
     {
         return (string) $this->get('consent_selector', '');
+    }
+
+    /** Style the email with the colours and header image set in WooCommerce > Settings > Emails. */
+    public function matchWooEmails(): bool
+    {
+        return (bool) $this->get('match_wc_emails', false);
     }
 
     /** Days a cart and its email are kept after the last change; 0 keeps them. */

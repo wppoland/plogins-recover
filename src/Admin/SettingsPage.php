@@ -163,6 +163,7 @@ final class SettingsPage implements HasHooks
             self::PAGE,
         );
 
+        $this->checkbox('match_wc_emails', __('Match WooCommerce emails', 'plogins-recover'), __('Use the colours and header image from WooCommerce > Settings > Emails, so the reminder looks like your order emails. Products without their own image are listed without one.', 'plogins-recover'), self::SECTION_EMAIL);
         $this->text(
             'email_subject',
             __('Subject', 'plogins-recover'),
@@ -386,6 +387,7 @@ final class SettingsPage implements HasHooks
             'email_heading'   => sanitize_text_field((string) ($raw['email_heading'] ?? '')),
             'email_body'      => sanitize_textarea_field((string) ($raw['email_body'] ?? '')),
             'email_button'    => sanitize_text_field((string) ($raw['email_button'] ?? '')),
+            'match_wc_emails' => ! empty($raw['match_wc_emails']),
         ];
     }
 
