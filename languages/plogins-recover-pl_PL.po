@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Recover - Abandoned Cart Recovery for WooCommerce 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plogins-recover\n"
-"POT-Creation-Date: 2026-10-23T11:53:44+00:00\n"
+"POT-Creation-Date: 2026-11-25T14:32:02+00:00\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
 "Last-Translator: motylanogha <szatkowski.mariusz@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -74,15 +74,15 @@ msgstr ""
 msgid "Recover - Carts"
 msgstr "Recover - Koszyki"
 
-#: src/Admin/CartsPage.php:37
+#: src/Admin/CartsPage.php:37 src/Admin/SettingsPage.php:74
 msgid "Recover Carts"
 msgstr "Koszyki Recover"
 
-#: src/Admin/CartsPage.php:54 src/Service/CartTracker.php:145
+#: src/Admin/CartsPage.php:54 src/Service/CartTracker.php:146
 msgid "Security check failed."
 msgstr "Weryfikacja zabezpieczeń nie powiodła się."
 
-#: src/Admin/CartsPage.php:81 src/Admin/SettingsPage.php:52
+#: src/Admin/CartsPage.php:81 src/Admin/SettingsPage.php:55
 msgid "Recover - Abandoned Carts"
 msgstr "Recover - Porzucone koszyki"
 
@@ -176,82 +176,86 @@ msgstr "Usunąć wszystkie zapisane dane koszyka dla tego adresu e-mail?"
 msgid "Erase"
 msgstr "Usuń"
 
-#: src/Admin/ProUpsell.php:85
+#: src/Admin/ProUpsell.php:110
 msgid "Coming soon"
 msgstr "Wkrótce"
 
 #. translators: 1: currency symbol, 2: yearly price
-#: src/Admin/ProUpsell.php:91
+#: src/Admin/ProUpsell.php:116
 #, php-format
 msgid "from %1$s%2$d/yr"
 msgstr "od %1$s%2$d/rok"
 
-#: src/Admin/ProUpsell.php:100
+#: src/Admin/ProUpsell.php:125
 msgid "Upgrade to PRO"
 msgstr "Przejdź na PRO"
 
-#: src/Admin/ProUpsell.php:101
+#: src/Admin/ProUpsell.php:126
 msgid "Get notified"
 msgstr "Powiadom mnie"
 
-#: src/Admin/ProUpsell.php:131
+#: src/Admin/ProUpsell.php:156
 msgid "Permission denied."
 msgstr "Brak uprawnień."
 
 #. translators: %s: PRO edition name
-#: src/Admin/ProUpsell.php:161
+#: src/Admin/ProUpsell.php:186
 #, php-format
 msgid "Do more with %s"
 msgstr "Zrób więcej dzięki %s"
 
-#: src/Admin/ProUpsell.php:168
+#: src/Admin/ProUpsell.php:193
 msgid "Dismiss this notice"
 msgstr "Odrzuć to powiadomienie"
 
-#: src/Admin/ProUpsell.php:190
+#: src/Admin/ProUpsell.php:215
 msgid "Unlock every PRO feature"
 msgstr "Odblokuj wszystkie funkcje PRO"
 
-#: src/Admin/ProUpsell.php:203
+#: src/Admin/ProUpsell.php:228
 msgid "one licence, every PRO feature"
 msgstr "jedna licencja, wszystkie funkcje PRO"
 
 #. translators: %s: PRO edition name
-#: src/Admin/ProUpsell.php:222
+#: src/Admin/ProUpsell.php:247
 #, php-format
 msgid "What %s adds"
 msgstr "Co dodaje %s"
 
-#: src/Admin/SettingsPage.php:53
+#: src/Admin/SettingsPage.php:56
 msgid "Recover"
 msgstr "Recover"
 
-#: src/Admin/SettingsPage.php:94
+#: src/Admin/SettingsPage.php:73
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:114
 msgid "General"
 msgstr "Ogólne"
 
-#: src/Admin/SettingsPage.php:96
+#: src/Admin/SettingsPage.php:116
 msgid "Enable cart recovery"
 msgstr "Włącz odzyskiwanie koszyków"
 
-#: src/Admin/SettingsPage.php:96
+#: src/Admin/SettingsPage.php:116
 msgid "Track abandoned carts and send recovery emails."
 msgstr "Śledź porzucone koszyki i wysyłaj e-maile odzyskujące."
 
-#: src/Admin/SettingsPage.php:97
+#: src/Admin/SettingsPage.php:117
 msgid "Capture guest carts"
 msgstr "Przechwytuj koszyki gości"
 
-#: src/Admin/SettingsPage.php:97
+#: src/Admin/SettingsPage.php:117
 msgid "Record carts and emails from visitors who are not logged in."
 msgstr ""
 "Zapisuj koszyki i adresy e-mail odwiedzających, którzy nie są zalogowani."
 
-#: src/Admin/SettingsPage.php:98
+#: src/Admin/SettingsPage.php:118
 msgid "Require consent"
 msgstr "Wymagaj zgody"
 
-#: src/Admin/SettingsPage.php:98
+#: src/Admin/SettingsPage.php:118
 msgid ""
 "Only store a guest email after they tick a consent checkbox at checkout "
 "(recommended for GDPR). Logged-in customers are always captured with their "
@@ -261,11 +265,11 @@ msgstr ""
 "(zalecane ze względu na RODO). Adresy zalogowanych klientów są zawsze "
 "pobierane z ich konta."
 
-#: src/Admin/SettingsPage.php:101
+#: src/Admin/SettingsPage.php:121
 msgid "Consent checkbox label"
 msgstr "Etykieta pola zgody"
 
-#: src/Admin/SettingsPage.php:102
+#: src/Admin/SettingsPage.php:122
 msgid ""
 "Wording the shopper sees next to the consent checkbox at checkout. Applies "
 "only when \"Require consent\" is on."
@@ -273,32 +277,55 @@ msgstr ""
 "Sformułowanie, które kupujący widzi obok pola wyboru zgody przy kasie. Ma "
 "zastosowanie tylko wtedy, gdy włączona jest opcja „Wymagaj zgody”."
 
-#: src/Admin/SettingsPage.php:110
+#: src/Admin/SettingsPage.php:128
+msgid "Use an existing consent checkbox"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:129
+msgid ""
+"CSS selector of a checkbox another plugin already shows at checkout, e.g. a "
+"marketing consent whose wording covers cart reminders. Recover then shows no "
+"checkbox of its own and stores the email only while that one is ticked. "
+"Leave empty to use the box above."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:135
+msgid "Delete carts after (days)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:137
+msgid ""
+"Carts, with the email and consent stored for them, are deleted this many "
+"days after their last change. 0 keeps them. A retention period is what a "
+"privacy policy has to state."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:145
 msgid "Timing"
 msgstr "Harmonogram"
 
-#: src/Admin/SettingsPage.php:112
+#: src/Admin/SettingsPage.php:147
 msgid ""
 "Control how long to wait before a cart is considered abandoned and emails go "
 "out. The recovery worker runs every 10 minutes with Action Scheduler, or "
 "hourly via WP-Cron when Action Scheduler is not available."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:117
+#: src/Admin/SettingsPage.php:152
 msgid "Mark abandoned after (minutes)"
 msgstr "Oznacz jako porzucony po (minuty)"
 
-#: src/Admin/SettingsPage.php:117
+#: src/Admin/SettingsPage.php:152
 msgid "Minutes of inactivity before a pending cart is flagged as abandoned."
 msgstr ""
 "Liczba minut bezczynności, zanim oczekujący koszyk zostanie oznaczony jako "
 "porzucony."
 
-#: src/Admin/SettingsPage.php:118
+#: src/Admin/SettingsPage.php:153
 msgid "Email delay (minutes)"
 msgstr "Opóźnienie e-maila (minuty)"
 
-#: src/Admin/SettingsPage.php:118
+#: src/Admin/SettingsPage.php:153
 msgid ""
 "Minutes to wait after abandonment before sending the first recovery email, "
 "and between the ones after it."
@@ -306,11 +333,11 @@ msgstr ""
 "Liczba minut od porzucenia koszyka do pierwszego e-maila odzyskującego i "
 "odstęp między kolejnymi."
 
-#: src/Admin/SettingsPage.php:119
+#: src/Admin/SettingsPage.php:154
 msgid "Number of reminders"
 msgstr "Liczba przypomnień"
 
-#: src/Admin/SettingsPage.php:119
+#: src/Admin/SettingsPage.php:154
 msgid ""
 "How many recovery emails one shopper receives, from 1 to 5, spaced by the "
 "delay above."
@@ -318,11 +345,11 @@ msgstr ""
 "Ile e-maili odzyskujących otrzyma jeden klient, od 1 do 5, w odstępie "
 "ustawionym powyżej."
 
-#: src/Admin/SettingsPage.php:124
+#: src/Admin/SettingsPage.php:159
 msgid "Recovery email"
 msgstr "E-mail odzyskujący"
 
-#: src/Admin/SettingsPage.php:126
+#: src/Admin/SettingsPage.php:161
 msgid ""
 "Customise the recovery email. Leave any field blank to use the built-in "
 "default shown as the placeholder. Emails are sent through your own site "
@@ -333,11 +360,11 @@ msgstr ""
 "pośrednictwem Twojego własnego programu pocztowego; żadne dane nie "
 "opuszczają Twojego sklepu."
 
-#: src/Admin/SettingsPage.php:133
+#: src/Admin/SettingsPage.php:168
 msgid "Subject"
 msgstr "Temat"
 
-#: src/Admin/SettingsPage.php:134
+#: src/Admin/SettingsPage.php:169
 msgid ""
 "Inbox subject line. Keep it short and specific so it survives a crowded "
 "inbox."
@@ -345,19 +372,19 @@ msgstr ""
 "Temat skrzynki odbiorczej. Niech będzie krótki i konkretny, aby przetrwał w "
 "zatłoczonej skrzynce odbiorczej."
 
-#: src/Admin/SettingsPage.php:140
+#: src/Admin/SettingsPage.php:175
 msgid "Heading"
 msgstr "Nagłówek"
 
-#: src/Admin/SettingsPage.php:141
+#: src/Admin/SettingsPage.php:176
 msgid "The large heading at the top of the email body, above your message."
 msgstr "Duży nagłówek u góry treści wiadomości e-mail, nad wiadomością."
 
-#: src/Admin/SettingsPage.php:147
+#: src/Admin/SettingsPage.php:182
 msgid "Body text"
 msgstr "Treść wiadomości"
 
-#: src/Admin/SettingsPage.php:148
+#: src/Admin/SettingsPage.php:183
 msgid ""
 "The message shown above the recovery button. Plain text only; write what "
 "nudges the shopper back."
@@ -365,16 +392,16 @@ msgstr ""
 "Komunikat wyświetlany nad przyciskiem odzyskiwania. Tylko zwykły tekst; "
 "napisz, co zachęci kupującego do powrotu."
 
-#: src/Admin/SettingsPage.php:154
+#: src/Admin/SettingsPage.php:189
 msgid "Button label"
 msgstr "Etykieta przycisku"
 
-#: src/Admin/SettingsPage.php:155
+#: src/Admin/SettingsPage.php:190
 msgid "Text on the button that returns the shopper to their saved cart."
 msgstr ""
 "Tekst na przycisku, który powoduje powrót kupującego do zapisanego koszyka."
 
-#: src/Admin/SettingsPage.php:176
+#: src/Admin/SettingsPage.php:211
 msgid ""
 "Cart recovery is currently disabled. Enable it below to start tracking "
 "abandoned carts."
@@ -383,39 +410,39 @@ msgstr ""
 "rozpocząć śledzenie porzuconych koszyków."
 
 #. translators: %s: human-readable time difference
-#: src/Admin/SettingsPage.php:185
+#: src/Admin/SettingsPage.php:220
 #, php-format
 msgid "Next recovery run: in %s."
 msgstr "Następne uruchomienie odzyskiwania: za %s."
 
-#: src/Admin/SettingsPage.php:189
+#: src/Admin/SettingsPage.php:224
 msgid ""
 "The recovery worker is not scheduled. Re-activate the plugin to restore it."
 msgstr ""
 "Proces odzyskiwania nie jest zaplanowany. Ponownie włącz wtyczkę, aby go "
 "przywrócić."
 
-#: src/Admin/SettingsPage.php:192
+#: src/Admin/SettingsPage.php:227
 msgid "View abandoned carts"
 msgstr "Zobacz porzucone koszyki"
 
 #. translators: %s: the reminder's position in the sequence, e.g. 2.
-#: src/Admin/SettingsPage.php:303
+#: src/Admin/SettingsPage.php:338
 #, php-format
 msgid "Reminder %s"
 msgstr "Przypomnienie %s"
 
 #. translators: %s: whole minutes counted from the moment the cart is marked abandoned.
-#: src/Admin/SettingsPage.php:305
+#: src/Admin/SettingsPage.php:340
 #, php-format
 msgid "+%s min"
 msgstr "+%s min"
 
-#: src/Admin/SettingsPage.php:316
+#: src/Admin/SettingsPage.php:351
 msgid "Counted from the moment a cart is marked abandoned:"
 msgstr "Liczone od chwili oznaczenia koszyka jako porzucony:"
 
-#: src/Service/CartTracker.php:150
+#: src/Service/CartTracker.php:151
 msgid "Provide a valid email address."
 msgstr "Podaj prawidłowy adres e-mail."
 
@@ -437,20 +464,20 @@ msgstr "Liczba pozycji"
 msgid "Created At"
 msgstr "Utworzono"
 
-#: src/Settings.php:97
+#: src/Settings.php:99
 msgid "Email me a link to recover my cart if I do not complete my order."
 msgstr ""
 "Wyślij mi e-mailem link do odzyskania koszyka, jeśli nie dokończę zamówienia."
 
-#: src/Settings.php:104
+#: src/Settings.php:122
 msgid "You left something in your cart"
 msgstr "Zostawiłeś coś w swoim koszyku"
 
-#: src/Settings.php:111
+#: src/Settings.php:129
 msgid "Still thinking it over?"
 msgstr "Wciąż się zastanawiasz?"
 
-#: src/Settings.php:120
+#: src/Settings.php:138
 msgid ""
 "We saved your cart for you. Click the button below to pick up right where "
 "you left off."
@@ -458,7 +485,7 @@ msgstr ""
 "Zachowaliśmy Twój koszyk. Kliknij przycisk poniżej, aby wrócić dokładnie "
 "tam, gdzie skończyłeś."
 
-#: src/Settings.php:127
+#: src/Settings.php:145
 msgid "Complete my order"
 msgstr "Dokończ zamówienie"
 

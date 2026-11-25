@@ -40,6 +40,7 @@ final class SettingsPage implements HasHooks
     public function registerHooks(): void
     {
         add_action('admin_menu', [$this, 'addMenuPage']);
+        add_filter('plugin_action_links_' . plugin_basename(\Recover\PLUGIN_FILE), [$this, 'actionLinks']);
         add_action('admin_init', [$this, 'registerSettings']);
         // options.php checks manage_options unless the group's capability is filtered.
         add_filter('option_page_capability_' . self::PAGE, static fn (): string => 'manage_woocommerce');
@@ -57,6 +58,23 @@ final class SettingsPage implements HasHooks
             self::PAGE,
             [$this, 'renderPage'],
         );
+    }
+
+    /**
+     * Shortcuts to the plugin's screens on the Plugins list.
+     *
+     * @param array<int|string, string> $links
+     * @return array<int|string, string>
+     */
+    public function actionLinks(array $links): array
+    {
+        array_unshift(
+            $links,
+            sprintf('<a href="%s">%s</a>', esc_url(admin_url('admin.php?page=' . self::PAGE)), esc_html__('Settings', 'plogins-recover')),
+            sprintf('<a href="%s">%s</a>', esc_url(admin_url('admin.php?page=recover-carts')), esc_html__('Recover Carts', 'plogins-recover')),
+        );
+
+        return $links;
     }
 
     public function enqueueStyles(string $hook): void
