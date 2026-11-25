@@ -71,8 +71,45 @@ try {
 	assert.equal(last.get('nonce'), 'n0nce');
 	assert.equal(last.get('consent'), '1');
 	assert.equal(last.get('action'), 'recover_capture_email');
+
+	// Another plugin's checkbox as the consent: no box of Recover's own, sends only while it is ticked.
+	const ext = await browser.newPage();
+	await ext.setContent('<div class="wp-block-woocommerce-checkout"><div id="contact"></div><input id="other"></div>');
+	await ext.evaluate(() => {
+		window.sent = [];
+		window.fetch = (url, init) => {
+			window.sent.push(init.body);
+			return Promise.resolve();
+		};
+		window.RecoverCapture = { ajaxUrl: '/ajax', action: 'recover_capture_email', nonce: 'n0nce', requireConsent: true, consentLabel: 'x', consentSelector: '#marketing' };
+	});
+	await ext.addScriptTag({ content: script });
+	await ext.evaluate((html) => { document.getElementById('contact').innerHTML = html + '<input type="checkbox" id="marketing">'; }, field);
+	await ext.fill('#email', 'guest@example.com');
+	await ext.click('#other');
+	assert.equal(await ext.locator('.recover-consent').count(), 0, 'own box drawn although another checkbox is the consent');
+	assert.deepEqual(await ext.evaluate(() => window.sent), [], 'sent before the other checkbox was ticked');
+	await ext.check('#marketing');
+	const extSent = await ext.evaluate(() => window.sent);
+	assert.equal(new URLSearchParams(extSent[extSent.length - 1] || '').get('email'), 'guest@example.com', 'ticking the other checkbox did not send the email');
+
+	const bad = await browser.newPage();
+	await bad.setContent('<div class="wp-block-woocommerce-checkout"><div id="contact"></div><input id="other"></div>');
+	await bad.evaluate(() => {
+		window.sent = [];
+		window.fetch = (url, init) => { window.sent.push(init.body); return Promise.resolve(); };
+		window.RecoverCapture = { ajaxUrl: '/ajax', action: 'recover_capture_email', nonce: 'n0nce', requireConsent: true, consentLabel: 'x', consentSelector: '##broken[' };
+	});
+	const errors = [];
+	bad.on('pageerror', (e) => errors.push(e.message));
+	await bad.addScriptTag({ content: script });
+	await bad.evaluate((html) => { document.getElementById('contact').innerHTML = html; }, field);
+	await bad.fill('#email', 'guest@example.com');
+	await bad.click('#other');
+	assert.deepEqual(errors, [], 'a mistyped selector threw');
+	assert.deepEqual(await bad.evaluate(() => window.sent), [], 'a mistyped selector counted as consent');
 } finally {
 	await browser.close();
 }
 
-console.log('OK: block checkout capture survives late render and re-render, consent required');
+console.log('OK: block checkout capture survives late render and re-render, consent required, external consent checkbox honoured');
