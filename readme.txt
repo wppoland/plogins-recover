@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.3.0 =
+* Added: "Delete carts after (days)", default 90. Carts, with the email and consent stored for them, are deleted that long after their last change, also while recovery is switched off. 0 keeps them as before.
 
 = 1.2.0 =
 * Added: "Use an existing consent checkbox". Point Recover at a consent checkbox another plugin already shows at checkout (a marketing consent that covers cart reminders) and it draws no box of its own, so shoppers tick one box instead of two.

@@ -38,6 +38,7 @@ final class Settings
             'require_consent'     => true,
             'consent_label'       => '',
             'consent_selector'    => '',
+            'retention_days'      => 90,   // Days a cart (and its email) is kept after its last change; 0 keeps it.
             'email_subject'       => '',
             'email_heading'       => '',
             'email_body'          => '',
@@ -106,6 +107,12 @@ final class Settings
     public function consentSelector(): string
     {
         return (string) $this->get('consent_selector', '');
+    }
+
+    /** Days a cart and its email are kept after the last change; 0 keeps them. */
+    public function retentionDays(): int
+    {
+        return max(0, (int) $this->get('retention_days', 90));
     }
 
     public function emailSubject(): string
