@@ -37,6 +37,7 @@ final class Settings
             'email_count'         => 1,    // How many reminders to send, spaced by email_delay.
             'require_consent'     => true,
             'consent_label'       => '',
+            'consent_selector'    => '',
             'email_subject'       => '',
             'email_heading'       => '',
             'email_body'          => '',
@@ -95,6 +96,16 @@ final class Settings
         return $value !== ''
             ? $value
             : __('Email me a link to recover my cart if I do not complete my order.', 'plogins-recover');
+    }
+
+    /**
+     * CSS selector of a consent checkbox another plugin already draws at
+     * checkout (a marketing consent, say). When set, Recover draws no box of
+     * its own and reads that one, so the shopper ticks one box, not two.
+     */
+    public function consentSelector(): string
+    {
+        return (string) $this->get('consent_selector', '');
     }
 
     public function emailSubject(): string

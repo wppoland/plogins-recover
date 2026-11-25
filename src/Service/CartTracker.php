@@ -132,6 +132,7 @@ final class CartTracker implements HasHooks
                 'nonce'         => wp_create_nonce(self::NONCE_ACTION),
                 'requireConsent' => $this->settings->requireConsent(),
                 'consentLabel'  => $this->settings->consentLabel(),
+                'consentSelector' => $this->settings->consentSelector(),
             ],
         );
     }

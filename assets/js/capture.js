@@ -11,6 +11,9 @@
  * fields at will, so nothing here holds on to a field: the listeners are
  * delegated from the document, and the consent box is put back (with its
  * state) whenever a re-render drops it.
+ *
+ * With cfg.consentSelector set, another plugin's checkbox is the consent:
+ * nothing is drawn and its checked state is read when needed.
  */
 (function () {
 	'use strict';
@@ -89,7 +92,28 @@
 		}
 	}
 
+	// A mistyped selector must not break capture: it only means no consent is read.
+	function external() {
+		try {
+			var box = document.querySelector(cfg.consentSelector);
+			return !!(box && box.checked);
+		} catch (e) {
+			return false;
+		}
+	}
+
+	function isExternalBox(target) {
+		try {
+			return !!cfg.consentSelector && target.matches(cfg.consentSelector);
+		} catch (e) {
+			return false;
+		}
+	}
+
 	function maybeSend() {
+		if (cfg.consentSelector) {
+			consentGiven = external();
+		}
 		var emailField = getEmailField();
 		var email = emailField ? (emailField.value || '').trim() : '';
 		if (!isValidEmail(email) || email === lastSent) {
@@ -121,7 +145,7 @@
 		if (!target || !target.matches) {
 			return;
 		}
-		if (event.type === 'change' && target.matches('.recover-consent-input')) {
+		if (event.type === 'change' && (target.matches('.recover-consent-input') || isExternalBox(target))) {
 			consentGiven = target.checked;
 			lastSent = '';
 			maybeSend();
@@ -135,7 +159,7 @@
 	document.addEventListener('focusout', onFieldEvent);
 	document.addEventListener('change', onFieldEvent);
 
-	if (cfg.requireConsent) {
+	if (cfg.requireConsent && !cfg.consentSelector) {
 		new window.MutationObserver(scheduleEnsure).observe(document.documentElement, {
 			childList: true,
 			subtree: true,

@@ -105,6 +105,12 @@ final class SettingsPage implements HasHooks
             self::SECTION_GENERAL,
             $this->settings->consentLabel(),
         );
+        $this->text(
+            'consent_selector',
+            __('Use an existing consent checkbox', 'plogins-recover'),
+            __('CSS selector of a checkbox another plugin already shows at checkout, e.g. a marketing consent whose wording covers cart reminders. Recover then shows no checkbox of its own and stores the email only while that one is ticked. Leave empty to use the box above.', 'plogins-recover'),
+            self::SECTION_GENERAL,
+        );
 
         // ── Timing ──────────────────────────────────────────────────────────
         add_settings_section(
@@ -344,6 +350,7 @@ final class SettingsPage implements HasHooks
             'capture_guests'  => ! empty($raw['capture_guests']),
             'require_consent' => ! empty($raw['require_consent']),
             'consent_label'   => sanitize_text_field((string) ($raw['consent_label'] ?? '')),
+            'consent_selector' => sanitize_text_field((string) ($raw['consent_selector'] ?? '')),
             'abandon_after'   => max(5, absint($raw['abandon_after'] ?? 60)),
             'email_delay'     => absint($raw['email_delay'] ?? 30),
             'email_count'     => max(1, min(5, absint($raw['email_count'] ?? 1))),
