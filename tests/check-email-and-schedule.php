@@ -37,7 +37,13 @@ namespace {
     function apply_filters($h, $v) { return $v; }
     function is_email($e) { return str_contains((string) $e, '@'); }
     function get_bloginfo($k = '') { return $k === 'name' ? 'Shop' : 'en-US'; }
-    function get_option($k, $d = false) { return $d; }
+    function get_option($k, $d = false) { return $GLOBALS['t']['options'][$k] ?? $d; }
+    function sanitize_hex_color($c) { return preg_match('/^#[0-9a-f]{6}$/i', (string) $c) ? $c : null; }
+    function esc_url_raw($s) { return (string) $s; }
+    function wc_hex_is_light($c) { [$r, $g, $b] = array_map('hexdec', str_split(substr($c, 1), 2)); return (($r * 299) + ($g * 587) + ($b * 114)) / 1000 > 155; } // As in WooCommerce.
+    function wc_hex_lighter($c, $p) { return '#lighter'; }
+    function wc_hex_darker($c, $p) { return '#darker'; }
+    function wc_light_or_dark($c, $dark, $light) { return wc_hex_is_light($c) ? $dark : $light; }
     function __($s) { return $s; }
     function esc_html__($s) { return htmlspecialchars($s); }
     function esc_html($s) { return htmlspecialchars((string) $s); }
@@ -155,6 +161,23 @@ namespace Recover\Tests {
     $gone = new AbandonedCart(1, 'abc', null, 1, 'a@b.test', [['product_id' => 99]], 'EUR', 9.0, 1, 'abandoned', true, 0, $now, $now, $now, null, null);
     $mailer->send($gone);
     assert(! str_contains((string) $t['mail'], 'Cart total'), 'no table when every product is gone');
+
+    // Matching WooCommerce emails: shop colours, no placeholder image, no lantern panel.
+    $t['options'] = [
+        'recover_settings' => ['match_wc_emails' => true],
+        'woocommerce_email_background_color' => '#020617',
+        'woocommerce_email_body_background_color' => '#020617',
+        'woocommerce_email_text_color' => '#f8fafc',
+        'woocommerce_email_base_color' => '#27f0d4',
+    ];
+    $woo   = new RecoveryMailer(new Settings());
+    $wooItems = $woo->items($cart);
+    assert($wooItems[1]['image'] === '', 'no placeholder image when matching WooCommerce emails');
+    $woo->send($cart);
+    $wooHtml = (string) $t['mail'];
+    assert(str_contains($wooHtml, 'background:#020617') && str_contains($wooHtml, 'background-color:#27f0d4;color:#111827'), 'shop colours, dark text on a light accent button');
+    assert(! str_contains($wooHtml, 'We left the light on') && substr_count($wooHtml, '<img') === 1, 'no lantern panel, image only for the product that has one');
+    $t['options'] = [];
 
     echo "OK: schedule and email item checks passed\n";
 }

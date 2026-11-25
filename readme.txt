@@ -129,6 +129,9 @@ Plogins Recover is fully translatable and ships the `plogins-recover.pot` templa
 
 == Changelog ==
 
+= 1.4.0 =
+* Added: "Match WooCommerce emails". The reminder takes its colours and header image from WooCommerce > Settings > Emails, with a plain button in your base colour (dark or light text picked for contrast), so it looks like your order emails. Products without their own image are listed without the grey placeholder.
+
 = 1.3.1 =
 * Plugins list shows shortcuts to the settings screens.
 
