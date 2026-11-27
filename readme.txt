@@ -30,7 +30,7 @@ Emails go out through your own WordPress mailer (`wp_mail`), and cart data lives
 
 Guest email capture only happens after the shopper ticks a consent checkbox, and you can edit the wording or turn the requirement off. Restore links carry an unguessable 64-character random token and nothing else: no customer id, no email in the URL. From the carts screen you can wipe every stored cart for a single email address in one click.
 
-On the implementation side, all output is escaped and all input sanitised, every admin form and AJAX request is nonce-checked, and the admin pages need the `manage_woocommerce` capability. Early email capture uses a small vanilla-JavaScript snippet (no jQuery) loaded in the footer; the recovery worker runs on WordPress cron and is idempotent, so a re-run never sends a second email for the same cart. Deleting the plugin drops its table, removes its two options, and clears the scheduled task.
+On the implementation side, all output is escaped and all input sanitised, every admin form and AJAX request is nonce-checked, and the admin pages need the `manage_woocommerce` capability. Early email capture uses a small vanilla-JavaScript snippet (no jQuery) loaded in the footer; the recovery worker runs every 10 minutes through Action Scheduler (hourly WP-Cron without it) and is idempotent, so a re-run never sends a second email for the same cart. Deleting the plugin drops its table, removes its two options, and clears the scheduled task.
 
 **Features**
 
@@ -38,10 +38,13 @@ On the implementation side, all output is escaped and all input sanitised, every
 * Early email capture for logged-in customers and (consent-gated) guests
 * Configurable abandonment window and email delay
 * Secure, tokenised one-click restore link that repopulates the cart
-* Recovery email sent on a WordPress cron schedule via `wp_mail`
+* Recovery email sent on a schedule (Action Scheduler, WP-Cron as the fallback) via `wp_mail`
 * Abandoned / recovered / pending cart list with a recovery-rate summary
 * Customisable email subject, heading, body and button text
+* Optional match with your WooCommerce emails: colours and header image from WooCommerce > Settings > Emails
 * GDPR-friendly consent checkbox and one-click per-email data wipe
+* Can read a consent checkbox another plugin already shows at checkout, instead of drawing its own
+* Stored carts deleted a set number of days after their last change (90 by default, 0 keeps them)
 * Compatible with WooCommerce HPOS (Custom Order Tables) and Cart/Checkout Blocks
 
 == Recover Pro ==
