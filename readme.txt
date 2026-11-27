@@ -4,7 +4,7 @@ Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
 Requires at least: 6.5
 Tested up to: 7.2
 Requires PHP: 8.1
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,7 +44,7 @@ On the implementation side, all output is escaped and all input sanitised, every
 * Optional match with your WooCommerce emails: colours and header image from WooCommerce > Settings > Emails
 * GDPR-friendly consent checkbox and one-click per-email data wipe
 * Can read a consent checkbox another plugin already shows at checkout, instead of drawing its own
-* Stored carts deleted a set number of days after their last change (90 by default, 0 keeps them)
+* Stored carts deleted a set number of days after their last change (90 by default on a new install, off on a shop updated without a period set; 0 keeps them)
 * Compatible with WooCommerce HPOS (Custom Order Tables) and Cart/Checkout Blocks
 
 == Recover Pro ==
@@ -131,6 +131,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.4.1 =
+* Fixed: an updated shop that never set "Delete carts after (days)" got the new-install default of 90, so a worker run deleted every cart last changed more than 90 days ago. Such shops now keep their carts (0) until you set a period in the settings; a new install still starts at 90.
 
 = 1.4.0 =
 * Added: "Match WooCommerce emails". The reminder takes its colours and header image from WooCommerce > Settings > Emails, with a plain button in your base colour (dark or light text picked for contrast), so it looks like your order emails. Products without their own image are listed without the grey placeholder.

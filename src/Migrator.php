@@ -17,6 +17,7 @@ final class Migrator
     /** Ordered list of migration class short-names under Recover\Migration. */
     private const MIGRATIONS = [
         'Migration_0_1_0',
+        'Migration_1_4_1',
     ];
 
     public function maybeMigrate(): void
