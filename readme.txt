@@ -1,10 +1,10 @@
 === Recover - Abandoned Cart for WooCommerce ===
 Contributors: motylanogha
-Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
+Tags: abandoned cart, cart abandonment, abandoned carts, cart recovery, abandoned checkout
 Requires at least: 6.5
 Tested up to: 7.2
 Requires PHP: 8.1
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,9 @@ Recover does not connect to any external services. Recovery emails are sent thro
 Plogins Recover is fully translatable and ships the `plogins-recover.pot` template. Translations are delivered by WordPress.org language packs from translate.wordpress.org, which is where Polish, German and Spanish are being contributed; the package itself carries no compiled translation files.
 
 == Changelog ==
+
+= 1.4.2 =
+* The PRO notice on the settings screen describes each PRO feature the way the PRO plugin ships it.
 
 = 1.4.1 =
 * Fixed: an updated shop that never set "Delete carts after (days)" got the new-install default of 90, so a worker run deleted every cart last changed more than 90 days ago. Such shops now keep their carts (0) until you set a period in the settings; a new install still starts at 90.

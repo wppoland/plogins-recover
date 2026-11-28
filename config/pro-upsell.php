@@ -31,8 +31,8 @@ return [
             'pl' => ['title' => 'Kody rabatowe', 'desc' => 'Unikalny, wygasający kupon w e-mailu odzyskującym, by dać niezdecydowanym powód do zakupu.'],
         ],
         [
-            'en' => ['title' => 'Conversion analytics', 'desc' => 'A breakdown of recovered revenue, recovery rate by step and coupon email impact.'],
-            'pl' => ['title' => 'Analityka konwersji', 'desc' => 'Rozbicie odzyskanego przychodu, wskaźnika odzysku na etap i wpływu e-maili z kuponem.'],
+            'en' => ['title' => 'Conversion analytics', 'desc' => 'The captured value of recovered carts (counted on a restore-link click or an order), recovery rate by step, and how many emails carried a coupon.'],
+            'pl' => ['title' => 'Analityka konwersji', 'desc' => 'Wartość odzyskanych koszyków (z chwili porzucenia, liczona po kliknięciu linku albo złożeniu zamówienia), wskaźnik odzysku na etap oraz liczba e-maili wysłanych z kuponem.'],
         ],
     ],
 ];
