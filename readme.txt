@@ -1,6 +1,6 @@
 === Recover - Abandoned Cart for WooCommerce ===
 Contributors: motylanogha
-Tags: woocommerce, abandoned cart, cart recovery, email, ecommerce
+Tags: abandoned cart, cart abandonment, abandoned carts, cart recovery, abandoned checkout
 Requires at least: 6.5
 Tested up to: 7.2
 Requires PHP: 8.1
